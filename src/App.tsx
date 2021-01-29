@@ -18,6 +18,7 @@ function App() {
         >
           Learn React
         </a>
+        <p>second try to deploy</p>
       </header>
     </div>
   );
