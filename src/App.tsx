@@ -16,10 +16,10 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          First Deployment for testing purpose
-        </a>
-        <p>second try to deploy</p>
-      </header>
+          Learn React
+          </a>
+          <p>First deployment for testing purpose</p>
+</header>
     </div>
   );
 }
