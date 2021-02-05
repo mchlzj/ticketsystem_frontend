@@ -18,7 +18,7 @@ function App() {
         >
           Learn React
         </a>
-        <p>second try to deploy</p>
+        <p>now with node modules</p>
       </header>
     </div>
   );
