@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import {useState, useEffect} from 'react';
-
+//Kommentar nur für Demo-Zwecke
 const CRUD: FC = () => {
 
     //post nimmt das Ergebnis des Get Request entgegen
@@ -48,9 +48,10 @@ const CRUD: FC = () => {
         <div>
             <ul>
                 {
-                    post.map((post: any) => <li key={post.id}>
-                        {post.title}
-                    </li>)
+                    post.map(
+                        (post: any) => 
+                        <li key={post.id}>{post.title}</li>
+                    )
                 }
             </ul>
         </div>
