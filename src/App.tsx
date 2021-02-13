@@ -1,26 +1,51 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+
+import PrimaryAppBar from './components/AppBar/AppBar';
+import PersistentDrawerLeft from './layouts/Navigation/Navigation';
+import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+
+
+import AllTickets from './pages/AllTickets/AllTickets';
+import NewTicket from './pages/NewTicket/NewTicket';
+import Statistics from './pages/Statistics/Statistics';
+import HomePage from './pages/HomePage/HomePage';
+
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+    },
+    // necessary for content to be below app bar
+    toolbar: theme.mixins.toolbar,
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing(3),
+    },
+  }),
+);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
 
-          </a>
-          <p>First deployment for testing purpose</p>
-</header>
+const classes = useStyles();
+
+  return (
+    
+    <div className= {classes.root}>
+      <Router>
+      <PersistentDrawerLeft/>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+          <Switch>
+            <Route path='/' exact component={HomePage}/>
+            <Route path="/newticket" component={NewTicket}/>
+            <Route path="/alltickets" component={AllTickets}/>
+            <Route path="/statistics" component={Statistics}/>
+          </Switch>
+      </main>
+      </Router>
     </div>
   );
 }
