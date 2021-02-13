@@ -6,7 +6,7 @@ import Hidden from '@material-ui/core/Hidden';
 import DrawerPermanent from '../../components/Drawer/DrawerPermanent';
 import DrawerMobile from '../../components/Drawer/DrawerMobile';
 import AppBar from '../../components/AppBar/AppBar';
-import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 

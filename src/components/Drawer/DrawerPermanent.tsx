@@ -1,7 +1,7 @@
 import React from 'react'
 import Drawer from '@material-ui/core/Drawer';
 
-import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import DrawerContent from './DrawerContent';
 
 function DrawerPermanent({mobileOpen,setMobileOpen}: any) {

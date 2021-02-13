@@ -1,9 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-import PrimaryAppBar from './components/AppBar/AppBar';
 import PersistentDrawerLeft from './layouts/Navigation/Navigation';
-import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 
 import AllTickets from './pages/AllTickets/AllTickets';
