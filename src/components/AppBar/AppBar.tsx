@@ -9,10 +9,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import MenuUser, {UserMenuId} from './MenuUser';
+import  {UserMenuId} from './MenuUser';
 
-
-const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     title: {
