@@ -4,7 +4,6 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import PrimaryAppBar from './components/AppBar/AppBar';
 import PersistentDrawerLeft from './layouts/Navigation/Navigation';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 
 
 import AllTickets from './pages/AllTickets/AllTickets';
