@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,7 +9,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import  {UserMenuId} from './MenuUser';
+import  MenuUser, {UserMenuId} from './MenuUser';
+
+import {MobileOpenContext} from '../Drawer/MobileOpenContext';
+import {AnchorElContext} from './AnchorElContext';
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,18 +48,19 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-function StyledAppBar({mobileOpen, setMobileOpen}: any) {
+function StyledAppBar() {
   const classes = useStyles();
   // Auskommentiert, da sich der Z-Index des Menüs irgendwie nicht ändern lässt
-  // const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = React.useContext(AnchorElContext);
 
-  //   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
+    const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const [mobileOpen, setMobileOpen] = useContext(MobileOpenContext);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-    console.log("cklicked");
   };
 
   return (
@@ -91,7 +96,7 @@ function StyledAppBar({mobileOpen, setMobileOpen}: any) {
               aria-label="account of current user"
               aria-controls={UserMenuId}
               aria-haspopup="true"
-              // onClick={handleProfileMenuOpen}
+              onClick={handleProfileMenuOpen}
               color="inherit"
             >
               <AccountCircle />
@@ -100,9 +105,7 @@ function StyledAppBar({mobileOpen, setMobileOpen}: any) {
         </Toolbar>
       </AppBar>
       {/* Irgendwie lässt sich der Z-Index des Menüs nicht ändern. Deshalb erstmal auskommentiert. */}
-      {/* <MenuUser
-        anchorEl={anchorEl}
-        setAnchorEl={setAnchorEl}/> */}
+      {/* <MenuUser/> */}
     </div>
   );
 }
