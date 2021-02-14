@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {AnchorElContext} from './AnchorElContext';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,9 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const menuId = 'primary-search-account-menu';
 
-function MenuUser({anchorEl, setAnchorEl}:any) {
+function MenuUser() {
 
     const classes = useStyles();
+
+    const [anchorEl, setAnchorEl] = useContext(AnchorElContext);
 
     const handleMenuClose = () => {
         setAnchorEl(null);

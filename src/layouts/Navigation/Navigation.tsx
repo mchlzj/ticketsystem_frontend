@@ -3,10 +3,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Hidden from '@material-ui/core/Hidden';
 
+import {AnchorElProvider} from '../../components/AppBar/AnchorElContext';
+
 import DrawerPermanent from '../../components/Drawer/DrawerPermanent';
 import DrawerMobile from '../../components/Drawer/DrawerMobile';
 import AppBar from '../../components/AppBar/AppBar';
-import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
@@ -49,22 +51,19 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-export default function ResponsiveDrawer() {
+export default function Navigation() {
   const classes = useStyles();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
 
   return (
     <div>
       <CssBaseline />
-      <AppBar 
-      mobileOpen={mobileOpen}
-      setMobileOpen={setMobileOpen}/>
+      <AnchorElProvider>
+        <AppBar/>
+      </AnchorElProvider>
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden mdUp >
-          <DrawerMobile
-          mobileOpen={mobileOpen}
-          setMobileOpen={setMobileOpen}/>
+          <DrawerMobile/>
         </Hidden>
         <Hidden smDown >
           <DrawerPermanent />

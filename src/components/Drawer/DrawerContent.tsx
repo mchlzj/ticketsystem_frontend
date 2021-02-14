@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
@@ -7,10 +7,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
-
+import {MobileOpenContext} from './MobileOpenContext';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-function DrawerContent({mobileOpen, setMobileOpen}: any) {
+function DrawerContent() {
 
   const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,6 +22,8 @@ function DrawerContent({mobileOpen, setMobileOpen}: any) {
 );
 
 const classes = useStyles();
+
+const [mobileOpen, setMobileOpen] = useContext(MobileOpenContext);
 
 const handleDrawerToggle = () => {
   if (mobileOpen === true) {

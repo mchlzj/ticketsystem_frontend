@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
+    // "noUnusedLocals": false,                
+    // "noUnusedParameters": false,
     "target": "es5",
+    "noImplicitAny": false,
     "lib": [
       "dom",
       "dom.iterable",
@@ -24,3 +27,4 @@
     "src/**/*"
   ]
 }
+  
