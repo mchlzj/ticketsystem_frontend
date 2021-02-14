@@ -1,7 +1,7 @@
 import React, {useEffect, useContext, useState} from 'react'
 import {TicketsContext} from './TicketsContext';
 import {getData} from './ApiCalls';
-import { DataGrid, ColDef, ValueGetterParams } from '@material-ui/data-grid';
+import { DataGrid, ColDef} from '@material-ui/data-grid';
 
 export default function AllTickets() {
 
@@ -11,9 +11,9 @@ export default function AllTickets() {
     useEffect(() => {
         getData()
         .then(data => setTickets(data))
-        .then(status => setIsLoading(false))
+        .then(() => setIsLoading(false))
 
-    }, tickets)
+    }, [tickets, setTickets])
 
 
     const columns: ColDef[] = [
