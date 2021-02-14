@@ -9,7 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import  MenuUser, {UserMenuId} from './MenuUser';
+import  {UserMenuId} from './MenuUser';
 
 import {MobileOpenContext} from '../Drawer/MobileOpenContext';
 import {AnchorElContext} from './AnchorElContext';
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
 function StyledAppBar() {
   const classes = useStyles();
   // Auskommentiert, da sich der Z-Index des Menüs irgendwie nicht ändern lässt
-  const [anchorEl, setAnchorEl] = React.useContext(AnchorElContext);
+  const [, setAnchorEl] = React.useContext(AnchorElContext);
 
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);

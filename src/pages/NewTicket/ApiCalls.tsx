@@ -1,7 +1,7 @@
 
 export const sendData = async(title, description) => {
 
-            const response = await fetch('https://www.hetfeld.name/ticket_backend/api/tickets',
+            await fetch('https://www.hetfeld.name/ticket_backend/api/tickets',
             {
                 method: 'POST',
                 body: JSON.stringify({
