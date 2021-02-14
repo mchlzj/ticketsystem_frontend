@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {MobileOpenContext} from './MobileOpenContext';
 
 import Drawer from '@material-ui/core/Drawer';
 
@@ -16,10 +17,12 @@ import DrawerContent from './DrawerContent';
   }),
 );
 
-function DrawerMobile({mobileOpen,setMobileOpen}: any) {
+function DrawerMobile() {
 
     const classes = useStyles();
     const theme = useTheme();
+
+    const [mobileOpen, setMobileOpen] = useContext(MobileOpenContext);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -39,11 +42,8 @@ function DrawerMobile({mobileOpen,setMobileOpen}: any) {
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
             }}
-            
           >
-            <DrawerContent
-            mobileOpen={mobileOpen}
-            setMobileOpen={setMobileOpen}/>
+            <DrawerContent/>
           </Drawer>
         </div>
     )
