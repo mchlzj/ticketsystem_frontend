@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import {TicketsProvider} from './pages/AllTickets/TicketsContext';
 
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+    <TicketsProvider>
     <App />
+    </TicketsProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

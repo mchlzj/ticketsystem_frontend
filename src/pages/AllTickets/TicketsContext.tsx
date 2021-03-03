@@ -1,7 +1,7 @@
 import React, {createContext} from 'react';
 
 
-export const TicketsContext = createContext<any>(null);
+export const TicketsContext = createContext<any>([]);
 
 export const TicketsProvider = ({children}: any) => {
     const [tickets, setTickets] = React.useState([]);
