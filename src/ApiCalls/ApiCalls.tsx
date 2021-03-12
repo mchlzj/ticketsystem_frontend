@@ -1,6 +1,9 @@
 
-export const getData = async() => {
-    const response = await fetch('https://www.hetfeld.name/ticket_backend/api/Tickets');
+const url = 'https://www.hetfeld.name/ticket_backend/api/';
+//https://www.hetfeld.name/ticket_backend/api/
+//http://localhost:59543/api/
+export const getAllTickets = async() => {
+    const response = await fetch(url + 'Tickets');
     try {
         if (response.ok) {
             const jsonResponse = await response.json();
