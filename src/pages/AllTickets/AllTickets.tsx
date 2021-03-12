@@ -1,19 +1,21 @@
-import React, {useEffect, useContext, useState} from 'react'
-import {TicketsContext} from './TicketsContext';
-import {getData} from './ApiCalls';
+import  {useEffect, useState} from 'react'
+
+import {getAllTickets} from '../../ApiCalls/ApiCalls';
 import { DataGrid, ColDef} from '@material-ui/data-grid';
 
-export default function AllTickets() {
+export default function AllTickets({tickets, setTickets}) {
 
-    const [tickets,setTickets] = useContext(TicketsContext);
+    // const [tickets,setTickets] = useContext(TicketsContext);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        getData()
-        .then(data => setTickets(data))
+        getAllTickets()
+        .then(data => {
+          setTickets(data);
+        })
         .then(() => setIsLoading(false))
-
-    }, [tickets, setTickets])
+        console.log("Api Call from AllTickets");
+    }, [])
 
 
     const columns: ColDef[] = [
