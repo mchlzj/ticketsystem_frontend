@@ -15,7 +15,7 @@ export default function AllTickets({tickets, setTickets}) {
         })
         .then(() => setIsLoading(false))
         console.log("Api Call from AllTickets");
-    }, [])
+    }, [setTickets])
 
 
     const columns: ColDef[] = [
