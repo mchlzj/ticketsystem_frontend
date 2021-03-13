@@ -42,10 +42,10 @@ const handleDrawerToggle = () => {
                 <ListItemText primary='Neues Ticket' />
               </ListItem>
             </Link>
-            <Link className={classes.link} to="/alltickets" onClick={handleDrawerToggle}>
-              <ListItem button key='AlleTickets'>
+            <Link className={classes.link} to="/ticketSuchen" onClick={handleDrawerToggle}>
+              <ListItem button key='ticketSuchen'>
                 <ListItemIcon><MailIcon /></ListItemIcon>
-                <ListItemText primary='Alle Tickets' />
+                <ListItemText primary='Ticket suchen' />
               </ListItem>
             </Link>
           </List>
