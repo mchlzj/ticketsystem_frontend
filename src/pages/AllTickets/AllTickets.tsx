@@ -1,7 +1,7 @@
 import  {useEffect, useState} from 'react'
 import Grid from '@material-ui/core/Grid';
 import {getAllTickets} from '../../ApiCalls/ApiCalls';
-import { DataGrid, ColDef} from '@material-ui/data-grid';
+// import { DataGrid, ColDef} from '@material-ui/data-grid';
 import TicketCard from '../../components/Card/TicketCard';
 import TicketSearchBar from '../../components/SearchBar/TicketSearchBar';
 
@@ -20,12 +20,12 @@ export default function AllTickets({tickets, setTickets}) {
     }, [setTickets])
 
 
-    const columns: ColDef[] = [
-        { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'title', headerName: 'Titel', width: 260 },
-        { field: 'description', headerName: 'Beschreibung', width: 390 },
-        { field: 'lastChangedDate', headerName: 'Änderungsdatum', width: 260 },
-      ];
+    // const columns: ColDef[] = [
+    //     { field: 'id', headerName: 'ID', width: 70 },
+    //     { field: 'title', headerName: 'Titel', width: 260 },
+    //     { field: 'description', headerName: 'Beschreibung', width: 390 },
+    //     { field: 'lastChangedDate', headerName: 'Änderungsdatum', width: 260 },
+    //   ];
       
 
     return (  

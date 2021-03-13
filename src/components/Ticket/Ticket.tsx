@@ -1,6 +1,13 @@
-import React, {useState, useContext,useEffect} from 'react'
-import {TicketsContext} from '../../pages/AllTickets/TicketsContext';
+import  {useState,useEffect} from 'react'
+
 import {getTicketById} from '../../ApiCalls/ApiCalls';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+
+import Chip from '@material-ui/core/Chip';
+import { Divider } from '@material-ui/core';
+
 
 function Ticket({match}) {
 
@@ -14,20 +21,51 @@ function Ticket({match}) {
         })
         .then(() => setIsLoading(false))
         console.log('Called Ticket with Id ' + match.params.id);
-    },[setTicket])
+    },[setTicket, match.params.id])
 
-    return (<div>
+    return (<Card>
+            <CardContent>
             {isLoading ? 
             <h1>Loading...</h1> : 
             <div>
-            <h1>{ticket.title}</h1>
-            <h1>{ticket.description}</h1>
-            <h1>{ticket.ticketClosed}</h1>
-            <h1>{ticket.createdDate}</h1>
-            <h1>{ticket.lastChangedDate}</h1>
+              <Typography variant="h5">
+                Titel
+              </Typography>
+              <Typography>
+              {ticket.title}
+              </Typography>
+              <Typography variant="h5">
+                Beschreibung
+              </Typography>
+              <Typography>
+              {ticket.description}
+              </Typography>
+              <Typography variant="h5">
+                Status
+              </Typography>
+              {ticket.closed? 
+              <Chip label="geschlossen" color="secondary"/>:
+              <Chip label="offen" color="primary"/>
+            }
+            <Typography variant="h5">
+                Erstelldatum
+              </Typography>
+              <Typography>
+              {ticket.createdDate}
+              </Typography>
+              <Typography variant="h5">
+                Änderungsdatum
+              </Typography>
+              
+              <Typography>
+              {ticket.lastChangedDate}
+              </Typography>
+              <Divider variant="middle"/>
+
             </div>
             }
-            </div>
+            </CardContent>
+            </Card>
     )
 }
 

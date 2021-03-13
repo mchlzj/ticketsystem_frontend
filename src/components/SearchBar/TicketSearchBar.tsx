@@ -1,16 +1,16 @@
-import React,{useState} from 'react';
+import {useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Switch from '@material-ui/core/Switch';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+// import IconButton from '@material-ui/core/IconButton';
+// import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import DirectionsIcon from '@material-ui/icons/Directions';
+// import DirectionsIcon from '@material-ui/icons/Directions';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
+// import FormControl from '@material-ui/core/FormControl';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,7 +42,7 @@ export default function TicketSearchBar() {
   const classes = useStyles();
 
   const [title, setTitle] = useState('');
-  const [closed, setClosed] = useState(false);
+  // const [closed, setClosed] = useState(false);
 
   const handleSearch = (e) => {
     setTitle(e.target.value);
@@ -69,7 +69,7 @@ export default function TicketSearchBar() {
         onChange={handleSearch}
       />
       </div>
-      <Divider className={classes.divider} orientation="horizontal" />
+      <Divider  />
       <FormControlLabel
           value="true"
           control={<Switch color="secondary" />}
