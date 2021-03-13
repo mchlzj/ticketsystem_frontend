@@ -15,3 +15,16 @@ export const getAllTickets = async() => {
     }
 };
 
+export const getTicketById = async(id) => {
+    const response = await fetch(url + `Tickets/${id}`);
+    try {
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            return jsonResponse;
+        }
+        throw new Error('Request Failed!');
+    } catch(error) {
+        console.log(error);
+    }
+};
+

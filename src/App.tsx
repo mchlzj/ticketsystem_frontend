@@ -1,7 +1,7 @@
 import {useContext, useEffect} from 'react';
 import {getAllTickets} from './ApiCalls/ApiCalls';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-
+import Ticket from './components/Ticket/Ticket';
 import Navigation from './layouts/Navigation/Navigation';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
@@ -59,7 +59,8 @@ const classes = useStyles();
               <Switch>
               <Route path='/' exact component={HomePage}/>
               <Route path="/newticket" component={NewTicket}/>
-              <Route path="/alltickets" render={() => <AllTickets tickets={tickets} setTickets={setTickets} />}/>
+              <Route path="/ticketSuchen" exact render={() => <AllTickets tickets={tickets} setTickets={setTickets} />}/>
+              <Route path="/ticketSuchen/:id" component={Ticket}/>
               <Route path="/statistics" component={Statistics}/>
               </Switch>
               {/* </TicketsProvider> */}
