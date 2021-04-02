@@ -10,7 +10,7 @@ import AllTickets from './pages/AllTickets/AllTickets';
 import NewTicket from './pages/NewTicket/NewTicket';
 import Statistics from './pages/Statistics/Statistics';
 import HomePage from './pages/HomePage/HomePage';
-
+import SignIn from './pages/SignIn/SingIn';
 
 
 import {MobileOpenProvider} from './components/Drawer/MobileOpenContext';
@@ -49,6 +49,8 @@ const classes = useStyles();
     
     <div className= {classes.root}>
       <Router>
+      <Switch>
+      <Route path='/' exact component={SignIn}/>
         <MobileOpenProvider>
           <Navigation/> 
         </MobileOpenProvider>
@@ -56,15 +58,16 @@ const classes = useStyles();
           <div className={classes.toolbar} />
               {/* <TicketsProvider> */}
                 {/* <ApiPreCalls/> */}
-              <Switch>
-              <Route path='/' exact component={HomePage}/>
+              
+              
               <Route path="/newticket" component={NewTicket}/>
               <Route path="/ticketSuchen" exact render={() => <AllTickets tickets={tickets} setTickets={setTickets} />}/>
               <Route path="/ticketSuchen/:id" component={Ticket}/>
               <Route path="/statistics" component={Statistics}/>
-              </Switch>
+              
               {/* </TicketsProvider> */}
         </main>
+        </Switch>
       </Router>
     </div>
   );
