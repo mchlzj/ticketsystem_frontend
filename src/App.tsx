@@ -10,11 +10,13 @@ import AllTickets from './pages/AllTickets/AllTickets';
 import NewTicket from './pages/NewTicket/NewTicket';
 import Statistics from './pages/Statistics/Statistics';
 import HomePage from './pages/HomePage/HomePage';
+import Login from './pages/Login/Login';
 
 
 
 import {MobileOpenProvider} from './components/Drawer/MobileOpenContext';
 import {TicketsContext} from './pages/AllTickets/TicketsContext';
+import {LoginContext} from './util/LoginContext';
 // import ApiPreCalls from './ApiCalls/ApiPreCalls';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -34,6 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
 function App() {
 
   const [tickets,setTickets] = useContext(TicketsContext);
+  const [isLoggedIn, setIsLoggedIn] = useContext(LoginContext);
 
   useEffect(() => {
     getAllTickets()
@@ -49,10 +52,14 @@ const classes = useStyles();
     <div className= {classes.root}>
       <main className={classes.content}>
         <div className={classes.toolbar} />
+        
           <Router>
-              <Navigation/> 
+          <Navigation/> 
+            <Switch>
+            {/* <Route path="/login" exact component={Login}/> */}
+
                 {/* <ApiPreCalls/> */}
-              <Switch>
+                
                 <Route path='/' exact component={HomePage}/>
                 <Route path="/newticket" component={NewTicket}/>
                 <Route path="/ticketSuchen" exact render={() => <AllTickets tickets={tickets} setTickets={setTickets} />}/>

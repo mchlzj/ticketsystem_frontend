@@ -4,10 +4,10 @@ import React, {createContext} from 'react';
 export const LoginContext = createContext<any>([]);
 
 export const LoginProvider = ({children}: any) => {
-    const [login, setLogin] = React.useState([]);
+    const [isLloggedIn, setIsLoggedIn] = React.useState([]);
 
     return (
-        <LoginContext.Provider value={[login,setLogin]} >
+        <LoginContext.Provider value={[isLloggedIn, setIsLoggedIn]} >
             {children}
         </LoginContext.Provider>
     );
