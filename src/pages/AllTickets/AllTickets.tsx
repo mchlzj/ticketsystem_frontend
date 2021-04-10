@@ -1,6 +1,6 @@
 import  {useEffect, useState} from 'react'
 import Grid from '@material-ui/core/Grid';
-import {getAllTickets} from '../../ApiCalls/ApiCalls';
+import {getAllTickets} from '../../util/ApiCalls';
 // import { DataGrid, ColDef} from '@material-ui/data-grid';
 import TicketCard from '../../components/Card/TicketCard';
 import TicketSearchBar from '../../components/SearchBar/TicketSearchBar';

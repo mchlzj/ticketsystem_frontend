@@ -1,6 +1,6 @@
 import  {useState,useEffect} from 'react'
 
-import {getTicketById} from '../../ApiCalls/ApiCalls';
+import {getTicketById} from '../../util/ApiCalls';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';

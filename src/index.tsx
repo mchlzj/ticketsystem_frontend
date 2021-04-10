@@ -5,12 +5,19 @@ import App from './App';
 
 import reportWebVitals from './reportWebVitals';
 import {TicketsProvider} from './pages/AllTickets/TicketsContext';
+import {MobileOpenProvider} from './components/Drawer/MobileOpenContext';
+import { LoginProvider } from './util/LoginContext';
 
 ReactDOM.render(
   // <React.StrictMode>
+  <LoginProvider>
     <TicketsProvider>
-      <App />
-    </TicketsProvider>,
+      <MobileOpenProvider>
+        <App />
+      </MobileOpenProvider>
+    </TicketsProvider>
+  </LoginProvider>,
+    //,
   // </React.StrictMode>,
   document.getElementById('root')
 );

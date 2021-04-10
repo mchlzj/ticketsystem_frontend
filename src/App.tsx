@@ -1,5 +1,5 @@
 import {useContext, useEffect} from 'react';
-import {getAllTickets} from './ApiCalls/ApiCalls';
+import {getAllTickets} from './util/ApiCalls';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Ticket from './components/Ticket/Ticket';
 import Navigation from './layouts/Navigation/Navigation';
@@ -46,26 +46,21 @@ function App() {
 const classes = useStyles();
 
   return (
-    
     <div className= {classes.root}>
-      <Router>
-        <MobileOpenProvider>
-          <Navigation/> 
-        </MobileOpenProvider>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-              {/* <TicketsProvider> */}
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+          <Router>
+              <Navigation/> 
                 {/* <ApiPreCalls/> */}
               <Switch>
-              <Route path='/' exact component={HomePage}/>
-              <Route path="/newticket" component={NewTicket}/>
-              <Route path="/ticketSuchen" exact render={() => <AllTickets tickets={tickets} setTickets={setTickets} />}/>
-              <Route path="/ticketSuchen/:id" component={Ticket}/>
-              <Route path="/statistics" component={Statistics}/>
+                <Route path='/' exact component={HomePage}/>
+                <Route path="/newticket" component={NewTicket}/>
+                <Route path="/ticketSuchen" exact render={() => <AllTickets tickets={tickets} setTickets={setTickets} />}/>
+                <Route path="/ticketSuchen/:id" component={Ticket}/>
+                <Route path="/statistics" component={Statistics}/>
               </Switch>
-              {/* </TicketsProvider> */}
-        </main>
-      </Router>
+          </Router>
+      </main>
     </div>
   );
 }
