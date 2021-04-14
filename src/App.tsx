@@ -4,7 +4,8 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Ticket from './components/Ticket/Ticket';
 import Navigation from './layouts/Navigation/Navigation';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-
+import { ThemeProvider } from '@material-ui/core/styles';
+import './style-theme'
 
 import AllTickets from './pages/AllTickets/AllTickets';
 import NewTicket from './pages/NewTicket/NewTicket';
@@ -15,6 +16,7 @@ import HomePage from './pages/HomePage/HomePage';
 
 import {MobileOpenProvider} from './components/Drawer/MobileOpenContext';
 import {TicketsContext} from './pages/AllTickets/TicketsContext';
+import { theme } from './style-theme';
 // import ApiPreCalls from './ApiCalls/ApiPreCalls';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -49,6 +51,7 @@ const classes = useStyles();
     
     <div className= {classes.root}>
       <Router>
+      <ThemeProvider theme={theme}>
         <MobileOpenProvider>
           <Navigation/> 
         </MobileOpenProvider>
@@ -65,6 +68,7 @@ const classes = useStyles();
               </Switch>
               {/* </TicketsProvider> */}
         </main>
+        </ThemeProvider>
       </Router>
     </div>
   );

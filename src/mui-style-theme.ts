@@ -1,4 +1,6 @@
-/*import { createMuiTheme } from '@material-ui/core/styles';
+
+/*
+import { createMuiTheme } from '@material-ui/core/styles';
 
 declare module '@material-ui/core/styles/createMuiTheme' {
     interface ThemeOptions {    
@@ -13,7 +15,8 @@ const palette = {
 
 const themeName = 'San Marino Razzmatazz Sugar Gliders';
 
-export default createMuiTheme({ palette, themeName });*/
+export default createMuiTheme({ palette, themeName });
+*/
 
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 

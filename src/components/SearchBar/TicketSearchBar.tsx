@@ -11,6 +11,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import FormControl from '@material-ui/core/FormControl';
 import useStyles from '../../mui-style-theme';
+import '../../style-theme'
 
 
 export default function TicketSearchBar() {

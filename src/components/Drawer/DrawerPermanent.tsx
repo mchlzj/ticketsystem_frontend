@@ -3,6 +3,9 @@ import Drawer from '@material-ui/core/Drawer';
 
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import DrawerContent from './DrawerContent';
+import { ThemeProvider } from '@material-ui/core/styles';
+import '../../style-theme'
+import { theme } from '../../style-theme';
 
 function DrawerPermanent() {
 
@@ -12,6 +15,7 @@ function DrawerPermanent() {
   createStyles({
     drawerPaper: {
       width: drawerWidth,
+      background: "#113440",
     },
   }),
 );
@@ -19,6 +23,7 @@ function DrawerPermanent() {
 const classes = useStyles();
 
     return (
+      <ThemeProvider theme={theme}>
         <div>
             <Drawer
             classes={{
@@ -30,6 +35,7 @@ const classes = useStyles();
             <DrawerContent/>
           </Drawer>
         </div>
+      </ThemeProvider>
     );
 }
 
