@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {sendData} from './ApiCalls';
+
+import auth, {getUserRole} from '../../util/auth'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,6 +27,9 @@ export default function NewTicket() {
 
     const [titleValue, setTitleValue] = useState('');
     const [descriptionValue, setDescriptionValue] = useState('');
+    useEffect(() => {
+      console.log(auth.getUserRole());
+    })
 
     const handleChangeDescription = ({target}) => {
         setDescriptionValue(target.value);

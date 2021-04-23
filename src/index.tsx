@@ -9,16 +9,23 @@ import {MobileOpenProvider} from './components/Drawer/MobileOpenContext';
 import { LoginProvider } from './util/LoginContext';
 import {LoginContext} from './util/LoginContext';
 
+import {UserNameProvider} from './util/UserCredsContext';
+import {UserRoleProvider} from './util/UserCredsContext';
+
 
 
 ReactDOM.render(
   // <React.StrictMode>
   <LoginProvider>
-    <TicketsProvider>
-      <MobileOpenProvider>
-        <App />
-      </MobileOpenProvider>
-    </TicketsProvider>
+    <UserNameProvider> 
+      <UserRoleProvider>
+        <TicketsProvider>
+          <MobileOpenProvider>
+            <App />
+          </MobileOpenProvider>
+        </TicketsProvider>
+      </UserRoleProvider>
+    </UserNameProvider>
   </LoginProvider>,
     //,
   // </React.StrictMode>,

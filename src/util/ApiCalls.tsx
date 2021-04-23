@@ -24,13 +24,19 @@ export const login = async(userName, password) => {
       }
       throw new Error("Login failed");
     }catch(error) {
-        console.log(error);
+        console.log("invalid login");
     }
 };
 
 //Tickets abrufen
 export const getAllTickets = async() => {
-    const response = await fetch(url + 'Tickets');
+    const response = await fetch(url + 'Tickets',
+    {
+        headers: {
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
+            }
+    }
+    );
     try {
         if (response.ok) {
             const jsonResponse = await response.json();

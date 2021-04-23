@@ -1,9 +1,10 @@
-import React,{useContext, useState} from 'react';
+import React,{useContext, useState, useEffect} from 'react';
 import {Grid, Button} from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import {LoginContext} from '../../util/LoginContext';
 import {login} from '../../util/ApiCalls';
+import auth, {getUserRole, getUserName} from '../../util/auth'
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function Login() {
+export default function Login(props) {
   const classes = useStyles();
 
   const [isLoggedIn, setIsLoggedIn] = useContext(LoginContext);
@@ -32,13 +33,24 @@ export default function Login() {
   const [password, setPassword] = useState();
 
 const handleLogin = async() => {
+  
     login(userName, password)
         .then(res => {
             localStorage.setItem('token', res.token);
-            setIsLoggedIn(true);
-            // console.log(res);
-        })
+            console.log(getUserRole());
+            console.log(getUserName());
+        }).then(e => {
+          props.history.push('/newticket');
+        }).catch(e => alert("invalid Username or Password"))
 }
+
+// useEffect(() => {
+//     console.log(isLoggedIn);
+//     if(localStorage.getItem('token')) {
+//         setIsLoggedIn(true);
+//         console.log(isLoggedIn);
+//     }
+// }, [])
 
 const handleUserNameChange = ({target}) => {
     setUserName(target.value);
