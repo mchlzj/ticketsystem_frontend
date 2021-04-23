@@ -9,7 +9,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import {MobileOpenContext} from './MobileOpenContext';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import {Button} from '@material-ui/core';
+
+import {Button, withStyles} from '@material-ui/core';
 import {LoginContext} from '../../util/LoginContext';
 import {UserRoleContext} from '../../util/UserCredsContext';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
@@ -48,31 +49,52 @@ const handleLogout = () => {
   props.history.push('/login');
 };
 
+const StyledListItemText = withStyles({
+  root: {
+    color: "white",
+  },
+})(ListItemText);
+
+const StyledListItemIcon = withStyles({
+  root: {
+    color: "white",
+  },
+})(ListItemIcon);
+
+const StyledListItem = withStyles({
+  root: {
+    color: "#EA5B0F",
+    '&$selected': { 
+      backgroundColor: "#EA5B0F", 
+    }, 
+  },
+})(ListItem);
+
   return (
     <div>
       <div className={classes.toolbar} />
           <Divider />
           <List>
             <Link className={classes.link} to="/newticket" onClick={handleDrawerToggle}>
-            <ListItem button key='NeuesTicket'>
-                <ListItemIcon><InboxIcon /></ListItemIcon>
-                <ListItemText primary='Neues Ticket' />
-              </ListItem>
+            <StyledListItem button key='NeuesTicket' >
+                <StyledListItemIcon style={window.location.href==="http://localhost:3000/newticket" ? {color: "#EA5B0F"} : {}}><InboxIcon /></StyledListItemIcon>
+                <StyledListItemText primary='Neues Ticket' style={window.location.href==="http://localhost:3000/newticket" ? {color: "#EA5B0F"} : {}}/>
+              </StyledListItem>
             </Link>
             <Link className={classes.link} to="/ticketSuchen" onClick={handleDrawerToggle}>
-              <ListItem button key='ticketSuchen'>
-                <ListItemIcon><MailIcon /></ListItemIcon>
-                <ListItemText primary='Ticket suchen' />
-              </ListItem>
+              <StyledListItem button key='ticketSuchen'>
+                <StyledListItemIcon style={window.location.href==="http://localhost:3000/ticketSuchen" ? {color: "#EA5B0F"} : {}}><MailIcon /></StyledListItemIcon>
+                <StyledListItemText primary='Ticket suchen' style={window.location.href==="http://localhost:3000/ticketSuchen" ? {color: "#EA5B0F"} : {}}/>
+              </StyledListItem>
             </Link>
           </List>
           <Divider />
           <List>
           <Link className={classes.link} to="/statistics" onClick={handleDrawerToggle}>
-           <ListItem button key='Statistiken'>
-                <ListItemIcon><MailIcon /></ListItemIcon>
-                <ListItemText primary='Statistiken' />
-              </ListItem>
+           <StyledListItem button key='Statistiken'>
+                <StyledListItemIcon style={window.location.href==="http://localhost:3000/statistics" ? {color: "#EA5B0F"} : {}}><MailIcon /></StyledListItemIcon>
+                <StyledListItemText primary='Statistiken' style={window.location.href==="http://localhost:3000/statistics" ? {color: "#EA5B0F"} : {}}/>
+              </StyledListItem>
             </Link>
             {userRole === 'Student' ?
               <Link className={classes.link} to="/meineTickets" onClick={handleDrawerToggle}>

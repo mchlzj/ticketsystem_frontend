@@ -4,7 +4,8 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom
 import Ticket from './components/Ticket/Ticket';
 import Navigation from './layouts/Navigation/Navigation';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-
+import { ThemeProvider } from '@material-ui/core/styles';
+import './style-theme'
 
 import AllTickets from './pages/AllTickets/AllTickets';
 import NewTicket from './pages/NewTicket/NewTicket';
@@ -17,12 +18,16 @@ import MirZugewieseneTickets from './pages/MirZugewieseneTickets/MirZugewieseneT
 
 import {MobileOpenProvider} from './components/Drawer/MobileOpenContext';
 import {TicketsContext} from './pages/AllTickets/TicketsContext';
+
+import { theme } from './style-theme';
+
 import {LoginContext} from './util/LoginContext';
 import {UserNameContext, UserRoleContext} from './util/UserCredsContext';
 import {getUserName, getUserRole, getUserCredentials} from './util/UserCreds';
 import Dashboard from './DashBoard';
 import {ProtectedRoute} from './protectedRoute'
 import { useHistory } from 'react-router';
+
 
 // import ApiPreCalls from './ApiCalls/ApiPreCalls';
 
@@ -73,6 +78,7 @@ const classes = useStyles();
     
     <div className= {classes.root}>
       <Router>
+        <ThemeProvider theme={theme}>
           <Switch>
             <Route 
             exact 
@@ -85,6 +91,8 @@ const classes = useStyles();
             component={Dashboard}
             history={history}/>
           </Switch>
+         </ThemeProvider>
+
       </Router>
 
     </div>

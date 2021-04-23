@@ -13,6 +13,7 @@ import DrawerContent from './DrawerContent';
 
     drawerPaper: {
       width: drawerWidth,
+      background: "#113440",
     },
   }),
 );

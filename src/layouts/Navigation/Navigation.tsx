@@ -9,6 +9,9 @@ import DrawerPermanent from '../../components/Drawer/DrawerPermanent';
 import DrawerMobile from '../../components/Drawer/DrawerMobile';
 import AppBar from '../../components/AppBar/AppBar';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import '../../style-theme'
+import { theme } from '../../style-theme';
 
 const drawerWidth = 240;
 
@@ -55,6 +58,7 @@ export default function Navigation(props) {
   const classes = useStyles();
 
   return (
+    <ThemeProvider theme={theme}>
     <div>
       <CssBaseline />
       <AnchorElProvider>
@@ -71,5 +75,6 @@ export default function Navigation(props) {
       </nav>
       
     </div>
+    </ThemeProvider>
   );
 }
