@@ -7,7 +7,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import '../../style-theme'
 import { theme } from '../../style-theme';
 
-function DrawerPermanent() {
+function DrawerPermanent(props) {
 
     const drawerWidth = 240;
 
@@ -32,7 +32,7 @@ const classes = useStyles();
             variant="permanent"
             open
           >
-            <DrawerContent/>
+            <DrawerContent history={props.history}/>
           </Drawer>
         </div>
       </ThemeProvider>

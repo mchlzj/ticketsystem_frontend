@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
@@ -9,9 +9,14 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import {MobileOpenContext} from './MobileOpenContext';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { withStyles } from "@material-ui/core";
 
-function DrawerContent() {
+import {Button, withStyles} from '@material-ui/core';
+import {LoginContext} from '../../util/LoginContext';
+import {UserRoleContext} from '../../util/UserCredsContext';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+import auth, {getUserRole, getUserName} from '../../util/auth'
+
+function DrawerContent(props) {
 
   const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,14 +27,26 @@ function DrawerContent() {
   }),
 );
 
+const [mobileOpen, setMobileOpen] = useContext(MobileOpenContext);
+const [isLoggedIn, setIsLoggedIn] = useContext(LoginContext);
+const [userRole, setUserRole] = useContext(UserRoleContext);
+
+useEffect(() => {
+  setUserRole(auth.getUserRole());
+},[])
+
 const classes = useStyles();
 
-const [mobileOpen, setMobileOpen] = useContext(MobileOpenContext);
+
 
 const handleDrawerToggle = () => {
   if (mobileOpen === true) {
     setMobileOpen(!mobileOpen);
   }
+};
+const handleLogout = () => {
+  localStorage.removeItem('token');
+  props.history.push('/login');
 };
 
 const StyledListItemText = withStyles({
@@ -79,6 +96,28 @@ const StyledListItem = withStyles({
                 <StyledListItemText primary='Statistiken' style={window.location.href==="http://localhost:3000/statistics" ? {color: "#EA5B0F"} : {}}/>
               </StyledListItem>
             </Link>
+            {userRole === 'Student' ?
+              <Link className={classes.link} to="/meineTickets" onClick={handleDrawerToggle}>
+              <ListItem button key='meineTickets'>
+                   <ListItemIcon><MailIcon /></ListItemIcon>
+                   <ListItemText primary='Meine Tickets' />
+                 </ListItem>
+               </Link>
+            :
+            <Link className={classes.link} to="/MirZugewieseneTickets" onClick={handleDrawerToggle}>
+            <ListItem button key='MirZugewieseneTickets'>
+                 <ListItemIcon><MailIcon /></ListItemIcon>
+                 <ListItemText primary='Mir zugewiesene Tickets' />
+               </ListItem>
+             </Link>
+          }
+            <Button variant="contained" 
+            color="primary" 
+            disableElevation
+            onClick={handleLogout}
+            >
+            Logout
+          </Button>
           </List>
     </div>
   )

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Hidden from '@material-ui/core/Hidden';
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-export default function Navigation() {
+export default function Navigation(props) {
   const classes = useStyles();
 
   return (
@@ -67,12 +67,13 @@ export default function Navigation() {
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden mdUp >
-          <DrawerMobile/>
+          <DrawerMobile history={props.history}/>
         </Hidden>
         <Hidden smDown >
-          <DrawerPermanent />
+          <DrawerPermanent history={props.history}/>
         </Hidden>
       </nav>
+      
     </div>
     </ThemeProvider>
   );
