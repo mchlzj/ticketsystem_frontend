@@ -4,9 +4,8 @@ import {getAllTickets} from '../../util/ApiCalls';
 // import { DataGrid, ColDef} from '@material-ui/data-grid';
 import TicketCard from '../../components/Card/TicketCard';
 import TicketSearchBar from '../../components/SearchBar/TicketSearchBar';
-import jwt_decode from "jwt-decode";
-import {UserNameContext, UserRoleContext} from '../../util/UserCredsContext';
-import auth, {getUserName, getUserRole, getUserCredentials} from '../../util/auth';
+import {UserNameContext} from '../../util/UserCredsContext';
+import auth from '../../util/auth';
 
 export default function MeineTickets({tickets, setTickets}) {
 
@@ -18,27 +17,18 @@ export default function MeineTickets({tickets, setTickets}) {
         getAllTickets()
         .then(data => {
           setTickets(data);
+          console.log(data);
         })
         .then(() => setIsLoading(false))
         .then(() => setUserName(auth.getUserName()))
         .then(() => console.log(userName));
         console.log("Api Call from MyTickets");
-        
-        
- 
-    }, [setTickets])
-
-
-    // const columns: ColDef[] = [
-    //     { field: 'id', headerName: 'ID', width: 70 },
-    //     { field: 'title', headerName: 'Titel', width: 260 },
-    //     { field: 'description', headerName: 'Beschreibung', width: 390 },
-    //     { field: 'lastChangedDate', headerName: 'Änderungsdatum', width: 260 },
-    //   ];
+              // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
       
-    const myTickets = tickets.filter(ticket => ticket.createdBy.userName === userName);
-
-    // const result = words.filter(word => word.length > 6);
+    const myTickets = tickets.filter(ticket => ticket
+      // .createdBy.userName === userName
+      );
 
     return (  
       <div> 
@@ -57,7 +47,8 @@ export default function MeineTickets({tickets, setTickets}) {
       title={ticket.title} 
         description={ticket.description} 
         ticketClosed={ticket.ticketClosed}
-        createdBy={ticket.createdBy.userName}/>
+        // createdBy={ticket.createdBy.userName}
+        />
     </Grid>
     ))}
       </Grid>

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react'
+import  {useContext, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
@@ -11,10 +11,8 @@ import {MobileOpenContext} from './MobileOpenContext';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 import {Button, withStyles} from '@material-ui/core';
-import {LoginContext} from '../../util/LoginContext';
 import {UserRoleContext} from '../../util/UserCredsContext';
-import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
-import auth, {getUserRole, getUserName} from '../../util/auth'
+import auth from '../../util/auth'
 
 function DrawerContent(props) {
 
@@ -28,11 +26,11 @@ function DrawerContent(props) {
 );
 
 const [mobileOpen, setMobileOpen] = useContext(MobileOpenContext);
-const [isLoggedIn, setIsLoggedIn] = useContext(LoginContext);
 const [userRole, setUserRole] = useContext(UserRoleContext);
 
 useEffect(() => {
   setUserRole(auth.getUserRole());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
 },[])
 
 const classes = useStyles();
@@ -76,7 +74,7 @@ const StyledListItem = withStyles({
           <Divider />
           <List>
             <Link className={classes.link} to="/newticket" onClick={handleDrawerToggle}>
-            <StyledListItem button key='NeuesTicket' >
+            <StyledListItem button key='NeuesTicket'>
                 <StyledListItemIcon style={window.location.href==="http://localhost:3000/newticket" ? {color: "#EA5B0F"} : {}}><InboxIcon /></StyledListItemIcon>
                 <StyledListItemText primary='Neues Ticket' style={window.location.href==="http://localhost:3000/newticket" ? {color: "#EA5B0F"} : {}}/>
               </StyledListItem>

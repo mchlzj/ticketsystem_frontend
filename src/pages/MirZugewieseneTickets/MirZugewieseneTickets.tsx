@@ -4,9 +4,8 @@ import {getAllTickets} from '../../util/ApiCalls';
 // import { DataGrid, ColDef} from '@material-ui/data-grid';
 import TicketCard from '../../components/Card/TicketCard';
 import TicketSearchBar from '../../components/SearchBar/TicketSearchBar';
-import jwt_decode from "jwt-decode";
-import {UserNameContext, UserRoleContext} from '../../util/UserCredsContext';
-import auth, {getUserName, getUserRole, getUserCredentials} from '../../util/auth';
+import {UserNameContext } from '../../util/UserCredsContext';
+import auth from '../../util/auth';
 
 export default function MirZugewieseneTickets({tickets, setTickets}) {
 
@@ -22,27 +21,17 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
         .then(() => setIsLoading(false))
         .then(() => setUserName(auth.getUserName()))
         // .then(() => console.log(userName));
-        console.log("Api Call from MyTickets");
-
-        
- 
+        console.log("Api Call from MyTickets"); 
+              // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
       console.log(userName);
     }, [userName])
 
-
-    // const columns: ColDef[] = [
-    //     { field: 'id', headerName: 'ID', width: 70 },
-    //     { field: 'title', headerName: 'Titel', width: 260 },
-    //     { field: 'description', headerName: 'Beschreibung', width: 390 },
-    //     { field: 'lastChangedDate', headerName: 'Änderungsdatum', width: 260 },
-    //   ];
-      
-    const myTickets = tickets.filter(ticket => ticket.document.module.responsible.userName === userName);
-
-    // const result = words.filter(word => word.length > 6);
+    const myTickets = tickets.filter(ticket => ticket
+      // .document.module.responsible.userName === userName
+      );
 
     return (  
       <div> 
@@ -61,16 +50,13 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
       title={ticket.title} 
         description={ticket.description} 
         ticketClosed={ticket.ticketClosed}
-        createdBy={ticket.document.module.responsible.userName}/>
+        // createdBy={ticket.document.module.responsible.userName}
+        />
     </Grid>
     ))}
       </Grid>
 }
     </div>
-
-    // <div style={{ height: 400, width: '100%' }}>
-    //   <DataGrid rows={tickets} columns={columns} pageSize={5} />
-    // </div>
     )
 }
 

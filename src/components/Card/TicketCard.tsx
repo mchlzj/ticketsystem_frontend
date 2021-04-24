@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function TicketCard({title, description, ticketClosed, id, createdBy}) {
+export default function TicketCard({title, description, ticketClosed, id}) {
   const classes = useStyles();
 
   return (
@@ -36,9 +36,9 @@ export default function TicketCard({title, description, ticketClosed, id, create
           <Typography variant="body2" color="textSecondary" component="p">
             {description}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          {/* <Typography variant="body2" color="textSecondary" component="p">
             {createdBy}
-          </Typography>
+          </Typography> */}
         </CardContent>
       </CardActionArea>
       </Link>

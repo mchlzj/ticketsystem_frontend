@@ -2,13 +2,10 @@
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-
 import reportWebVitals from './reportWebVitals';
 import {TicketsProvider} from './pages/AllTickets/TicketsContext';
 import {MobileOpenProvider} from './components/Drawer/MobileOpenContext';
 import { LoginProvider } from './util/LoginContext';
-import {LoginContext} from './util/LoginContext';
-
 import {UserNameProvider} from './util/UserCredsContext';
 import {UserRoleProvider} from './util/UserCredsContext';
 

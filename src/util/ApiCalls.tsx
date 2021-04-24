@@ -30,7 +30,7 @@ export const login = async(userName, password) => {
 
 //Tickets abrufen
 export const getAllTickets = async() => {
-    const response = await fetch(url + 'Tickets',
+    const response = await fetch(url + 'tickets',
     {
         headers: {
                 'authorization' : 'Bearer ' + localStorage.getItem('token')
@@ -47,6 +47,26 @@ export const getAllTickets = async() => {
         console.log(error);
     }
 };
+
+//Ticket erstellen
+export const sendData = async( title, description) => {
+    await fetch(url  + 'tickets',
+    {
+        method: 'POST',
+        body: JSON.stringify({
+            title: title,
+            description: description,
+            createdBy: {
+                // userName: creator
+            }
+        }), 
+        mode: 'cors',
+        headers: {
+                'Content-Type' : 'application/json',
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
+            }
+    });
+}
 
 export const getTicketById = async(id) => {
     const response = await fetch(url + `Tickets/${id}`);

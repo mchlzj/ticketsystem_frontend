@@ -4,8 +4,7 @@ import {getAllTickets} from '../../util/ApiCalls';
 // import { DataGrid, ColDef} from '@material-ui/data-grid';
 import TicketCard from '../../components/Card/TicketCard';
 import TicketSearchBar from '../../components/SearchBar/TicketSearchBar';
-import jwt_decode from "jwt-decode";
-import {getUserName, getUserCredentials} from '../../util/UserCreds';
+import {getUserName} from '../../util/UserCreds';
 
 export default function AllTickets({tickets, setTickets}) {
 
@@ -19,19 +18,9 @@ export default function AllTickets({tickets, setTickets}) {
         })
         .then(() => setIsLoading(false))
         console.log("Api Call from AllTickets");
-        console.log(getUserName());
-        
- 
-    }, [setTickets])
-
-
-    // const columns: ColDef[] = [
-    //     { field: 'id', headerName: 'ID', width: 70 },
-    //     { field: 'title', headerName: 'Titel', width: 260 },
-    //     { field: 'description', headerName: 'Beschreibung', width: 390 },
-    //     { field: 'lastChangedDate', headerName: 'Änderungsdatum', width: 260 },
-    //   ];
-      
+        console.log(getUserName());      
+       // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (  
       <div> 
@@ -50,7 +39,8 @@ export default function AllTickets({tickets, setTickets}) {
       title={ticket.title} 
         description={ticket.description} 
         ticketClosed={ticket.ticketClosed}
-        createdBy={ticket.createdBy.userName}/>
+        // createdBy={ticket.createdBy.userName}
+        />
     </Grid>
     ))}
       </Grid>

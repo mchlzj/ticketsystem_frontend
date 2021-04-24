@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
-    // "noUnusedLocals": false,                
-    // "noUnusedParameters": false,
+    // "noUnusedLocals": true,                
+    // "noUnusedParameters": true,
+    // "plugins": ["react-hooks"],
+    // "rules": {
+    // "react-hooks/exhaustive-deps": 0
+    // },
     "target": "es5",
     "noImplicitAny": false,
     "lib": [

@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import {sendData} from './ApiCalls';
+import {sendData} from '../../util/ApiCalls';
 
-import auth, {getUserRole} from '../../util/auth'
+import auth from '../../util/auth'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,6 +27,7 @@ export default function NewTicket() {
 
     const [titleValue, setTitleValue] = useState('');
     const [descriptionValue, setDescriptionValue] = useState('');
+
     useEffect(() => {
       console.log(auth.getUserRole());
     })
@@ -39,9 +40,13 @@ export default function NewTicket() {
     };
     const submitTicket = () => {
         console.log("i got clicked");
-        sendData(titleValue,descriptionValue).then(success => alert('Neues Ticket erfolgreich erstellt!'));
-
+        sendData( titleValue , descriptionValue)
+          .then(success => {
+            alert('Neues Ticket erfolgreich erstellt!');
+            console.log(success);
+          });
     };
+
     
     return (
       <form className={classes.root} noValidate autoComplete="off">

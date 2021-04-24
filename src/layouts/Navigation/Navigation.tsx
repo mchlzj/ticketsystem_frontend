@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Hidden from '@material-ui/core/Hidden';

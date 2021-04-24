@@ -1,5 +1,5 @@
 import React, {createContext} from 'react';
-import auth, {getUserName, getUserRole, getUserCredentials} from './auth';
+import auth from './auth';
 
 
 export const UserNameContext = createContext<any>('');
