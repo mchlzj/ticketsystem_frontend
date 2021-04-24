@@ -1,20 +1,18 @@
 import {useContext, useEffect} from 'react';
-import {getAllTickets} from './ApiCalls/ApiCalls';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Ticket from './components/Ticket/Ticket';
-import Navigation from './layouts/Navigation/Navigation';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import './style-theme'
+import Login from './pages/Login/Login';
+import { theme } from './style-theme';
+import {LoginContext} from './util/LoginContext';
+import { getUserCredentials} from './util/UserCreds';
+import Dashboard from './DashBoard';
+import {ProtectedRoute} from './protectedRoute'
+import { useHistory } from 'react-router';
 
 
-import AllTickets from './pages/AllTickets/AllTickets';
-import NewTicket from './pages/NewTicket/NewTicket';
-import Statistics from './pages/Statistics/Statistics';
-import HomePage from './pages/HomePage/HomePage';
 
-
-
-import {MobileOpenProvider} from './components/Drawer/MobileOpenContext';
-import {TicketsContext} from './pages/AllTickets/TicketsContext';
 // import ApiPreCalls from './ApiCalls/ApiPreCalls';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -32,16 +30,21 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function App() {
+  
+  const [, setIsLoggedIn] = useContext(LoginContext);
 
-  const [tickets,setTickets] = useContext(TicketsContext);
+  const history = useHistory();
 
   useEffect(() => {
-    getAllTickets()
-    .then(data => {
-      setTickets(data);
-    })
-    console.log("Api Call from App");
-}, [setTickets]) 
+      if (localStorage.getItem('token')) {
+        setIsLoggedIn(true);
+      }
+      // console.log(userRole);
+      // console.log(userName);
+      console.log(getUserCredentials());
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
+  
 
 const classes = useStyles();
 
@@ -49,22 +52,20 @@ const classes = useStyles();
     
     <div className= {classes.root}>
       <Router>
-        <MobileOpenProvider>
-          <Navigation/> 
-        </MobileOpenProvider>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-              {/* <TicketsProvider> */}
-                {/* <ApiPreCalls/> */}
-              <Switch>
-              <Route path='/' exact component={HomePage}/>
-              <Route path="/newticket" component={NewTicket}/>
-              <Route path="/ticketSuchen" exact render={() => <AllTickets tickets={tickets} setTickets={setTickets} />}/>
-              <Route path="/ticketSuchen/:id" component={Ticket}/>
-              <Route path="/statistics" component={Statistics}/>
-              </Switch>
-              {/* </TicketsProvider> */}
-        </main>
+        <ThemeProvider theme={theme}>
+          <Switch>
+            <Route 
+            exact 
+            path="/login" 
+            component={Login}
+            history={history}/>
+            <ProtectedRoute 
+            exact 
+            path="*" 
+            component={Dashboard}
+            history={history}/>
+          </Switch>
+         </ThemeProvider>
       </Router>
     </div>
   );

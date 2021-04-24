@@ -13,11 +13,12 @@ import DrawerContent from './DrawerContent';
 
     drawerPaper: {
       width: drawerWidth,
+      background: "#113440",
     },
   }),
 );
 
-function DrawerMobile() {
+function DrawerMobile(props) {
 
     const classes = useStyles();
     const theme = useTheme();
@@ -43,7 +44,7 @@ function DrawerMobile() {
               keepMounted: true, // Better open performance on mobile.
             }}
           >
-            <DrawerContent/>
+            <DrawerContent history={props.history}/>
           </Drawer>
         </div>
     )

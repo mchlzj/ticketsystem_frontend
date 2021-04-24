@@ -30,18 +30,21 @@ export default function TicketCard({title, description, ticketClosed, id}) {
         <Link className={classes.link} to={`/ticketSuchen/${id}`}>
       <CardActionArea>
         <CardContent>
-          <Typography gutterBottom variant="h6" component="h2">
+          <Typography gutterBottom variant="h6" component="h2" color="primary">
             {title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {description}
           </Typography>
+          {/* <Typography variant="body2" color="textSecondary" component="p">
+            {createdBy}
+          </Typography> */}
         </CardContent>
       </CardActionArea>
       </Link>
       {ticketClosed? 
-        <Chip className={classes.label} label="Offen" size="small" color="primary"/> :
-        <Chip className={classes.label} label="Geschlossen" size="small" color="secondary"/> }
+        <Chip className={classes.label} label="Offen" size="small" color="secondary"/> :
+        <Chip className={classes.label} label="Geschlossen" size="small" color="primary"/> }
     </Card>
   );
 }
