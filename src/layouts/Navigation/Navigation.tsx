@@ -1,4 +1,4 @@
-import React from 'react';
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Hidden from '@material-ui/core/Hidden';
@@ -9,6 +9,9 @@ import DrawerPermanent from '../../components/Drawer/DrawerPermanent';
 import DrawerMobile from '../../components/Drawer/DrawerMobile';
 import AppBar from '../../components/AppBar/AppBar';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import '../../style-theme'
+import { theme } from '../../style-theme';
 
 const drawerWidth = 240;
 
@@ -51,10 +54,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-export default function Navigation() {
+export default function Navigation(props) {
   const classes = useStyles();
 
   return (
+    <ThemeProvider theme={theme}>
     <div>
       <CssBaseline />
       <AnchorElProvider>
@@ -63,12 +67,14 @@ export default function Navigation() {
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden mdUp >
-          <DrawerMobile/>
+          <DrawerMobile history={props.history}/>
         </Hidden>
         <Hidden smDown >
-          <DrawerPermanent />
+          <DrawerPermanent history={props.history}/>
         </Hidden>
       </nav>
+      
     </div>
+    </ThemeProvider>
   );
 }

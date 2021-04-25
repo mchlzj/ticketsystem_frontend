@@ -15,6 +15,7 @@
     "@types/react-dom": "^16.9.10",
     "@types/react-router-dom": "^5.1.7",
     "fontsource-roboto": "^4.0.0",
+    "jwt-decode": "^3.1.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router": "^5.2.0",
@@ -33,7 +34,7 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]    
+    ]
   },
   "browserslist": {
     "production": [
@@ -46,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "2.2.1"
   }
 }
