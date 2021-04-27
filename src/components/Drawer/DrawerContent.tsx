@@ -98,17 +98,17 @@ const StyledListItem = withStyles({
             </Link>
             {userRole === 'Student' ?
               <Link className={classes.link} to="/meineTickets" onClick={handleDrawerToggle}>
-              <ListItem button key='meineTickets'>
-                   <ListItemIcon><MailIcon /></ListItemIcon>
-                   <ListItemText primary='Meine Tickets' />
-                 </ListItem>
+              <StyledListItem button key='meineTickets'>
+                   <StyledListItemIcon style={window.location.href==="http://localhost:3000/meineTickets" ? {color: "#EA5B0F"} : {}}><MailIcon /></StyledListItemIcon>
+                   <StyledListItemText primary='Meine Tickets' style={window.location.href==="http://localhost:3000/meineTickets" ? {color: "#EA5B0F"} : {}} />
+                 </StyledListItem>
                </Link>
             :
             <Link className={classes.link} to="/MirZugewieseneTickets" onClick={handleDrawerToggle}>
-            <ListItem button key='MirZugewieseneTickets'>
-                 <ListItemIcon><MailIcon /></ListItemIcon>
-                 <ListItemText primary='Mir zugewiesene Tickets' />
-               </ListItem>
+            <StyledListItem button key='MirZugewieseneTickets'>
+                 <StyledListItemIcon style={window.location.href==="http://localhost:3000/MirZugewieseneTickets" ? {color: "#EA5B0F"} : {}}><MailIcon /></StyledListItemIcon>
+                 <StyledListItemText primary='Mir zugewiesene Tickets' style={window.location.href==="http://localhost:3000/MirZugewieseneTickets" ? {color: "#EA5B0F"} : {}}/>
+               </StyledListItem>
              </Link>
           }
             <Button variant="contained" 

@@ -1,5 +1,5 @@
 
-const url = 'http://192.168.178.55:59543/api/';
+const url = 'http://localhost:59543/api/';
 //https://www.hetfeld.name/ticket_backend/api/
 //http://localhost:59543/api/
 
@@ -60,3 +60,18 @@ export const getTicketById = async(id) => {
         console.log(error);
     }
 };
+
+export const createNewTicket = async(title, description, modul) => {
+    const response = await fetch(url + 'Tickets',
+    {
+        method: 'POST',
+        body: JSON.stringify({
+            title: title,
+            description: description
+            }), 
+        mode: 'cors',
+        headers: {
+                'Content-Type' : 'application/json'
+            }
+    });
+}
