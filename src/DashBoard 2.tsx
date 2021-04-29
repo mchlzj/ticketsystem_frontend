@@ -21,7 +21,7 @@ import {LoginContext} from './util/LoginContext';
 import {UserNameContext, UserRoleContext} from './util/UserCredsContext';
 import {ModulesContext} from './pages/NewTicket/ModulesContext';
 import {getUserName,  getUserCredentials} from './util/UserCreds';
-import {getUserRole} from './util/auth'
+
 
 
 // import ApiPreCalls from './ApiCalls/ApiPreCalls';
@@ -61,7 +61,6 @@ function Dashboard(props) {
       setIsLoggedIn(true);
     }
     console.log(isLoggedIn);
-    console.log(getUserRole());
     console.log(userName);
     console.log(getUserCredentials());
   }, [])
