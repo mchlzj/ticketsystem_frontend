@@ -26,8 +26,7 @@ export default function MeineTickets({tickets, setTickets}) {
               // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
       
-    const myTickets = tickets.filter(ticket => ticket
-      // .createdBy.userName === userName
+    const myTickets = tickets.filter(ticket => ticket.createdBy.userName === userName
       );
 
     return (  
@@ -47,7 +46,7 @@ export default function MeineTickets({tickets, setTickets}) {
       title={ticket.title} 
         description={ticket.description} 
         ticketClosed={ticket.ticketClosed}
-        // createdBy={ticket.createdBy.userName}
+        createdBy={ticket.createdBy.userName}
         />
     </Grid>
     ))}

@@ -29,8 +29,7 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
       console.log(userName);
     }, [userName])
 
-    const myTickets = tickets.filter(ticket => ticket
-      // .document.module.responsible.userName === userName
+    const myTickets = tickets.filter(ticket => ticket.document.module.responsible.userName === userName
       );
 
     return (  
@@ -50,7 +49,7 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
       title={ticket.title} 
         description={ticket.description} 
         ticketClosed={ticket.ticketClosed}
-        // createdBy={ticket.document.module.responsible.userName}
+        createdBy={ticket.document.module.responsible.userName}
         />
     </Grid>
     ))}

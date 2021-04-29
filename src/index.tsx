@@ -4,10 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {TicketsProvider} from './pages/AllTickets/TicketsContext';
+import {TicketProvider} from './components/Ticket/TicketContext';
 import {MobileOpenProvider} from './components/Drawer/MobileOpenContext';
 import { LoginProvider } from './util/LoginContext';
 import {UserNameProvider} from './util/UserCredsContext';
 import {UserRoleProvider} from './util/UserCredsContext';
+import {CommentsProvider} from './components/Comments/CommentContext';
 
 
 
@@ -18,7 +20,9 @@ ReactDOM.render(
       <UserRoleProvider>
         <TicketsProvider>
           <MobileOpenProvider>
+            <CommentsProvider>
             <App />
+            </CommentsProvider>
           </MobileOpenProvider>
         </TicketsProvider>
       </UserRoleProvider>

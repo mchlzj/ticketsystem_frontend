@@ -39,7 +39,7 @@ export default function AllTickets({tickets, setTickets}) {
       title={ticket.title} 
         description={ticket.description} 
         ticketClosed={ticket.ticketClosed}
-        // createdBy={ticket.createdBy.userName}
+        createdBy={ticket.createdBy.userName}
         />
     </Grid>
     ))}

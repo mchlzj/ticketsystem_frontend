@@ -1,5 +1,5 @@
 
-const url = 'https://www.hetfeld.name/ticket_backend/api/';
+const url = 'http://localhost:59543/api/';
 //https://www.hetfeld.name/ticket_backend/api/
 //http://localhost:59543/api/
 
@@ -69,7 +69,12 @@ export const sendData = async( title, description) => {
 }
 
 export const getTicketById = async(id) => {
-    const response = await fetch(url + `Tickets/${id}`);
+    const response = await fetch(url + `Tickets/${id}`, 
+    {
+        headers: {
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
+            }
+    });
     try {
         if (response.ok) {
             const jsonResponse = await response.json();
@@ -80,3 +85,35 @@ export const getTicketById = async(id) => {
         console.log(error);
     }
 };
+
+export const newComment = async( ticketID, text) => {
+    await fetch(url  + 'Comments',
+    {
+        method: 'POST',
+        body: JSON.stringify({
+            ticketID: ticketID,
+            text: text            
+        }), 
+        mode: 'cors',
+        headers: {
+                'Content-Type' : 'application/json',
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
+            }
+    });
+}
+
+// export const removeComment = async( ticketID, text) => {
+//     await fetch(url  + 'Comments',
+//     {
+//         method: 'POST',
+//         body: JSON.stringify({
+//             ticketID: ticketID,
+//             text: text            
+//         }), 
+//         mode: 'cors',
+//         headers: {
+//                 'Content-Type' : 'application/json',
+//                 'authorization' : 'Bearer ' + localStorage.getItem('token')
+//             }
+//     });
+// }
