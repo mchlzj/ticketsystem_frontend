@@ -86,6 +86,7 @@ export const getTicketById = async(id) => {
     }
 };
 
+
 export const newComment = async( ticketID, text) => {
     await fetch(url  + 'Comments',
     {
@@ -98,9 +99,22 @@ export const newComment = async( ticketID, text) => {
         headers: {
                 'Content-Type' : 'application/json',
                 'authorization' : 'Bearer ' + localStorage.getItem('token')
+
+export const createNewTicket = async(title, description, modul) => {
+    const response = await fetch(url + 'Tickets',
+    {
+        method: 'POST',
+        body: JSON.stringify({
+            title: title,
+            description: description
+            }), 
+        mode: 'cors',
+        headers: {
+                'Content-Type' : 'application/json'
             }
     });
 }
+
 
 // export const removeComment = async( ticketID, text) => {
 //     await fetch(url  + 'Comments',
@@ -117,3 +131,25 @@ export const newComment = async( ticketID, text) => {
 //             }
 //     });
 // }
+
+export const getModules = async() => {
+    const response = await fetch(url + 'Modules',
+    {
+        method: 'GET',
+        headers: {
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
+            }
+    }
+    );
+    try {
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            /*console.log(jsonResponse)*/
+            return jsonResponse;
+        }
+        throw new Error('Request Failed!');
+    } catch(error) {
+        /*console.log(error);*/
+    }
+};
+
