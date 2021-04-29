@@ -102,14 +102,14 @@ export const newComment = async( ticketID, text) => {
             }
         });
     }
-export const createNewTicket = async(title, description, modul) => {
+export const createNewTicket = async(title, description, documentId) => {
     const response = await fetch(url + 'Tickets',
     {
         method: 'POST',
         body: JSON.stringify({
             title: title,
-            description: description
-
+            description: description,
+            documentId: documentId
             }), 
         mode: 'cors',
         headers: {
@@ -159,12 +159,11 @@ export const getModules = async() => {
 
 
 export const getDocuments = async( moduleId ) => {
-    const response = await fetch(url + 'Documents/GetByModuleId',
+    const response = await fetch(url + `Documents/GetByModuleId/${moduleId}`,
     {
         method: 'GET',
         headers: {
-                'authorization' : 'Bearer ' + localStorage.getItem('token'),
-                'id': moduleId
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
             }
     }
     );

@@ -75,11 +75,11 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
     }, [])
 
     useEffect(() => {
-      getModules()
+      getDocuments(modul)
       .then(data => {
         setDocuments(data);
       })
-      .then(() => console.log("Alle Dokumente laden!!!")); 
+      .then(() => console.log(documents)); 
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -88,6 +88,10 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
     })*/
 
     const handleModuleChange = ({target}) => {
+      getDocuments(target.value)
+      .then(data => {
+        setDocuments(data);
+      })
       setModuleValue(target.value);
     };
 
@@ -103,7 +107,7 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
     };
     const submitTicket = () => {
         console.log("i got clicked")
-        createNewTicket( titleValue , descriptionValue, modul)
+        createNewTicket( titleValue , descriptionValue, document)
           .then(success => {
             alert('Neues Ticket erfolgreich erstellt!');
             console.log(success);
@@ -169,7 +173,14 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
                     <FormControl className={classes.formControl}>
                       <InputLabel id="select-document-label">&nbsp; Format auswählen...</InputLabel>
                       <Select labelId="select-document-label" id="select-document" variant="outlined" value={document} onChange={handleDocumentChange}>
-                      
+                      {
+                      documents?.map((item) => {
+                        return (
+                          <MenuItem key={item.id} value={item.id}>
+                            {item.name}
+                          </MenuItem>
+                        );
+                      })}
                       </Select>
                     </FormControl>
                   </Grid>
