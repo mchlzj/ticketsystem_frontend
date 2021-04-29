@@ -19,6 +19,7 @@ import {MobileOpenProvider} from './components/Drawer/MobileOpenContext';
 import {TicketsContext} from './pages/AllTickets/TicketsContext';
 import {LoginContext} from './util/LoginContext';
 import {UserNameContext, UserRoleContext} from './util/UserCredsContext';
+import {ModulesContext} from './pages/NewTicket/ModulesContext';
 import {getUserName,  getUserCredentials} from './util/UserCreds';
 import {getUserRole} from './util/auth'
 
@@ -45,6 +46,8 @@ function Dashboard(props) {
   const [isLoggedIn, setIsLoggedIn] = useContext(LoginContext);
   const [userName, setUserName] = useContext(UserNameContext);
   const [userRole, setUserRole] = useContext(UserRoleContext);
+  const [moduls,setModules] = useContext(ModulesContext);
+
 
   useEffect(() => {
     getAllTickets()
@@ -87,7 +90,7 @@ const classes = useStyles();
                
           <div className={classes.toolbar} />
           <Switch>
-              <Route path="/newticket" component={NewTicket}/>
+              <Route path="/newticket" render={() => <NewTicket moduls={moduls} setModules={setModules}/>}/>
               <Route path="/ticketSuchen" exact render={() => <AllTickets tickets={tickets} setTickets={setTickets} />}/>
               <Route path="/ticketSuchen/:id" component={Ticket}/>
               <Route path="/statistics" component={Statistics}/>

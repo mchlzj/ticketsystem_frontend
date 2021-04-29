@@ -17,6 +17,7 @@ import Select from '@material-ui/core/Select';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Fab from '@material-ui/core/Fab'
 import Box from '@material-ui/core/Box'
+import {getModules} from '../../util/ApiCalls';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -47,20 +48,42 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function NewTicket() {
+export default function NewTicket({moduls, setModules}) {
     const classes = useStyles();
 
     const [titleValue, setTitleValue] = useState('');
     const [descriptionValue, setDescriptionValue] = useState('');
     const [modul, setModuleValue] = useState('');
+    const [document, setDocumentValue] = useState('');
+
+
+    /*var moduleArray;
+    const promiseAllModules = getModules();
+ 
+    promiseAllModules.then(function(result) {
+      moduleArray = result
+      console.log(moduleArray);
+    });*/
 
     useEffect(() => {
+      getModules()
+      .then(data => {
+        /*setModules(data);*/
+      })
+      .then(() => console.log(moduls)); 
+    }, [setModules])
+
+    /*useEffect(() => {
       console.log(auth.getUserRole());
-    })
+    })*/
 
     const handleModuleChange = ({target}) => {
       setModuleValue(target.value);
-  };
+    };
+
+    const handleDocumentChange = ({target}) => {
+      setDocumentValue(target.value);
+    };
 
     const handleChangeDescription = ({target}) => {
         setDescriptionValue(target.value);
@@ -120,9 +143,20 @@ export default function NewTicket() {
                     <FormControl className={classes.formControl}>
                       <InputLabel id="select-module-label">&nbsp; Modul auswählen...</InputLabel>
                       <Select labelId="select-module-label" id="select-module" variant="outlined" value={modul} onChange={handleModuleChange}>
-                        <MenuItem value={'DLBRIV'}>DLBRIV</MenuItem>
-                        <MenuItem value={'BSTA'}>BSTA</MenuItem>#
-                        <MenuItem value={'IGIS'}>IGIS</MenuItem>
+                      {
+                      moduls?.map((item) => {
+                        return (
+                          <MenuItem key={item.id} value={item.name}>
+                            {item.name}
+                          </MenuItem>
+                        );
+                      })}
+                      </Select>
+                    </FormControl>
+                    <FormControl className={classes.formControl}>
+                      <InputLabel id="select-document-label">&nbsp; Format auswählen...</InputLabel>
+                      <Select labelId="select-document-label" id="select-document" variant="outlined" value={document} onChange={handleDocumentChange}>
+                      
                       </Select>
                     </FormControl>
                   </Grid>
