@@ -85,7 +85,9 @@ export default function AllTickets({tickets, setTickets}) {
         description={ticket.description} 
         ticketClosed={ticket.ticketClosed}
         createdBy={ticket.createdBy.userName}
-        modul={ticket.document.module.name}/>
+        //modul={ticket.document.module.name}
+        />
+
     </Grid>
     ))}
       </Grid>

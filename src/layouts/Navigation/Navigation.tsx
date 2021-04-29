@@ -73,7 +73,6 @@ export default function Navigation(props) {
           <DrawerPermanent history={props.history}/>
         </Hidden>
       </nav>
-      
     </div>
     </ThemeProvider>
   );

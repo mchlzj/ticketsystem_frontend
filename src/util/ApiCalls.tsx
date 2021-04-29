@@ -69,7 +69,12 @@ export const sendData = async( title, description) => {
 }
 
 export const getTicketById = async(id) => {
-    const response = await fetch(url + `Tickets/${id}`);
+    const response = await fetch(url + `Tickets/${id}`, 
+    {
+        headers: {
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
+            }
+    });
     try {
         if (response.ok) {
             const jsonResponse = await response.json();
@@ -80,6 +85,20 @@ export const getTicketById = async(id) => {
         console.log(error);
     }
 };
+
+
+export const newComment = async( ticketID, text) => {
+    await fetch(url  + 'Comments',
+    {
+        method: 'POST',
+        body: JSON.stringify({
+            ticketID: ticketID,
+            text: text            
+        }), 
+        mode: 'cors',
+        headers: {
+                'Content-Type' : 'application/json',
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
 
 export const createNewTicket = async(title, description, modul) => {
     const response = await fetch(url + 'Tickets',
@@ -95,6 +114,23 @@ export const createNewTicket = async(title, description, modul) => {
             }
     });
 }
+
+
+// export const removeComment = async( ticketID, text) => {
+//     await fetch(url  + 'Comments',
+//     {
+//         method: 'POST',
+//         body: JSON.stringify({
+//             ticketID: ticketID,
+//             text: text            
+//         }), 
+//         mode: 'cors',
+//         headers: {
+//                 'Content-Type' : 'application/json',
+//                 'authorization' : 'Bearer ' + localStorage.getItem('token')
+//             }
+//     });
+// }
 
 export const getModules = async() => {
     const response = await fetch(url + 'Modules',
@@ -116,3 +152,4 @@ export const getModules = async() => {
         /*console.log(error);*/
     }
 };
+

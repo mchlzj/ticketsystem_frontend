@@ -37,36 +37,9 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
     }, [userName])
 
 
+    const myTickets = tickets.filter(ticket => ticket.document.module.responsible.userName === userName
+      );
 
-    const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      fab: {
-        position: 'absolute',
-        bottom: theme.spacing(2),
-        right: theme.spacing(2),
-        textTransform: 'none'
-      }
-    }),
-  );
-
-  const classes = useStyles();
-  const history = useHistory();
-
-  const handleCreateNewTicket = () => {
-    history.push('/newTicket');
-  };
-
-
-    // const columns: ColDef[] = [
-    //     { field: 'id', headerName: 'ID', width: 70 },
-    //     { field: 'title', headerName: 'Titel', width: 260 },
-    //     { field: 'description', headerName: 'Beschreibung', width: 390 },
-    //     { field: 'lastChangedDate', headerName: 'Änderungsdatum', width: 260 },
-    //   ];
-      
-    const myTickets = tickets.filter(ticket => ticket.document.module.responsible.userName === userName);
-
-    // const result = words.filter(word => word.length > 6);
 
     return (  
       <div> 
@@ -97,7 +70,9 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
       description={ticket.description} 
       ticketClosed={ticket.ticketClosed}
       createdBy={ticket.document.module.responsible.userName}
-      modul={ticket.document.module.name}/>
+      //modul={ticket.document.module.name}
+        />
+
     </Grid>
     ))}
       </Grid>
