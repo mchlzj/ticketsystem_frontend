@@ -80,3 +80,39 @@ export const getTicketById = async(id) => {
         console.log(error);
     }
 };
+
+export const createNewTicket = async(title, description, modul) => {
+    const response = await fetch(url + 'Tickets',
+    {
+        method: 'POST',
+        body: JSON.stringify({
+            title: title,
+            description: description
+            }), 
+        mode: 'cors',
+        headers: {
+                'Content-Type' : 'application/json'
+            }
+    });
+}
+
+export const getModules = async() => {
+    const response = await fetch(url + 'Modules',
+    {
+        method: 'GET',
+        headers: {
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
+            }
+    }
+    );
+    try {
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            /*console.log(jsonResponse)*/
+            return jsonResponse;
+        }
+        throw new Error('Request Failed!');
+    } catch(error) {
+        /*console.log(error);*/
+    }
+};
