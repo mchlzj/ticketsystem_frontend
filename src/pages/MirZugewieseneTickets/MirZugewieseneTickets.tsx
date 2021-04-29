@@ -36,6 +36,25 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
       console.log(userName);
     }, [userName])
 
+    const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+      fab: {
+        position: 'absolute',
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+        textTransform: 'none'
+      }
+    }),
+  );
+
+
+  const history = useHistory();
+
+  const handleCreateNewTicket = () => {
+    history.push('/newTicket');
+  };
+
+  const classes = useStyles();
 
     const myTickets = tickets.filter(ticket => ticket.document.module.responsible.userName === userName
       );
@@ -70,7 +89,7 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
       description={ticket.description} 
       ticketClosed={ticket.ticketClosed}
       createdBy={ticket.document.module.responsible.userName}
-      //modul={ticket.document.module.name}
+      modul={ticket.document.module.name}
         />
 
     </Grid>

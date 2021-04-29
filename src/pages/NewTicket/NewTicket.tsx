@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import {sendData} from './ApiCalls';
+import {createNewTicket} from '../../util/ApiCalls';
 import auth from '../../util/auth'
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -68,10 +68,11 @@ export default function NewTicket({moduls, setModules}) {
     useEffect(() => {
       getModules()
       .then(data => {
-        /*setModules(data);*/
+        setModules(data);
       })
       .then(() => console.log(moduls)); 
-    }, [setModules])
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     /*useEffect(() => {
       console.log(auth.getUserRole());
@@ -92,12 +93,12 @@ export default function NewTicket({moduls, setModules}) {
         setTitleValue(target.value);
     };
     const submitTicket = () => {
-        /*console.log("i got clicked")
-        sendData( titleValue , descriptionValue)
+        console.log("i got clicked")
+        createNewTicket( titleValue , descriptionValue, modul)
           .then(success => {
             alert('Neues Ticket erfolgreich erstellt!');
             console.log(success);
-          });*/
+          });
     };
 
     

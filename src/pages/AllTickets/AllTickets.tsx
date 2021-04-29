@@ -19,16 +19,17 @@ export default function AllTickets({tickets, setTickets}) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        getAllTickets()
-        .then(data => {
-          setTickets(data);
-        })
-        .then(() => setIsLoading(false))
-        console.log("Api Call from AllTickets");
-        console.log(getUserName());
-        
- 
-    }, [setTickets])
+      getAllTickets()
+      .then(data => {
+        setTickets(data);
+      })
+      .then(() => setIsLoading(false))
+      console.log("Api Call from AllTickets");
+      console.log(getUserName());      
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+
 
     const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -85,7 +86,7 @@ export default function AllTickets({tickets, setTickets}) {
         description={ticket.description} 
         ticketClosed={ticket.ticketClosed}
         createdBy={ticket.createdBy.userName}
-        //modul={ticket.document.module.name}
+        modul={ticket.document.module.name}
         />
 
     </Grid>

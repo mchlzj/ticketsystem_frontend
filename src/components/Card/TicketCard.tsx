@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 export default function TicketCard({title, description, ticketClosed, id, createdBy, 
-                                    //modul
+                                    modul
                                    }) {
   const classes = useStyles();
 
@@ -36,17 +36,7 @@ export default function TicketCard({title, description, ticketClosed, id, create
         <Link className={classes.link} to={`/ticketSuchen/${id}`}>
       <CardActionArea>
         <CardContent>
-
-          <Typography gutterBottom variant="h6" component="h2" color="primary">
-            {title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {description}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {createdBy}
-          </Typography>
-          {/*
+          
           <Grid container spacing={2}>
             <Grid item xs={3}>
               <Typography gutterBottom variant="body1" component="h2" color="primary">
@@ -91,7 +81,7 @@ export default function TicketCard({title, description, ticketClosed, id, create
               </Typography>
             </Grid>
           </Grid>
-        */}
+       
         </CardContent>
       </CardActionArea>
       </Link>

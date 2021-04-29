@@ -19,11 +19,14 @@ function Comment({comment}) {
 
     return (
         <Card >
-            <CardContent key={comment.id}>
+            <CardContent>
                 <div>
                 <Typography variant="h5">
                     {comment.text}
                 </Typography>
+                {/* <Typography variant="h5">
+                    {comment.createdBy.userName}
+                </Typography> */}
                 {comment.createdBy === null 
                 ?
                 <IconButton aria-label="delete">

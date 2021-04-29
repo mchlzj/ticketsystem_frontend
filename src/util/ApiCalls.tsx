@@ -49,24 +49,24 @@ export const getAllTickets = async() => {
 };
 
 //Ticket erstellen
-export const sendData = async( title, description) => {
-    await fetch(url  + 'tickets',
-    {
-        method: 'POST',
-        body: JSON.stringify({
-            title: title,
-            description: description,
-            createdBy: {
-                // userName: creator
-            }
-        }), 
-        mode: 'cors',
-        headers: {
-                'Content-Type' : 'application/json',
-                'authorization' : 'Bearer ' + localStorage.getItem('token')
-            }
-    });
-}
+// export const sendData = async( title, description) => {
+//     await fetch(url  + 'tickets',
+//     {
+//         method: 'POST',
+//         body: JSON.stringify({
+//             title: title,
+//             description: description,
+//             createdBy: {
+//                 // userName: creator
+//             }
+//         }), 
+//         mode: 'cors',
+//         headers: {
+//                 'Content-Type' : 'application/json',
+//                 'authorization' : 'Bearer ' + localStorage.getItem('token')
+//             }
+//     });
+// }
 
 export const getTicketById = async(id) => {
     const response = await fetch(url + `Tickets/${id}`, 
@@ -99,7 +99,9 @@ export const newComment = async( ticketID, text) => {
         headers: {
                 'Content-Type' : 'application/json',
                 'authorization' : 'Bearer ' + localStorage.getItem('token')
-
+            }
+        });
+    }
 export const createNewTicket = async(title, description, modul) => {
     const response = await fetch(url + 'Tickets',
     {
@@ -107,10 +109,12 @@ export const createNewTicket = async(title, description, modul) => {
         body: JSON.stringify({
             title: title,
             description: description
+
             }), 
         mode: 'cors',
         headers: {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
             }
     });
 }
