@@ -61,9 +61,7 @@ export default function MeineTickets({tickets, setTickets}) {
     //     { field: 'lastChangedDate', headerName: 'Änderungsdatum', width: 260 },
     //   ];
       
-    const myTickets = tickets.filter(ticket => ticket
-      // .createdBy.userName === userName
-      );
+    const myTickets = tickets.filter(ticket => ticket.createdBy.userName === userName);
 
     return (  
       <div> 
