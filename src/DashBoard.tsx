@@ -15,6 +15,7 @@ import auth from './util/auth'
 import {UserNameContext, UserRoleContext} from './util/UserCredsContext';
 import {ModulesContext} from './pages/NewTicket/ModulesContext';
 import {getUserName,  getUserCredentials} from './util/UserCreds';
+import {DocumentsContext} from './pages/NewTicket/DocumentsContext';
 
 
 // import ApiPreCalls from './ApiCalls/ApiPreCalls';
@@ -40,6 +41,7 @@ function Dashboard(props) {
   const [userName,] = useContext(UserNameContext);
   const [userRole, setUserRole] = useContext(UserRoleContext);
   const [moduls,setModules] = useContext(ModulesContext);
+  const [documents,setDocuments] = useContext(DocumentsContext);
 
 
   useEffect(() => {
@@ -74,7 +76,7 @@ const classes = useStyles();
           <main className={classes.content}>               
           <div className={classes.toolbar} />
           <Switch>
-              <Route path="/newticket" render={() => <NewTicket moduls={moduls} setModules={setModules}/>}/>
+              <Route path="/newticket" render={() => <NewTicket moduls={moduls} setModules={setModules} documents={documents} setDocuments={setDocuments}/>}/>
               <Route path="/ticketSuchen" exact render={() => <AllTickets tickets={tickets} setTickets={setTickets} />}/>
               <Route path="/ticketSuchen/:id" component={Ticket}/>
               <Route path="/statistics" component={Statistics}/>

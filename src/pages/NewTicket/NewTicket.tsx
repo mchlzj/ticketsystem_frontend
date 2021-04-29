@@ -17,7 +17,7 @@ import Select from '@material-ui/core/Select';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Fab from '@material-ui/core/Fab'
 import Box from '@material-ui/core/Box'
-import {getModules} from '../../util/ApiCalls';
+import {getModules, getDocuments} from '../../util/ApiCalls';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function NewTicket({moduls, setModules}) {
+export default function NewTicket({moduls, setModules, documents, setDocuments}) {
     const classes = useStyles();
 
     const [titleValue, setTitleValue] = useState('');
@@ -71,6 +71,15 @@ export default function NewTicket({moduls, setModules}) {
         setModules(data);
       })
       .then(() => console.log(moduls)); 
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    useEffect(() => {
+      getModules()
+      .then(data => {
+        setDocuments(data);
+      })
+      .then(() => console.log("Alle Dokumente laden!!!")); 
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -150,7 +159,7 @@ export default function NewTicket({moduls, setModules}) {
                       {
                       moduls?.map((item) => {
                         return (
-                          <MenuItem key={item.id} value={item.name}>
+                          <MenuItem key={item.id} value={item.id}>
                             {item.name}
                           </MenuItem>
                         );

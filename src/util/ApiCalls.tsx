@@ -157,3 +157,25 @@ export const getModules = async() => {
     }
 };
 
+
+export const getDocuments = async( moduleId ) => {
+    const response = await fetch(url + 'Documents/GetByModuleId',
+    {
+        method: 'GET',
+        headers: {
+                'authorization' : 'Bearer ' + localStorage.getItem('token'),
+                'id': moduleId
+            }
+    }
+    );
+    try {
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            /*console.log(jsonResponse)*/
+            return jsonResponse;
+        }
+        throw new Error('Request Failed!');
+    } catch(error) {
+        /*console.log(error);*/
+    }
+};
