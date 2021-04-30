@@ -178,3 +178,24 @@ export const getDocuments = async( moduleId ) => {
         /*console.log(error);*/
     }
 };
+
+export const changeTicketStatus = async( ticketId ) => {
+    const response = await fetch(url + `Tickets/ChangeStatus/${ticketId}`,
+    {
+        method: 'POST',
+        headers: {
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
+            }
+    }
+    );
+    try {
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            /*console.log(jsonResponse)*/
+            return jsonResponse;
+        }
+        throw new Error('Request Failed!');
+    } catch(error) {
+        /*console.log(error);*/
+    }
+};

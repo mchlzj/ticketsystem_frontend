@@ -67,7 +67,7 @@ export default function AllTickets({tickets, setTickets}) {
           </Grid>
           <Grid item>
             <Typography gutterBottom variant="h6" component="h2" color="primary">
-            &nbsp; Tickets suchen
+            &nbsp; Alle Tickets
             </Typography>
           </Grid>
         </Grid>

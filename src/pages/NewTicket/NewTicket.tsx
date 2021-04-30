@@ -44,6 +44,11 @@ const useStyles = makeStyles((theme: Theme) =>
       bottom: theme.spacing(2),
       right: theme.spacing(2),
       textTransform: 'none'
+    },
+    selected: {
+      backgroundColor: "grey !important",
+      color: "white",
+      fontWeight: 600
     }
   }),
 );
@@ -163,7 +168,7 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
                       {
                       moduls?.map((item) => {
                         return (
-                          <MenuItem key={item.id} value={item.id}>
+                          <MenuItem key={item.id} value={item.id} selected classes={{ selected: classes.selected }}>
                             {item.name}
                           </MenuItem>
                         );
@@ -176,7 +181,7 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
                       {
                       documents?.map((item) => {
                         return (
-                          <MenuItem key={item.id} value={item.id}>
+                          <MenuItem key={item.id} value={item.id} selected classes={{ selected: classes.selected }}>
                             {item.name}
                           </MenuItem>
                         );
