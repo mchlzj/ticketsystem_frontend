@@ -275,7 +275,7 @@ function Ticket({match}) {
         </Box>
         </Typography>
 </div>}
-<Backdrop className={classes.backdrop} open={isLoading}>
+<Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
         <CircularProgress color="inherit" />
       </Backdrop>
             </div>

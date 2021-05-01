@@ -12,6 +12,8 @@ import Fab from '@material-ui/core/Fab'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router-dom';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default function MirZugewieseneTickets({tickets, setTickets}) {
 
@@ -42,6 +44,10 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
         bottom: theme.spacing(2),
         right: theme.spacing(2),
         textTransform: 'none'
+      },
+      backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
       }
     }),
   );
@@ -74,7 +80,7 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
           </Grid>
         </Grid>
 
-    {isLoading ? <h1>Loading...</h1> :
+    {isLoading ? null :
 
  <Grid container 
   justify="space-around"
@@ -96,10 +102,9 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
       </Grid>
 }
 
-    <Fab variant="extended" size="medium" color="secondary" className={classes.fab} onClick={handleCreateNewTicket}>
-      <AddIcon />
-      &nbsp; Neues Ticket
-    </Fab>
+<Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
 
     </div>
     )

@@ -13,6 +13,8 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router-dom';
 import NewElementButton from '../../components/Button/NewTicketButton'
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default function MeineTickets({tickets, setTickets}) {
 
@@ -42,6 +44,10 @@ export default function MeineTickets({tickets, setTickets}) {
         bottom: theme.spacing(2),
         right: theme.spacing(2),
         textTransform: 'none'
+      },
+      backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
       }
     }),
   );
@@ -80,7 +86,7 @@ export default function MeineTickets({tickets, setTickets}) {
           </Grid>
         </Grid>
 
-    {isLoading ? <h1>Loading...</h1> :
+    {isLoading ? null :
 
  <Grid container 
   justify="space-around"
@@ -101,7 +107,11 @@ export default function MeineTickets({tickets, setTickets}) {
       </Grid>
    
 }
+
   <NewElementButton/>
+  <Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
 
     </div>
 

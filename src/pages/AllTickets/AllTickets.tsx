@@ -83,6 +83,9 @@ export default function AllTickets() {
           </Grid>
         </Grid>
     <div>
+      {isLoading ?
+      null
+      :
  <Grid container 
   justify="space-around"
   alignItems="flex-start" 
@@ -100,12 +103,14 @@ export default function AllTickets() {
     </Grid>
     ))}
   </Grid>
+}
   </div>
       <NewElementButton/>
-    <Backdrop className={classes.backdrop} open={isLoading}>
+    <Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
         <CircularProgress color="inherit" />
       </Backdrop>
     </div>
+
     // <div style={{ height: 400, width: '100%' }}>
     //   <DataGrid rows={tickets} columns={columns} pageSize={5} />
     // </div>
