@@ -1,5 +1,5 @@
 
-const url = 'http://localhost:59543/api/';
+const url = 'https://www.hetfeld.name/ticket_backend/api/';
 //https://www.hetfeld.name/ticket_backend/api/
 //http://localhost:59543/api/
 
@@ -14,7 +14,8 @@ export const login = async(userName, password) => {
               }), 
       mode: 'cors',
       headers: {
-              'Access-Control-Allow-Origin': '*',
+              'Origin': 'http://localhost:3000',
+              'Access-Control-Allow-Origin': 'http://localhost:3000',
               'Content-Type' : 'application/json'
           }
   });
