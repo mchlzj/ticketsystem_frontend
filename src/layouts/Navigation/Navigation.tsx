@@ -12,6 +12,9 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import '../../style-theme'
 import { theme } from '../../style-theme';
+import Fab from '@material-ui/core/Fab'
+import AddIcon from '@material-ui/icons/Add';
+import { useHistory } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -56,6 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Navigation(props) {
   const classes = useStyles();
+
 
   return (
     <ThemeProvider theme={theme}>
