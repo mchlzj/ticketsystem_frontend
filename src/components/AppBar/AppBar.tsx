@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -20,7 +20,7 @@ import {MobileOpenContext} from '../Drawer/MobileOpenContext';
 import {AnchorElContext} from './AnchorElContext';
 import { useHistory } from 'react-router-dom';
 import { TicketsContext } from '../../pages/AllTickets/TicketsContext';
-
+import {getTicketsByTitle, getAllTickets} from '../../util/ApiCalls';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -113,6 +113,18 @@ function StyledAppBar() {
   const handleSearch = (e) => {
     setTitle(e.target.value);
   }
+  useEffect(() => {
+    title === '' ?
+    getAllTickets()
+      .then(data => {
+        setTickets(data);
+      })
+      :
+    getTicketsByTitle(title)
+    .then(data => {
+      setTickets(data);
+    })
+  }, [title])
 
   const goToSearch = () => {
     history.push('/ticketSuchen');

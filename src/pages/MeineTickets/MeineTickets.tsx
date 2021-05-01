@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import {getAllTickets} from '../../util/ApiCalls';
 // import { DataGrid, ColDef} from '@material-ui/data-grid';
 import TicketCard from '../../components/Card/TicketCard';
-import TicketSearchBar from '../../components/SearchBar/TicketSearchBar';
 import jwt_decode from "jwt-decode";
 import {UserNameContext, UserRoleContext} from '../../util/UserCredsContext';
 import auth from '../../util/auth';
