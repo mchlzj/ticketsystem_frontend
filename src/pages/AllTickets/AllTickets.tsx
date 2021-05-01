@@ -16,7 +16,7 @@ import {TicketsContext} from './TicketsContext';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
-
+import NewElementButton from '../../components/Button/NewTicketButton'
 
 
 
@@ -42,7 +42,7 @@ export default function AllTickets() {
     const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       fab: {
-        position: 'absolute',
+        position: 'fixed',
         bottom: theme.spacing(2),
         right: theme.spacing(2),
         textTransform: 'none'
@@ -101,11 +101,7 @@ export default function AllTickets() {
     ))}
   </Grid>
   </div>
-    <Fab variant="extended" size="medium" color="secondary" className={classes.fab} onClick={handleCreateNewTicket}>
-      <AddIcon />
-      &nbsp; Neues Ticket
-    </Fab>
-
+      <NewElementButton/>
     <Backdrop className={classes.backdrop} open={isLoading}>
         <CircularProgress color="inherit" />
       </Backdrop>

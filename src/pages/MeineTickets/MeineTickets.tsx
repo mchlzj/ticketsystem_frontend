@@ -12,6 +12,7 @@ import Fab from '@material-ui/core/Fab'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router-dom';
+import NewElementButton from '../../components/Button/NewTicketButton'
 
 export default function MeineTickets({tickets, setTickets}) {
 
@@ -100,11 +101,7 @@ export default function MeineTickets({tickets, setTickets}) {
       </Grid>
    
 }
-
-    <Fab variant="extended" size="medium" color="secondary" className={classes.fab} onClick={handleCreateNewTicket}>
-      <AddIcon />
-      &nbsp; Neues Ticket
-    </Fab>
+  <NewElementButton/>
 
     </div>
 
