@@ -1,13 +1,13 @@
 import React, {createContext} from 'react';
 
 
-export const CommentsContext = createContext<any>(Boolean);
+export const CommentsContext = createContext<any>([]);
 
 export const CommentsProvider = ({children}: any) => {
-    const [rerender, setRerender] = React.useState(false);
+    const [comments, setComments] = React.useState([]);
 
     return (
-        <CommentsContext.Provider value={[rerender,setRerender]} >
+        <CommentsContext.Provider value={[comments,setComments]} >
             {children}
         </CommentsContext.Provider>
     );

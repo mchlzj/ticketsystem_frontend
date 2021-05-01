@@ -1,7 +1,7 @@
 import  {useState,useEffect, useContext} from 'react'
 import {CommentsContext} from '../Comments/CommentContext';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import {getTicketById, changeTicketStatus} from '../../util/ApiCalls';
+import {getTicketById, changeTicketStatus, getCommentByTicketId} from '../../util/ApiCalls';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -86,11 +86,7 @@ function Ticket({match}) {
           setIsLoading(false);
         })
         console.log('Called Ticket with Id ' + match.params.id);
-    },[comments, match.params.id])
-
-    useEffect(() => {
-      console.log(auth.getUserRole());
-    })
+    },[match.params.id])
 
     const handleStatusSwitch = (event) => {
       setStatusValue(event.target.checked);
@@ -249,8 +245,8 @@ function Ticket({match}) {
                     </Grid>
                 </Grid>
                               <Divider variant="middle"/>
-              <NewComment ticketID={ticket.id}/>
-              <Comments comments={ticket.comments}/>
+
+              <Comments ticketID={ticket.id}/>
               </CardContent>
             </Card>
             </Grid>
