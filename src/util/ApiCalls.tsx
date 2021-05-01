@@ -14,10 +14,12 @@ export const login = async(userName, password) => {
               }), 
       mode: 'cors',
       headers: {
+              'Access-Control-Allow-Origin': '*',
               'Content-Type' : 'application/json'
           }
   });
   try {
+      console.log(response);
       if (response.ok) {
           const jsonResponse = await response.json();
           return jsonResponse;
@@ -25,6 +27,7 @@ export const login = async(userName, password) => {
       throw new Error("Login failed");
     }catch(error) {
         console.log("invalid login");
+        console.log(error);
     }
 };
 
@@ -145,14 +148,14 @@ export const newComment = async( ticketID, text) => {
             }
         });
     }
-export const createNewTicket = async(title, description, modul) => {
+export const createNewTicket = async(title, description, documentId) => {
     const response = await fetch(url + 'Tickets',
     {
         method: 'POST',
         body: JSON.stringify({
             title: title,
-            description: description
-
+            description: description,
+            documentId: documentId
             }), 
         mode: 'cors',
         headers: {
@@ -200,3 +203,45 @@ export const getModules = async() => {
     }
 };
 
+
+export const getDocuments = async( moduleId ) => {
+    const response = await fetch(url + `Documents/GetByModuleId/${moduleId}`,
+    {
+        method: 'GET',
+        headers: {
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
+            }
+    }
+    );
+    try {
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            /*console.log(jsonResponse)*/
+            return jsonResponse;
+        }
+        throw new Error('Request Failed!');
+    } catch(error) {
+        /*console.log(error);*/
+    }
+};
+
+export const changeTicketStatus = async( ticketId ) => {
+    const response = await fetch(url + `Tickets/ChangeStatus/${ticketId}`,
+    {
+        method: 'POST',
+        headers: {
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
+            }
+    }
+    );
+    try {
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            /*console.log(jsonResponse)*/
+            return jsonResponse;
+        }
+        throw new Error('Request Failed!');
+    } catch(error) {
+        /*console.log(error);*/
+    }
+};

@@ -82,7 +82,7 @@ const StyledListItem = withStyles({
             <Link className={classes.link} to="/ticketSuchen" onClick={handleDrawerToggle}>
               <StyledListItem button key='ticketSuchen'>
                 <StyledListItemIcon style={window.location.href==="http://localhost:3000/ticketSuchen" ? {color: "#EA5B0F"} : {}}><MailIcon /></StyledListItemIcon>
-                <StyledListItemText primary='Ticket suchen' style={window.location.href==="http://localhost:3000/ticketSuchen" ? {color: "#EA5B0F"} : {}}/>
+                <StyledListItemText primary='Alle Tickets' style={window.location.href==="http://localhost:3000/ticketSuchen" ? {color: "#EA5B0F"} : {}}/>
               </StyledListItem>
             </Link>
           </List>

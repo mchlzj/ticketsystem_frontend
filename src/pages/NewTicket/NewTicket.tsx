@@ -17,7 +17,7 @@ import Select from '@material-ui/core/Select';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Fab from '@material-ui/core/Fab'
 import Box from '@material-ui/core/Box'
-import {getModules} from '../../util/ApiCalls';
+import {getModules, getDocuments} from '../../util/ApiCalls';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,11 +44,16 @@ const useStyles = makeStyles((theme: Theme) =>
       bottom: theme.spacing(2),
       right: theme.spacing(2),
       textTransform: 'none'
+    },
+    selected: {
+      backgroundColor: "grey !important",
+      color: "white",
+      fontWeight: 600
     }
   }),
 );
 
-export default function NewTicket({moduls, setModules}) {
+export default function NewTicket({moduls, setModules, documents, setDocuments}) {
     const classes = useStyles();
 
     const [titleValue, setTitleValue] = useState('');
@@ -74,11 +79,24 @@ export default function NewTicket({moduls, setModules}) {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    useEffect(() => {
+      getDocuments(modul)
+      .then(data => {
+        setDocuments(data);
+      })
+      .then(() => console.log(documents)); 
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     /*useEffect(() => {
       console.log(auth.getUserRole());
     })*/
 
     const handleModuleChange = ({target}) => {
+      getDocuments(target.value)
+      .then(data => {
+        setDocuments(data);
+      })
       setModuleValue(target.value);
     };
 
@@ -94,7 +112,7 @@ export default function NewTicket({moduls, setModules}) {
     };
     const submitTicket = () => {
         console.log("i got clicked")
-        createNewTicket( titleValue , descriptionValue, modul)
+        createNewTicket( titleValue , descriptionValue, document)
           .then(success => {
             alert('Neues Ticket erfolgreich erstellt!');
             console.log(success);
@@ -150,7 +168,7 @@ export default function NewTicket({moduls, setModules}) {
                       {
                       moduls?.map((item) => {
                         return (
-                          <MenuItem key={item.id} value={item.name}>
+                          <MenuItem key={item.id} value={item.id} selected classes={{ selected: classes.selected }}>
                             {item.name}
                           </MenuItem>
                         );
@@ -160,7 +178,14 @@ export default function NewTicket({moduls, setModules}) {
                     <FormControl className={classes.formControl}>
                       <InputLabel id="select-document-label">&nbsp; Format auswählen...</InputLabel>
                       <Select labelId="select-document-label" id="select-document" variant="outlined" value={document} onChange={handleDocumentChange}>
-                      
+                      {
+                      documents?.map((item) => {
+                        return (
+                          <MenuItem key={item.id} value={item.id} selected classes={{ selected: classes.selected }}>
+                            {item.name}
+                          </MenuItem>
+                        );
+                      })}
                       </Select>
                     </FormControl>
                   </Grid>
