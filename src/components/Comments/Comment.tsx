@@ -6,8 +6,11 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import {TicketContext} from '../Ticket/TicketContext';
 
-function Comment({comment}) {
+function Comment({commentText, commentCreator, commentDate}) {
     const [ticket, setTicket] = useContext(TicketContext);
+
+    const dateString = Date.parse(commentDate);
+    const date = new Date(dateString);
 
     const handleDelete = () => {
 
@@ -21,21 +24,17 @@ function Comment({comment}) {
         <Card >
             <CardContent>
                 <div>
-                <Typography variant="h5">
-                    {comment.text}
+
+                <Typography variant="body1">
+                    {commentText}
                 </Typography>
-                {/* <Typography variant="h5">
-                    {comment.createdBy.userName}
-                </Typography> */}
-                {comment.createdBy === null 
-                ?
-                <IconButton aria-label="delete">
-                    <DeleteIcon />
-                </IconButton>
-                :
-                null
-            }
-                
+                <Typography display='inline' align='left' variant="caption">
+                    von: {commentCreator} 
+                </Typography>      
+                <br></br>
+                <Typography display='inline' align='right'variant="caption"> 
+                    am : {date.toLocaleDateString()} um {date.toLocaleTimeString()}
+                </Typography> 
                 </div>
             </CardContent>
         </Card>

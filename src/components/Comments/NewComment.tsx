@@ -3,10 +3,12 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import SaveIcon from '@material-ui/icons/Save';
+import SendIcon from '@material-ui/icons/Send';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import {newComment} from '../../util/ApiCalls';
 import {CommentsContext} from '../Comments/CommentContext';
 import { isNullOrUndefined } from 'util';
+import {getTicketById, changeTicketStatus, getCommentByTicketId} from '../../util/ApiCalls';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,18 +22,17 @@ const useStyles = makeStyles((theme: Theme) =>
 function NewComment({ticketID}) {
     const classes = useStyles();
     const [comment, setComment] = useState('');
-    const [rerender, setRerender] = useContext(CommentsContext);
+    const [comments, setComments] = useContext(CommentsContext);
 
     const changeValue = (e) => {
         setComment(e.target.value);
+        console.log("value on Change:" + comment)
     }
-    const handleSubmit = () => {
-        newComment(ticketID, comment);
-        // .then(data => {
-        //     console.log(data);
-        // })
-        // .then(() => setRerender(!rerender));
-        setRerender(!rerender);
+    const handleSubmit = async() => {
+      console.log("value on submit" + comment);
+        await newComment(ticketID, comment);
+        const data = await getCommentByTicketId(ticketID)
+        await setComments(data);
         setComment('');
     }
 
@@ -43,19 +44,21 @@ function NewComment({ticketID}) {
           label="Neuer Kommentar"
           multiline
           rows={4}
+          size='small'
           variant="outlined"
           onChange={changeValue}
           value={comment}
+          fullWidth={true}
         />
       <Button
         variant="contained"
         color="primary"
         size="small"
         className={classes.button}
-        startIcon={<SaveIcon />}
+        endIcon={<SendIcon />}
         onClick={handleSubmit}
       >
-        Save
+        Abschicken
       </Button>
         </div>
     )
