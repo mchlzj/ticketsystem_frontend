@@ -26,6 +26,8 @@ import Switch from '@material-ui/core/Switch';
 import auth from '../../util/auth'
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -60,6 +62,10 @@ const useStyles = makeStyles((theme: Theme) =>
       bottom: theme.spacing(2),
       right: theme.spacing(2),
       textTransform: 'none'
+    },
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: '#fff',
     }
   }),
 );
@@ -152,7 +158,7 @@ function Ticket({match}) {
           */}
 
 {isLoading ? 
-            <h1>Loading...</h1> : 
+            <h1></h1> : 
             <div>
 <Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>
           <Grid item>
@@ -254,10 +260,24 @@ function Ticket({match}) {
         </form>
         <Typography gutterBottom variant="body1" component="h2" color="primary">
         <Box fontSize={18}>
-        Das Ticket wurde am {ticket.createdDate.split('T')[0].split('-')[2]}.{ticket.createdDate.split('T')[0].split('-')[1]}.{ticket.createdDate.split('T')[0].split('-')[0]} erstellt und zuletzt am {ticket.lastChangedDate.split('T')[0].split('-')[2]}.{ticket.lastChangedDate.split('T')[0].split('-')[1]}.{ticket.lastChangedDate.split('T')[0].split('-')[0]} um {ticket.lastChangedDate.split('T')[1].split(':')[0]}:{ticket.lastChangedDate.split('T')[1].split(':')[1]} Uhr geändert.
+        Das Ticket wurde am 
+        {ticket.createdDate.split('T')[0].split('-')[2]}.
+        {ticket.createdDate.split('T')[0].split('-')[1]}.
+        {ticket.createdDate.split('T')[0].split('-')[0]} 
+        erstellt und zuletzt am 
+        {ticket.lastChangedDate.split('T')[0].split('-')[2]}.
+        {ticket.lastChangedDate.split('T')[0].split('-')[1]}.
+        {ticket.lastChangedDate.split('T')[0].split('-')[0]} 
+        um
+        {ticket.lastChangedDate.split('T')[1].split(':')[0]}:
+        {ticket.lastChangedDate.split('T')[1].split(':')[1]} 
+        Uhr geändert.
         </Box>
         </Typography>
 </div>}
+<Backdrop className={classes.backdrop} open={isLoading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
             </div>
 
 

@@ -1,6 +1,7 @@
 import  {useEffect, useState, useContext} from 'react'
 import Grid from '@material-ui/core/Grid';
 import {getAllTickets} from '../../util/ApiCalls';
+import { css } from "@emotion/core";
 // import { DataGrid, ColDef} from '@material-ui/data-grid';
 import TicketCard from '../../components/Card/TicketCard';
 import jwt_decode from "jwt-decode";
@@ -12,6 +13,12 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router-dom';
 import {TicketsContext} from './TicketsContext';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
+
+
+
 
 export default function AllTickets() {
 
@@ -39,6 +46,10 @@ export default function AllTickets() {
         bottom: theme.spacing(2),
         right: theme.spacing(2),
         textTransform: 'none'
+      },
+      backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
       }
     }),
   );
@@ -60,9 +71,8 @@ export default function AllTickets() {
 
     return (  
       <div> 
-      {/*<TicketSearchBar/>*/}
 
-      <Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>
+<Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>
           <Grid item>
             <MailIcon fontSize='large'/>
           </Grid>
@@ -72,9 +82,7 @@ export default function AllTickets() {
             </Typography>
           </Grid>
         </Grid>
-
-    {isLoading ? <h1>Loading...</h1> :
-
+    <div>
  <Grid container 
   justify="space-around"
   alignItems="flex-start" 
@@ -89,18 +97,19 @@ export default function AllTickets() {
         createdBy={ticket.createdBy.userName}
         modul={ticket.document.module.name}
         />
-
     </Grid>
     ))}
-      </Grid>
-}
+  </Grid>
+  </div>
     <Fab variant="extended" size="medium" color="secondary" className={classes.fab} onClick={handleCreateNewTicket}>
       <AddIcon />
       &nbsp; Neues Ticket
     </Fab>
 
+    <Backdrop className={classes.backdrop} open={isLoading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
-
     // <div style={{ height: 400, width: '100%' }}>
     //   <DataGrid rows={tickets} columns={columns} pageSize={5} />
     // </div>

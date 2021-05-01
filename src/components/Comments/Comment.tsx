@@ -33,7 +33,7 @@ function Comment({commentText, commentCreator, commentDate}) {
                 </Typography>      
                 <br></br>
                 <Typography display='inline' align='right'variant="caption"> 
-                    am : {date.toLocaleDateString()} um {date.toLocaleTimeString()}
+                    Erstellt am : {date.toLocaleDateString()} um {date.toLocaleTimeString()}
                 </Typography> 
                 </div>
             </CardContent>
