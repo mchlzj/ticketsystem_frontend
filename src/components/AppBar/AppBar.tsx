@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -18,6 +18,8 @@ import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import {MobileOpenContext} from '../Drawer/MobileOpenContext';
 import {AnchorElContext} from './AnchorElContext';
+import { useHistory } from 'react-router-dom';
+import { TicketsContext } from '../../pages/AllTickets/TicketsContext';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -91,9 +93,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 function StyledAppBar() {
+  const history = useHistory();
   const classes = useStyles();
   // Auskommentiert, da sich der Z-Index des Menüs irgendwie nicht ändern lässt
   const [, setAnchorEl] = React.useContext(AnchorElContext);
+  const [tickets, setTickets] = useContext(TicketsContext);
+  const [title, setTitle] = useState('');
 
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -104,6 +109,14 @@ function StyledAppBar() {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const handleSearch = (e) => {
+    setTitle(e.target.value);
+  }
+
+  const goToSearch = () => {
+    history.push('/ticketSuchen');
+  }
 
   return (
     <div>
@@ -134,6 +147,8 @@ function StyledAppBar() {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={handleSearch}
+              onClick={goToSearch}
             />
           </div>
             <IconButton

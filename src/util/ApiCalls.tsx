@@ -87,6 +87,7 @@ export const getTicketById = async(id) => {
 };
 
 
+
 export const newComment = async( ticketID, text) => {
     await fetch(url  + 'Comments',
     {

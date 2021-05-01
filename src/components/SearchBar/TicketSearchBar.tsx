@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
@@ -12,17 +12,28 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import FormControl from '@material-ui/core/FormControl';
 import useStyles from '../../mui-style-theme';
 import '../../style-theme'
-
+import { useHistory } from 'react-router-dom';
+import {TicketsContext} from '../../pages/AllTickets/TicketsContext';
 
 export default function TicketSearchBar() {
   const classes = useStyles();
 
   const [title, setTitle] = useState('');
+  const [tickets, setTickets] = useContext(TicketsContext);
   // const [closed, setClosed] = useState(false);
+  const history = useHistory();
 
   const handleSearch = (e) => {
+    // history.push('/ticketSuchen');
     setTitle(e.target.value);
     console.log(title);
+    
+  }
+ 
+
+  const goToSearch = () => {
+    console.log("onClick");
+    return null;
   }
 
   return (

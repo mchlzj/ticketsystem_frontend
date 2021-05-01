@@ -1,4 +1,4 @@
-import  {useEffect, useState} from 'react'
+import  {useEffect, useState, useContext} from 'react'
 import Grid from '@material-ui/core/Grid';
 import {getAllTickets} from '../../util/ApiCalls';
 // import { DataGrid, ColDef} from '@material-ui/data-grid';
@@ -12,16 +12,18 @@ import Fab from '@material-ui/core/Fab'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router-dom';
+import {TicketsContext} from './TicketsContext';
 
-export default function AllTickets({tickets, setTickets}) {
+export default function AllTickets() {
 
-    // const [tickets,setTickets] = useContext(TicketsContext);
+    const [tickets,setTickets] = useContext(TicketsContext);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
       getAllTickets()
       .then(data => {
         setTickets(data);
+        console.log(data);
       })
       .then(() => setIsLoading(false))
       console.log("Api Call from AllTickets");
