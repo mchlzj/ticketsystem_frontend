@@ -11,6 +11,7 @@ import {UserNameProvider} from './util/UserCredsContext';
 import {UserRoleProvider} from './util/UserCredsContext';
 import {CommentsProvider} from './components/Comments/CommentContext';
 import {ModulesProvider} from './pages/NewTicket/ModulesContext';
+import {DocumentsProvider} from './pages/NewTicket/DocumentsContext';
 
 
 
@@ -23,8 +24,10 @@ ReactDOM.render(
           <MobileOpenProvider>
             <CommentsProvider>
               <ModulesProvider>
-            <App />
-            </ModulesProvider>
+                <DocumentsProvider>
+                  <App />
+                </DocumentsProvider>
+              </ModulesProvider>
             </CommentsProvider>
           </MobileOpenProvider>
         </TicketsProvider>
