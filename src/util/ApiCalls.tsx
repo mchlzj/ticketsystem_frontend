@@ -14,10 +14,12 @@ export const login = async(userName, password) => {
               }), 
       mode: 'cors',
       headers: {
+              'Access-Control-Allow-Origin': '*',
               'Content-Type' : 'application/json'
           }
   });
   try {
+      console.log(response);
       if (response.ok) {
           const jsonResponse = await response.json();
           return jsonResponse;
@@ -25,6 +27,7 @@ export const login = async(userName, password) => {
       throw new Error("Login failed");
     }catch(error) {
         console.log("invalid login");
+        console.log(error);
     }
 };
 
