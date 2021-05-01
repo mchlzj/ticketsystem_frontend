@@ -50,6 +50,47 @@ export const getAllTickets = async() => {
         console.log(error);
     }
 };
+//Tickets suchen
+export const getTicketsByTitle = async(title) => {
+    if (title !== '' && title !== null) {
+        const response = await fetch(url + 'Tickets/SearchByTitle/' + title,
+        {
+            headers: {
+                    'authorization' : 'Bearer ' + localStorage.getItem('token')
+                }
+        }
+        );
+        try {
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                return jsonResponse;
+            }
+            throw new Error('Request Failed!');
+        } catch(error) {
+            console.log(error);
+        }
+    }
+};
+
+export const getCommentByTicketId = async(TicketId) => {
+    const response = await fetch(url + 'Comments/GetByTicketId/' + TicketId,
+    {
+        headers: {
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
+            }
+    }
+    );
+    try {
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            return jsonResponse;
+        }
+        throw new Error('Request Failed!');
+    } catch(error) {
+        console.log(error);
+    }
+};
+
 
 //Ticket erstellen
 // export const sendData = async( title, description) => {
@@ -88,6 +129,7 @@ export const getTicketById = async(id) => {
         console.log(error);
     }
 };
+
 
 
 
