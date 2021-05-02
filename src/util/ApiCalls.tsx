@@ -1,8 +1,8 @@
 
-const url = 'https://ticketsystembackend.azure-api.net/api/';
+const url = 'https://easyticketapi.azurewebsites.net/api/';
 //https://www.hetfeld.name/ticket_backend/api/
 //http://localhost:59543/api/
-//https://ticketsystembackend.azure-api.net
+//https://easyticketapi.azurewebsites.net
 
 //Login und Register
 export const login = async(userName, password) => {
@@ -15,7 +15,7 @@ export const login = async(userName, password) => {
               }), 
       mode: 'cors',
       headers: {
-              'Access-Control-Allow-Origin': 'https://ticketsystembackend.azure-api.net',
+              'Access-Control-Allow-Origin': 'https://easyticketapi.azurewebsites.net',
               'Content-Type' : 'application/json'
           }
   });
