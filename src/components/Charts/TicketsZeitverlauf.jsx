@@ -1,85 +1,114 @@
-import React, {useEffect} from 'react'
-import { Bar } from 'react-chartjs-2';
-import {getAllTickets} from '../../util/ApiCalls';
+
+import React, {useState, useEffect} from 'react'
+import { Line } from 'react-chartjs-2';
+import {getTicketsImZeitverlauf} from '../../util/ApiCalls';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 
 
+const useStyles = makeStyles((theme) =>
+createStyles({
+  fab: {
+    position: 'fixed',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+    textTransform: 'none'
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+  container: {
+    width: '50',
+    height: '200'
+  }
+}),
+);
 
-  
+
   function TicketsZeitverlauf() {
 
-    let labels=[];
-    let openTickets;
-    let closedTickets;
+    const [labels, setLabels] = useState([]);
+    const [openTickets, setOpenTickets] = useState([]);
+    const [closedTickets, setClosedTickets] = useState([]);
+
+    
+    const classes = useStyles();
 
     useEffect(async() => {
-      const rawData = await getAllTickets();
-      const sortedData = [];
-      //generating labels
-      for (let i = 0; i < rawData.length; i ++) {
-        const dateString = Date.parse(rawData[i].createdDate);
-        const date = new Date(dateString);
-        labels.push(date.getMonth()+1);
-        console.log(labels);
+      let labels=[];
+      let openTickets=[];
+      let closedTickets=[];
 
-      }
-      // console.log(rawData);
-    })
+      const result = await getTicketsImZeitverlauf();
+      // console.log(result);
+      result.forEach(element => {
+        labels.push(element.month);
+        openTickets.push(element.openedTickets);
+        closedTickets.push(element.closedTickets);
+      });
+      setLabels(labels);
+      setClosedTickets(closedTickets);
+      setOpenTickets(openTickets);
+
+      console.log(labels);
+      console.log(openTickets);
+      console.log(closedTickets);
+    },[])
     
     const data = {
-      labels: ['1', '2', '3', '4', '5', '6'],
+      labels: labels,
       datasets: [
         {
-          label: '# of Red Votes',
-          data: [12, 19, 3, 5, 2, 3],
+          label: 'geöffnete Tickets',
+          data: openTickets,
           backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgba(255, 99, 132, 0.2)',
+          fill: false,
         },
         {
-          label: '# of Blue Votes',
-          data: [2, 3, 20, 5, 1, 4],
+          label: 'geschlossene Tickets',
+          data: closedTickets,
           backgroundColor: 'rgb(54, 162, 235)',
-        },
-        {
-          label: '# of Green Votes',
-          data: [3, 10, 13, 15, 22, 30],
-          backgroundColor: 'rgb(75, 192, 192)',
+          borderColor: 'rgba(54, 162, 235, 0.2)',
+          fill: false,
         },
       ],
     };
     
     const options = {
+      // responsive: true,
+      // maintainAspectRatio: false,
+      pugins: {
+        legend: {
+          position: 'top'
+        },
+        title: {
+          display: true,
+          text: 'Anzahl der erstellten Tickets im Zeitverlauf'
+        },
+      },
       scales: {
         yAxes: [
           {
-            stacked: true,
             ticks: {
               beginAtZero: true,
             },
           },
         ],
-        xAxes: [
-          {
-            stacked: true,
-          },
-        ],
       },
     };
 
+
     return (
-        <>
-      <div className='header'>
-        <h1 className='title'>Stacked Bar Chart</h1>
-        <div className='links'>
-          <a
-            className='btn btn-gh'
-            href='https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/StackedBar.js'
-          >
-            Github Source
-          </a>
-        </div>
+      <div >
+        
+      <canvas id="top" width='800' height='20'></canvas>
+      {/* <article height='60vh'> */}
+      <Line data={data} options={options} />
+      {/* </article> */}
+      <canvas id="middle" width='800' height='40'></canvas>
       </div>
-      <Bar data={data} options={options} />
-    </>
     );
   } 
     

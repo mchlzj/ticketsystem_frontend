@@ -91,6 +91,44 @@ export const getCommentByTicketId = async(TicketId) => {
     }
 };
 
+export const getTicketsImZeitverlauf = async() => {
+    const response = await fetch(url + 'Tickets/TicketTimeline/',
+    {
+        headers: {
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
+            }
+    }
+    );
+    try {
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            return jsonResponse;
+        }
+        throw new Error('Request Failed!');
+    } catch(error) {
+        console.log(error);
+    }
+};
+
+export const getTicketsNachModulen = async() => {
+    const response = await fetch(url + 'Tickets/TicketsPerModule/',
+    {
+        headers: {
+                'authorization' : 'Bearer ' + localStorage.getItem('token')
+            }
+    }
+    );
+    try {
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            return jsonResponse;
+        }
+        throw new Error('Request Failed!');
+    } catch(error) {
+        console.log(error);
+    }
+};
+
 
 //Ticket erstellen
 // export const sendData = async( title, description) => {
