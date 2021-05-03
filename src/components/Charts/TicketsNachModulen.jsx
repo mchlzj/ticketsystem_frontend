@@ -3,7 +3,7 @@ import { Pie } from 'react-chartjs-2';
 import {getTicketsNachModulen} from '../../util/ApiCalls';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-
+import Grid from '@material-ui/core/Grid';
 
 
 const useStyles = makeStyles((theme) =>
@@ -112,18 +112,23 @@ createStyles({
     return (
       <div>
       {/* <article height='60vh'> */}
+      <Grid container justify="flex-start" alignItems="flex-start" spacing={3}>
+      <Grid item xs={'auto'}>
       <Typography align='center' gutterBottom variant="h6" component="h2" color="primary">
                 Offene Tickets
     </Typography>
-      <canvas id="middle" width='800' height='40'></canvas>
+      {/*<canvas id="middle" width='800' height='40'></canvas>*/}
       <Pie data={dataOpen}/>
+      </Grid>
+      <Grid item xs={'auto'}>
       <Typography align='center' gutterBottom variant="h6" component="h2" color="primary">
             Geschlossene Tickets
     </Typography>
-      <canvas id="middle" width='800' height='40'></canvas>
+      {/*<canvas id="middle" width='800' height='40'></canvas>*/}
       <Pie data={dataClosed}/>
+      </Grid>
       {/* </article> */}
-      
+      </Grid>
       </div>
     );
   } 

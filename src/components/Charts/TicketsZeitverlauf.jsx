@@ -103,11 +103,11 @@ createStyles({
     return (
       <div >
         
-      <canvas id="top" width='800' height='20'></canvas>
-      {/* <article height='60vh'> */}
+      {/*<canvas id="top" width='800' height='20'></canvas>
+       <article height='60vh'> */}
       <Line data={data} options={options} />
-      {/* </article> */}
-      <canvas id="middle" width='800' height='40'></canvas>
+      {/* </article> 
+      <canvas id="middle" width='800' height='40'></canvas>*/}
       </div>
     );
   } 

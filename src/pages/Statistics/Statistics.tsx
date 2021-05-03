@@ -4,6 +4,7 @@ import TicketsZeitverlauf from '../../components/Charts/TicketsZeitverlauf';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import TicketsNachModulen from '../../components/Charts/TicketsNachModulen';
+import Grid from '@material-ui/core/Grid';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -28,17 +29,25 @@ const useStyles = makeStyles((theme: Theme) =>
 function Statistics() {
     const classes = useStyles();
 
+
     return (
         <div>
+          <Grid container justify="flex-start" alignItems="flex-start" spacing={3}>
+            <Grid item xs={'auto'}>
             <Typography align='center' gutterBottom variant="h5" component="h2" color="primary">
                 Anzahl erstellter Tickets im Zeitverlauf
             </Typography>
             <TicketsZeitverlauf/>
+            </Grid>
+            <Grid item xs={12} />
+            <Grid item xs={'auto'}>
             <Typography align='center' gutterBottom variant="h5" component="h2" color="primary">
                 Gesamtzahl erstellter Tickets pro Modul
             </Typography>
             <NewElementButton/>
             <TicketsNachModulen/>
+            </Grid>
+          </Grid>
         </div>
     )
 }
