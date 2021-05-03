@@ -32,9 +32,6 @@ export default function MeineTickets({tickets, setTickets}) {
         .then(() => setUserName(auth.getUserName()))
         .then(() => console.log(userName));
         console.log("Api Call from MyTickets");
-        
-        
- 
     }, [setTickets])
 
     const useStyles = makeStyles((theme: Theme) =>

@@ -153,7 +153,7 @@ function StyledAppBar() {
               <SearchIcon />
             </IconButton>
             <InputBase
-              placeholder="In Titel suchen..."
+              placeholder="Ticket suchen..."
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,

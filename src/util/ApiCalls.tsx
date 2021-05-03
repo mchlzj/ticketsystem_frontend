@@ -1,5 +1,5 @@
 
-const url = 'https://easyticketapi.azurewebsites.net/api/';
+const url = 'http://localhost:59543/api/';
 //https://www.hetfeld.name/ticket_backend/api/
 //http://localhost:59543/api/
 //https://easyticketapi.azurewebsites.net

@@ -2,7 +2,7 @@
   "name": "ticketsystem_frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://www.hetfeld.name",
+  "proxy": "https://www.hetfeld.name/ticket_frontend/",
   "homepage": "https://www.hetfeld.name/ticket_frontend/",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
