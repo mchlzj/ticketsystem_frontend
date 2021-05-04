@@ -76,11 +76,12 @@ const classes = useStyles();
           <main className={classes.content}>               
           <div className={classes.toolbar} />
           <Switch>
+              
               <Route path="/newticket" render={() => <NewTicket moduls={moduls} setModules={setModules} documents={documents} setDocuments={setDocuments}/>}/>
               <Route path="/ticketSuchen" exact render={() => <AllTickets />}/>
               <Route path="/ticketSuchen/:id" component={Ticket}/>
-              <Route path="/statistics" component={Statistics}/>
               <Route path="/meineTickets" render={() => <MeineTickets tickets={tickets} setTickets={setTickets}/>}/>
+              <Route path="/statistics" component={Statistics}/>
               <Route path="/MirZugewieseneTickets" render={() => <MirZugewieseneTickets tickets={tickets} setTickets={setTickets}/>}/>
           </Switch>
           </main>    

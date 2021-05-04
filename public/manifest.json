@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Easy-Ticket",
+  "name": "Easy-Ticket Management System",
 
   "start_url": ".",
   "display": "standalone",

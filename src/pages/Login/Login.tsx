@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useContext, useEffect} from 'react';
 import {Grid, Button} from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
@@ -7,15 +7,19 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import { Paper } from '@material-ui/core';
 import Background from '../../../public/media/BackgroundLogin.jpg'
+import {UserRoleContext} from '../../util/UserCredsContext';
+import auth from '../../util/auth'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       '& .MuiTextField-root': {
         margin: theme.spacing(1),
-        width: '25ch',
+        // width: '25ch',
       },
-        margin: 'auto',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+
         width: '50vh',
         padding: '10px',
     },
@@ -48,14 +52,16 @@ export default function Login(props) {
 
   const [userName, setUserName] = useState();
   const [password, setPassword] = useState();
+  const [userRole, setUserRole] = useContext(UserRoleContext);
 
 const handleLogin = async() => {
   
     login(userName, password)
         .then(res => {
-            localStorage.setItem('token', res.token);
-        }).then(e => {
-          props.history.push('/newticket');
+            localStorage.setItem('token', res.token);    
+        })
+        .then(e => {
+            props.history.push('/ticketSuchen');
         }).catch(e => alert("invalid Username or Password"))
 }
 
