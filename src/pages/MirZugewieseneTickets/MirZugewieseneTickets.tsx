@@ -95,6 +95,7 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
       ticketClosed={ticket.ticketClosed}
       createdBy={ticket.document.module.responsible.userName}
       modul={ticket.document.module.name}
+      document={ticket.document.name}
         />
 
     </Grid>

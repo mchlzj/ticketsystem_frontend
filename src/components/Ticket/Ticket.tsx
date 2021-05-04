@@ -229,6 +229,18 @@ function Ticket({match}) {
                   <Grid item xs={12}>
                     <Typography gutterBottom variant="body1" component="h2" color="primary">
                     <Box fontWeight="fontWeightBold" fontSize={18}>
+                      Ersteller
+                    </Box>
+                    </Typography>
+                    <Typography gutterBottom variant="body1" component="h2" color="primary">
+                    <Box fontSize={18}>
+                      {ticket.createdBy.userName}
+                    </Box>
+                    </Typography>  
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography gutterBottom variant="body1" component="h2" color="primary">
+                    <Box fontWeight="fontWeightBold" fontSize={18}>
                       Status
                     </Box>
                     </Typography>
@@ -260,18 +272,7 @@ function Ticket({match}) {
         </form>
         <Typography gutterBottom variant="body1" component="h2" color="primary">
         <Box fontSize={18}>
-        Das Ticket wurde am 
-        {ticket.createdDate.split('T')[0].split('-')[2]}.
-        {ticket.createdDate.split('T')[0].split('-')[1]}.
-        {ticket.createdDate.split('T')[0].split('-')[0]} 
-        erstellt und zuletzt am 
-        {ticket.lastChangedDate.split('T')[0].split('-')[2]}.
-        {ticket.lastChangedDate.split('T')[0].split('-')[1]}.
-        {ticket.lastChangedDate.split('T')[0].split('-')[0]} 
-        um
-        {ticket.lastChangedDate.split('T')[1].split(':')[0]}:
-        {ticket.lastChangedDate.split('T')[1].split(':')[1]} 
-        Uhr geändert.
+        Das Ticket wurde am {ticket.createdDate.split('T')[0].split('-')[2]}.{ticket.createdDate.split('T')[0].split('-')[1]}.{ticket.createdDate.split('T')[0].split('-')[0]} erstellt und zuletzt am {ticket.lastChangedDate.split('T')[0].split('-')[2]}.{ticket.lastChangedDate.split('T')[0].split('-')[1]}.{ticket.lastChangedDate.split('T')[0].split('-')[0]} um {ticket.lastChangedDate.split('T')[1].split(':')[0]}:{ticket.lastChangedDate.split('T')[1].split(':')[1]} Uhr geändert.
         </Box>
         </Typography>
 </div>}

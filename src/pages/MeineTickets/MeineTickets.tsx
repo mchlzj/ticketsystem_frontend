@@ -98,6 +98,7 @@ export default function MeineTickets({tickets, setTickets}) {
       ticketClosed={ticket.ticketClosed}
       createdBy={ticket.createdBy.userName}
       modul={ticket.document.module.name}
+      document={ticket.document.name}
         />
     </Grid>
     ))}

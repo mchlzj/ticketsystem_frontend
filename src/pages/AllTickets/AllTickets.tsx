@@ -99,6 +99,7 @@ export default function AllTickets() {
         ticketClosed={ticket.ticketClosed}
         createdBy={ticket.createdBy.userName}
         modul={ticket.document.module.name}
+        document={ticket.document.name}
         />
     </Grid>
     ))}

@@ -18,6 +18,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Fab from '@material-ui/core/Fab'
 import Box from '@material-ui/core/Box'
 import {getModules, getDocuments} from '../../util/ApiCalls';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -40,10 +41,8 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(2)
     },
     fab: {
-      position: 'absolute',
-      bottom: theme.spacing(2),
-      right: theme.spacing(2),
-      textTransform: 'none'
+      textTransform: 'none',
+      marginTop: 20,
     },
     selected: {
       backgroundColor: "grey !important",
@@ -55,6 +54,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function NewTicket({moduls, setModules, documents, setDocuments}) {
     const classes = useStyles();
+    const history = useHistory();
 
     const [titleValue, setTitleValue] = useState('');
     const [descriptionValue, setDescriptionValue] = useState('');
@@ -110,13 +110,17 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
     const handleChangeTitle = ({target}) => {
         setTitleValue(target.value);
     };
+
     const submitTicket = () => {
-        console.log("i got clicked")
+        if (titleValue!="" && descriptionValue!="" && document!="") {
         createNewTicket( titleValue , descriptionValue, document)
           .then(success => {
             alert('Neues Ticket erfolgreich erstellt!');
-            console.log(success);
+            history.push('/ticketSuchen');
           });
+        } else {
+          alert('Bitte alle Felder ausfüllen!');
+        }
     };
 
     
@@ -190,16 +194,15 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
                     </FormControl>
                   </Grid>
                 </Grid>
+                <Fab variant="extended" size="medium" color="secondary" className={classes.fab} onClick={submitTicket}>
+          &nbsp; Fertig &nbsp; 
+          <CheckCircleIcon />
+        </Fab>
               </CardContent>
             </Card>
             </Grid>
           </Grid>
         </form>
-
-        <Fab variant="extended" size="medium" color="secondary" className={classes.fab} onClick={submitTicket}>
-          &nbsp; Fertig &nbsp; 
-          <CheckCircleIcon />
-        </Fab>
 
       </div>
     );

@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 export default function TicketCard({title, description, ticketClosed, id, createdBy, 
-                                    modul
+                                    modul, document
                                    }) {
   const classes = useStyles();
 
@@ -55,20 +55,6 @@ export default function TicketCard({title, description, ticketClosed, id, create
             <Grid item xs={3}>
               <Typography gutterBottom variant="body1" component="h2" color="primary">
               <Box fontWeight="fontWeightBold" fontSize={18}>
-                Status
-              </Box>
-              </Typography>
-            </Grid>
-            <Grid item xs={9}>
-              <Typography gutterBottom variant="body1" component="h2" color="primary">
-              <Box fontWeight="fontWeightBold" fontSize={18}>
-                {ticketClosed ? "✓" : "⨯"}
-              </Box>
-              </Typography>
-            </Grid>
-            <Grid item xs={3}>
-              <Typography gutterBottom variant="body1" component="h2" color="primary">
-              <Box fontWeight="fontWeightBold" fontSize={18}>
                 Modul
               </Box>
               </Typography>
@@ -80,6 +66,37 @@ export default function TicketCard({title, description, ticketClosed, id, create
               </Box>
               </Typography>
             </Grid>
+
+            <Grid item xs={3}>
+              <Typography gutterBottom variant="body1" component="h2" color="primary">
+              <Box fontWeight="fontWeightBold" fontSize={18}>
+                Format
+              </Box>
+              </Typography>
+            </Grid>
+            <Grid item xs={9}>
+              <Typography gutterBottom variant="body1" component="h2" color="primary">
+              <Box fontWeight="fontWeightBold" fontSize={18}>
+                {document}
+              </Box>
+              </Typography>
+            </Grid>
+
+            <Grid item xs={3}>
+              <Typography gutterBottom variant="body1" component="h2" color="primary">
+              <Box fontWeight="fontWeightBold" fontSize={18}>
+                Status
+              </Box>
+              </Typography>
+            </Grid>
+            <Grid item xs={9}>
+              <Typography gutterBottom variant="body1" component="h2" color="primary">
+              <Box fontWeight="fontWeightBold" fontSize={18}>
+                {ticketClosed ? "✓" : "⨯"}
+              </Box>
+              </Typography>
+            </Grid>
+
           </Grid>
        
         </CardContent>
