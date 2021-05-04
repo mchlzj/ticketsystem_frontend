@@ -3,7 +3,10 @@ import {Grid, Button} from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import {login} from '../../util/ApiCalls';
-
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import { Paper } from '@material-ui/core';
+import Background from '../../../public/media/BackgroundLogin.jpg'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -13,12 +16,30 @@ const useStyles = makeStyles((theme: Theme) =>
         width: '25ch',
       },
         margin: 'auto',
-        width: '50%',
+        width: '50vh',
         padding: '10px',
     },
     inputField: {
         display: 'inline'
     },
+    media: {
+      height: 140,
+    },
+    background: {
+      // '& .MuiTextField-root': {
+      //   margin: theme.spacing(1),
+      //   width: '25ch',
+      // },
+        margin: 'auto',
+        width: '100%',
+        height: '100vh',
+        padding: '10px',
+        background: "url('/media/BackgroundLogin.jpg')",
+        // minWidth: '1024px',
+        position: 'fixed',
+        top: '0',
+        left: '0'
+    }
   }),
 );
 
@@ -46,8 +67,15 @@ const handlePasswordChange = ({target}) => {
 };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
-      <div>
+    <Paper className={classes.background}>
+    <form  className= {classes.root} noValidate autoComplete="off">
+     
+      <Card>
+      <CardMedia
+          className={classes.media}
+          image="/media/LogoLogin.JPG"
+          title="LogoLogin"
+        />
       <Grid
   container
   direction="column"
@@ -56,29 +84,34 @@ const handlePasswordChange = ({target}) => {
 >
         <TextField
           required
-          id="username"
-          label="Username"
+          id="Benutzername"
+          label="Benutzername"
           variant="outlined"
           onChange={handleUserNameChange}
         />
         <TextField
         required
-          id="password"
-          label="Password"
+          id="Passwort"
+          label="Passwort"
           type="password"
           autoComplete="current-password"
           variant="outlined"
           onChange={handlePasswordChange}
         />
       <Button variant="contained" 
-      color="primary" 
+      color="secondary" 
       disableElevation
-      onClick={handleLogin}>
+      onClick={handleLogin}
+      fullWidth>
         Login
       </Button>
         </Grid>
-      </div>
+      </Card>
     </form>
+          </Paper>
+
+
+    
   );
 }
 
