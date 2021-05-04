@@ -1,8 +1,6 @@
 import React, {useContext} from 'react';
 import {MobileOpenContext} from './MobileOpenContext';
-
 import Drawer from '@material-ui/core/Drawer';
-
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import DrawerContent from './DrawerContent';
 

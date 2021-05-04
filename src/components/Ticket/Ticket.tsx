@@ -1,4 +1,4 @@
-import  {useState,useEffect, useContext} from 'react'
+import {useState,useEffect, useContext} from 'react'
 import {CommentsContext} from '../Comments/CommentContext';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import {getTicketById, changeTicketStatus, getCommentByTicketId} from '../../util/ApiCalls';
@@ -29,6 +29,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+// Style definition
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -72,15 +73,18 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 function Ticket({match}) {
-  const classes = useStyles();
 
+// Initialisation of different context variables 
+// which are necessary for getting and setting the ticket data.
     const [ticket, setTicket] = useState<any>();
     const [isLoading, setIsLoading] = useState(true);
     const [comments, setComments] = useContext(CommentsContext);
     const [status, setStatusValue] = useState<any>();
+    const classes = useStyles();
 
     var statusIsChanged=false;
 
+// Load Ticket with specific id from database and set the related variables.
     useEffect(() => {
         getTicketById(match.params.id)
         .then(data => {
@@ -94,197 +98,141 @@ function Ticket({match}) {
         console.log('Called Ticket with Id ' + match.params.id);
     },[match.params.id])
 
+// Function for Switch-Status-Button which instantly updates the status param in the database.
     const handleStatusSwitch = (event) => {
       setStatusValue(event.target.checked);
-      console.log("A!!!!!!")
-      console.log(event.target.checked)
       changeTicketStatus(ticket.id);
     };
 
 
+// Returning the ticket component
     return (
       <div>
+        {isLoading ? <h1></h1> : 
+          <div>
 
-
-{/*
-<Card >
-            <CardContent>
-            {isLoading ? 
-            <h1>Loading...</h1> : 
-            <div>
-            <Typography gutterBottom variant="h6" component="h2" color="primary">
-                &nbsp; {ticket.title}
+            <Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>
+              <Grid item>
+                <CreateIcon fontSize='large'/>
+              </Grid>
+              <Grid item>
+                <Typography gutterBottom variant="h6" component="h2" color="primary">
+                &nbsp; Ticketübersicht
                 </Typography>
-              <Typography variant="h5">
-                Titel
-              </Typography>
-              <Typography>
-              {ticket.title}
-              </Typography>
-              <Typography variant="h5">
-                Beschreibung
-              </Typography>
-              <Typography>
-              {ticket.description}
-              </Typography>
-              <Typography variant="h5">
-                Status
-              </Typography>
-              {ticket.closed? 
-              <Chip label="geschlossen" color="secondary"/>:
-              <Chip label="offen" color="primary"/>
-            }
-            <Typography variant="h5">
-                Erstelldatum
-              </Typography>
-              <Typography>
-              {ticket.createdDate}
-              </Typography>
-              <Typography variant="h5">
-                Änderungsdatum
-              </Typography>
-              
-              <Typography>
-              {ticket.lastChangedDate}
-              </Typography>
-              <Divider variant="middle"/>
-              <NewComment ticketID={ticket.id}/>
-              <Comments comments={ticket.comments}/>
-            </div>
-                   
-            }
-            </CardContent>
-            </Card>
-          */}
-
-{isLoading ? 
-            <h1></h1> : 
-            <div>
-<Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>
-          <Grid item>
-            <CreateIcon fontSize='large'/>
-          </Grid>
-          <Grid item>
-            <Typography gutterBottom variant="h6" component="h2" color="primary">
-            &nbsp; Ticketübersicht
-            </Typography>
-          </Grid>
-        </Grid>
-
-
-        <form className={classes.root} noValidate autoComplete="off">
-        <Grid container justify="flex-start" alignItems="flex-start" spacing={1}>
-          <Grid item xs={"auto"}>
-            <Card variant='outlined' style={{ borderRadius: 15, borderWidth: 2, borderColor: 'black'}}>
-              <CardContent>
-                <Grid container justify="space-around" alignItems="flex-start" spacing={2}>
-                  <Grid item xs={12}>
-                    <Typography gutterBottom variant="body1" component="h2" color="primary">
-                    <Box fontWeight="fontWeightBold" fontSize={18}>
-                      Titel
-                    </Box>
-                    </Typography>
-                    <Typography gutterBottom variant="body1" component="h2" color="primary">
-                    <Box fontSize={18}>
-                      {ticket.title}
-                    </Box>
-                    </Typography>                  
-                    </Grid>
-                  <Grid item xs={12}>
-                    <Typography gutterBottom variant="body1" component="h2" color="primary">
-                    <Box fontWeight="fontWeightBold" fontSize={18}>
-                      Beschreibung
-                    </Box>
-                    </Typography>
-                    <Typography gutterBottom variant="body1" component="h2" color="primary">
-                    <Box fontSize={18}>
-                      {ticket.description}
-                    </Box>
-                    </Typography>                    
-                    </Grid>
-                  <Grid item xs={12}>
-                    <Typography gutterBottom variant="body1" component="h2" color="primary">
-                    <Box fontWeight="fontWeightBold" fontSize={18}>
-                      Modul
-                    </Box>
-                    </Typography>
-                    <Typography gutterBottom variant="body1" component="h2" color="primary">
-                    <Box fontSize={18}>
-                      {ticket.document.module.name}
-                    </Box>
-                    </Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                    <Typography gutterBottom variant="body1" component="h2" color="primary">
-                    <Box fontWeight="fontWeightBold" fontSize={18}>
-                      Format
-                    </Box>
-                    </Typography>
-                    <Typography gutterBottom variant="body1" component="h2" color="primary">
-                    <Box fontSize={18}>
-                      {ticket.document.name}
-                    </Box>
-                    </Typography>  
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Typography gutterBottom variant="body1" component="h2" color="primary">
-                    <Box fontWeight="fontWeightBold" fontSize={18}>
-                      Ersteller
-                    </Box>
-                    </Typography>
-                    <Typography gutterBottom variant="body1" component="h2" color="primary">
-                    <Box fontSize={18}>
-                      {ticket.createdBy.userName}
-                    </Box>
-                    </Typography>  
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Typography gutterBottom variant="body1" component="h2" color="primary">
-                    <Box fontWeight="fontWeightBold" fontSize={18}>
-                      Status
-                    </Box>
-                    </Typography>
-                    {
-                      ticket.document.module.responsible.userName===auth.getUserName() ?
-                      <FormGroup>
-                        <FormControlLabel label={status ? "Geschlossen" : "Offen"} control={<Switch
-                      checked={status}
-                      onChange={handleStatusSwitch}
-                      name="checkedA"
-                      inputProps={{ 'aria-label': 'secondary checkbox' }}
-                    />}/>
-                      </FormGroup> :
-                    <Typography gutterBottom variant="body1" component="h2" color="primary">
-                    <Box fontSize={18}>
-                      {ticket.ticketClosed ? "Geschlossen" : "Offen"}
-                    </Box>
-                    </Typography>
-                    }
-                    </Grid>
-                </Grid>
-                              <Divider variant="middle"/>
-
-              <Comments ticketID={ticket.id}/>
-              </CardContent>
-            </Card>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
+
+            <form className={classes.root} noValidate autoComplete="off">
+            <Grid container justify="flex-start" alignItems="flex-start" spacing={1}>
+              <Grid item xs={"auto"}>
+                <Card variant='outlined' style={{ borderRadius: 15, borderWidth: 2, borderColor: 'black'}}>
+                  <CardContent>
+                    <Grid container justify="space-around" alignItems="flex-start" spacing={2}>
+                      <Grid item xs={12}>
+                        <Typography gutterBottom variant="body1" component="h2" color="primary">
+                        <Box fontWeight="fontWeightBold" fontSize={18}>
+                          Titel
+                        </Box>
+                        </Typography>
+                        <Typography gutterBottom variant="body1" component="h2" color="primary">
+                        <Box fontSize={18}>
+                          {ticket.title}
+                        </Box>
+                        </Typography>                  
+                        </Grid>
+                      <Grid item xs={12}>
+                        <Typography gutterBottom variant="body1" component="h2" color="primary">
+                        <Box fontWeight="fontWeightBold" fontSize={18}>
+                          Beschreibung
+                        </Box>
+                        </Typography>
+                        <Typography gutterBottom variant="body1" component="h2" color="primary">
+                        <Box fontSize={18}>
+                          {ticket.description}
+                        </Box>
+                        </Typography>                    
+                        </Grid>
+                        <Grid item xs={12}>
+                        <Typography gutterBottom variant="body1" component="h2" color="primary">
+                        <Box fontWeight="fontWeightBold" fontSize={18}>
+                          Modul
+                        </Box>
+                        </Typography>
+                        <Typography gutterBottom variant="body1" component="h2" color="primary">
+                        <Box fontSize={18}>
+                          {ticket.document.module.name}
+                        </Box>
+                        </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                        <Typography gutterBottom variant="body1" component="h2" color="primary">
+                        <Box fontWeight="fontWeightBold" fontSize={18}>
+                          Format
+                        </Box>
+                        </Typography>
+                        <Typography gutterBottom variant="body1" component="h2" color="primary">
+                        <Box fontSize={18}>
+                          {ticket.document.name}
+                        </Box>
+                        </Typography>  
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Typography gutterBottom variant="body1" component="h2" color="primary">
+                        <Box fontWeight="fontWeightBold" fontSize={18}>
+                          Ersteller
+                        </Box>
+                        </Typography>
+                        <Typography gutterBottom variant="body1" component="h2" color="primary">
+                        <Box fontSize={18}>
+                          {ticket.createdBy.userName}
+                        </Box>
+                        </Typography>  
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Typography gutterBottom variant="body1" component="h2" color="primary">
+                        <Box fontWeight="fontWeightBold" fontSize={18}>
+                          Status
+                        </Box>
+                        </Typography>
+                        {
+                          ticket.document.module.responsible.userName===auth.getUserName() ?
+                          <FormGroup>
+                            <FormControlLabel label={status ? "Geschlossen" : "Offen"} control={<Switch
+                          checked={status}
+                          onChange={handleStatusSwitch}
+                          name="checkedA"
+                          inputProps={{ 'aria-label': 'secondary checkbox' }}
+                        />}/>
+                          </FormGroup> :
+                        <Typography gutterBottom variant="body1" component="h2" color="primary">
+                        <Box fontSize={18}>
+                          {ticket.ticketClosed ? "Geschlossen" : "Offen"}
+                        </Box>
+                        </Typography>
+                        }
+                        </Grid>
+                    </Grid>
+                    <Divider variant="middle"/>
+                    <Comments ticketID={ticket.id}/>
+                  </CardContent>
+                </Card>
+                </Grid>
+              </Grid>
+            </form>
         <Typography gutterBottom variant="body1" component="h2" color="primary">
         <Box fontSize={18}>
         Das Ticket wurde am {ticket.createdDate.split('T')[0].split('-')[2]}.{ticket.createdDate.split('T')[0].split('-')[1]}.{ticket.createdDate.split('T')[0].split('-')[0]} erstellt und zuletzt am {ticket.lastChangedDate.split('T')[0].split('-')[2]}.{ticket.lastChangedDate.split('T')[0].split('-')[1]}.{ticket.lastChangedDate.split('T')[0].split('-')[0]} um {ticket.lastChangedDate.split('T')[1].split(':')[0]}:{ticket.lastChangedDate.split('T')[1].split(':')[1]} Uhr geändert.
         </Box>
         </Typography>
-</div>}
-<Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-            </div>
+  </div>}
 
+  <Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
+    <CircularProgress color="inherit" />
+  </Backdrop>
 
-    )
-}
+</div>
+
+)}
 
 export default Ticket
-
 

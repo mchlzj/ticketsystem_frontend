@@ -9,13 +9,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import {MobileOpenContext} from './MobileOpenContext';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-
 import {Button, withStyles} from '@material-ui/core';
 import {UserRoleContext} from '../../util/UserCredsContext';
 import auth from '../../util/auth'
 
 function DrawerContent(props) {
 
+// Style definition
   const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     toolbar: theme.mixins.toolbar,
@@ -25,28 +25,30 @@ function DrawerContent(props) {
   }),
 );
 
+// Consts for setting and getting the saved context variables
 const [mobileOpen, setMobileOpen] = useContext(MobileOpenContext);
 const [userRole, setUserRole] = useContext(UserRoleContext);
 
+// Setting the current user role
 useEffect(() => {
   setUserRole(auth.getUserRole());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
 },[])
 
 const classes = useStyles();
-
-
 
 const handleDrawerToggle = () => {
   if (mobileOpen === true) {
     setMobileOpen(!mobileOpen);
   }
 };
+
+// Logout function
 const handleLogout = () => {
   localStorage.removeItem('token');
   props.history.push('/login');
 };
 
+// Styling of different used items
 const StyledListItemText = withStyles({
   root: {
     color: "white",
@@ -68,6 +70,7 @@ const StyledListItem = withStyles({
   },
 })(ListItem);
 
+// Returning the drawer content
   return (
     <div>
       <div className={classes.toolbar} />

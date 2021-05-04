@@ -3,6 +3,7 @@ import Fab from '@material-ui/core/Fab'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 
+// Style definition 
 const useStyles = makeStyles((theme: Theme) =>
 createStyles({
         fab: {
@@ -21,6 +22,7 @@ export default function NewTicketButton() {
 const classes = useStyles();
 const history = useHistory();
 
+// Method for pressing the Create-New-Ticket Button
   const handleCreateNewTicket = () => {
     history.push('/newTicket');
   };

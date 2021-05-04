@@ -12,6 +12,7 @@ import {Link} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box'
 
+// Style definition
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     label: {
@@ -31,12 +32,12 @@ export default function TicketCard({title, description, ticketClosed, id, create
                                    }) {
   const classes = useStyles();
 
+// Returning the Ticket-Card-Component
   return (
     <Card variant='outlined' style={{ borderRadius: 15, borderWidth: 2, borderColor: 'black' }}>
-        <Link className={classes.link} to={`/ticketSuchen/${id}`}>
+      <Link className={classes.link} to={`/ticketSuchen/${id}`}>
       <CardActionArea>
         <CardContent>
-          
           <Grid container spacing={2}>
             <Grid item xs={3}>
               <Typography gutterBottom variant="body1" component="h2" color="primary">
@@ -66,7 +67,6 @@ export default function TicketCard({title, description, ticketClosed, id, create
               </Box>
               </Typography>
             </Grid>
-
             <Grid item xs={3}>
               <Typography gutterBottom variant="body1" component="h2" color="primary">
               <Box fontWeight="fontWeightBold" fontSize={18}>
@@ -81,7 +81,6 @@ export default function TicketCard({title, description, ticketClosed, id, create
               </Box>
               </Typography>
             </Grid>
-
             <Grid item xs={3}>
               <Typography gutterBottom variant="body1" component="h2" color="primary">
               <Box fontWeight="fontWeightBold" fontSize={18}>
@@ -96,9 +95,7 @@ export default function TicketCard({title, description, ticketClosed, id, create
               </Box>
               </Typography>
             </Grid>
-
           </Grid>
-       
         </CardContent>
       </CardActionArea>
       </Link>
