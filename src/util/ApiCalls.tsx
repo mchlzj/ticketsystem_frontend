@@ -1,8 +1,8 @@
 
-const url = 'http://localhost:59543/api/';
+const url = 'https://easyticketapi.azurewebsites.net/api/';
 //https://www.hetfeld.name/ticket_backend/api/
 //http://localhost:59543/api/
-//https://easyticketapi.azurewebsites.net
+//https://easyticketapi.azurewebsites.net/api/
 
 //Login und Register
 export const login = async(userName, password) => {
