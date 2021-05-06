@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import { Pie } from 'react-chartjs-2';
+import { Pie,Bar } from 'react-chartjs-2';
 import {getTicketsNachModulen} from '../../util/ApiCalls';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+
 
 
 const useStyles = makeStyles((theme) =>
@@ -60,24 +61,9 @@ createStyles({
       labels: labels,
       datasets: [
         {
-          label: 'geöffnete Tickets',
           data: openTickets,
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)',
-          ],
+          backgroundColor: 'rgba(234, 91, 15, 1)',
+          borderColor: 'rgba(234, 91, 15, 1)',
           fill: false,
         },
       ],
@@ -86,28 +72,32 @@ createStyles({
         labels: labels,
         datasets: [
           {
-            label: 'geöffnete Tickets',
             data: closedTickets,
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-            ],
+            backgroundColor: 'rgba(0, 0, 190, 0.5)',
+            borderColor: 'rgba(0, 0, 190, 0.5',
             fill: false,
+            legend: {
+              display: false
+            }
           },
         ],
       };
+
+    const options = {
+        plugins: {
+          legend: {
+            display: false
+          },
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              step: 1,
+            }
+          }]
+        }
+    };
 
     return (
       <div>
@@ -118,14 +108,14 @@ createStyles({
                 Offene Tickets
     </Typography>
       {/*<canvas id="middle" width='800' height='40'></canvas>*/}
-      <Pie data={dataOpen}/>
+      <Bar data={dataOpen} options={options}/>
       </Grid>
       <Grid item xs={'auto'}>
       <Typography align='center' gutterBottom variant="h6" component="h2" color="primary">
             Geschlossene Tickets
     </Typography>
       {/*<canvas id="middle" width='800' height='40'></canvas>*/}
-      <Pie data={dataClosed}/>
+      <Bar data={dataClosed} options={options}/>
       </Grid>
       {/* </article> */}
       </Grid>
