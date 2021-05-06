@@ -93,14 +93,14 @@ createStyles({
       <Grid container justify="flex-start" alignItems="flex-start" spacing={3}>
       <Grid item xs={'auto'}>
       <Typography align='center' gutterBottom variant="h6" component="h2" color="primary">
-                Offene Tickets
+                offene Tickets
     </Typography>
       {/*<canvas id="middle" width='800' height='40'></canvas>*/}
       <Bar data={dataOpen} options={options}/>
       </Grid>
       <Grid item xs={'auto'}>
       <Typography align='center' gutterBottom variant="h6" component="h2" color="primary">
-            Geschlossene Tickets
+            geschlossene Tickets
     </Typography>
       {/*<canvas id="middle" width='800' height='40'></canvas>*/}
       <Bar data={dataClosed} options={options}/>
