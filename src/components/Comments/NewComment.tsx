@@ -29,12 +29,17 @@ function NewComment({ticketID}) {
         console.log("value on Change:" + comment)
     }
     const handleSubmit = async() => {
-      console.log("value on submit" + comment);
+      if (comment!=""){
+        console.log("value on submit" + comment);
         await newComment(ticketID, comment);
         const data = await getCommentByTicketId(ticketID)
         await setComments(data);
         setComment('');
+      } else {
+        alert('Bitte geben Sie einen Kommentar ein!');
+      }
     }
+
 
     return (
         <div>

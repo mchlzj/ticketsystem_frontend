@@ -41,9 +41,9 @@ createStyles({
       let closedTickets=[];
 
       const result = await getTicketsNachModulen();
-      // console.log(result);
+      console.log(result);
       result.forEach(element => {
-        labels.push(element.modulName);
+        labels.push(element.modulName.split(' - ')[0]);
         openTickets.push(element.openTickets);
         closedTickets.push(element.closedTickets);
       });
@@ -87,7 +87,7 @@ createStyles({
         datasets: [
           {
             label: 'geöffnete Tickets',
-            data: openTickets,
+            data: closedTickets,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
