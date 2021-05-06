@@ -25,36 +25,38 @@ import {getTicketsByTitle, getAllTickets} from '../../util/ApiCalls';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     search: {
-      position: 'relative',
+      // position: 'relative',
       borderRadius: theme.shape.borderRadius,
       backgroundColor: fade(theme.palette.common.white, 0.15),
       '&:hover': {
         backgroundColor: fade(theme.palette.common.white, 0.25),
       },
       marginRight: theme.spacing(2),
-      marginLeft: 0,
+      marginLeft: theme.spacing(2),
       width: '100%',
       [theme.breakpoints.up('sm')]: {
         marginLeft: theme.spacing(3),
         width: 'auto',
       },
+      justifySelf: 'center'
     },
     searchIcon: {
-      padding: theme.spacing(0, 2),
+      // padding: theme.spacing(0, 2),
       height: '100%',
       position: 'absolute',
       pointerEvents: 'none',
       display: 'flex',
-      alignItems: 'center',
       justifyContent: 'center',
     },
     inputRoot: {
       color: 'inherit',
+
+
     },
     inputInput: {
-      padding: theme.spacing(1, 1, 1, 0),
+      padding: theme.spacing(2, 1, 1, 0),
       // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+      paddingLeft: `calc(1em + ${theme.spacing(1)}px)`,
       transition: theme.transitions.create('width'),
       width: '100%',
       [theme.breakpoints.up('md')]: {
@@ -88,6 +90,7 @@ const useStyles = makeStyles((theme: Theme) =>
         display: 'none',
       },
     },
+
   }),
 );
 
@@ -149,9 +152,9 @@ function StyledAppBar() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
           <div className={classes.search}>
-            <IconButton color="primary" aria-label="search">
-              <SearchIcon />
-            </IconButton>
+            {/* <IconButton color="primary" aria-label="search">
+              {/* <SearchIcon /> */}
+            {/* </IconButton> */} 
             <InputBase
               placeholder="Ticket suchen..."
               classes={{
@@ -171,7 +174,9 @@ function StyledAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <img src="/media/IconIU.jpg" height="30"/>
+
+              {/* <AccountCircle /> */}
             </IconButton>
           </div>
         </Toolbar>

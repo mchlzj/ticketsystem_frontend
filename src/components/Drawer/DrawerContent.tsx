@@ -46,6 +46,7 @@ const handleDrawerToggle = () => {
 const handleLogout = () => {
   localStorage.removeItem('token');
   props.history.push('/login');
+  setUserRole(auth.getUserRole());
 };
 
 // Styling of different used items
@@ -97,20 +98,22 @@ const StyledListItem = withStyles({
                 <StyledListItemText primary='Statistiken' style={window.location.href==="http://localhost:3000/statistics" ? {color: "#EA5B0F"} : {}}/>
               </StyledListItem>
             </Link>
-            {userRole === 'Student' ?
+            
               <Link className={classes.link} to="/meineTickets" onClick={handleDrawerToggle}>
               <StyledListItem button key='meineTickets'>
                    <StyledListItemIcon style={window.location.href==="http://localhost:3000/meineTickets" ? {color: "#EA5B0F"} : {}}><MailIcon /></StyledListItemIcon>
                    <StyledListItemText primary='Meine Tickets' style={window.location.href==="http://localhost:3000/meineTickets" ? {color: "#EA5B0F"} : {}} />
                  </StyledListItem>
                </Link>
-            :
+               {userRole === 'Tutor' ?
             <Link className={classes.link} to="/MirZugewieseneTickets" onClick={handleDrawerToggle}>
             <StyledListItem button key='MirZugewieseneTickets'>
                  <StyledListItemIcon style={window.location.href==="http://localhost:3000/MirZugewieseneTickets" ? {color: "#EA5B0F"} : {}}><MailIcon /></StyledListItemIcon>
                  <StyledListItemText primary='Mir zugewiesene Tickets' style={window.location.href==="http://localhost:3000/MirZugewieseneTickets" ? {color: "#EA5B0F"} : {}}/>
                </StyledListItem>
              </Link>
+             :
+             null
           }
             <Button variant="contained" 
             color="primary" 
