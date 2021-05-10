@@ -51,7 +51,7 @@ const classes = useStyles();
   return (
     
     <div className= {classes.root}>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <ThemeProvider theme={theme}>
           <Switch>
             <Route 
