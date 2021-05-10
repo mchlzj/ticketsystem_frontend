@@ -10,7 +10,7 @@ For installation you'll need to install the React Framework. In order to be able
 
 
 
-## Demo screenshots of this application
+## Demo of the application
 ![Tickets Overview](./public/media/Tickets_Overview.png "Tickets Overview")
 ![Create new tickets](./public/media/New_Ticket.png "Create a new ticket")
 
