@@ -1,8 +1,26 @@
-# Getting Started with Create React App
+# ticketsystem_frontend
+
+## Description
+
+This project contains the frontend application for the IUBH Ticket-System prototype.
+
+The source code is mainly written in JavaScript/Typescript and is based on the React Framework.
+
+For installation you'll need to install the React Framework. In order to be able to access the necessary API, you'll also need to setup the ticketsystem_backend. Installation instructions for the backend can be found in the following GitHub Respository: [ticketsystem_backend](https://github.com/Seraphim0815/ticketsystem_backend)
+
+
+## Demo screenshots of this application
+
+![Tickets Overview](https://github.com/mchlzj/ticketsystem_frontend/tree/main/public/media/Tickets_Overview.png)
+![Create new tickets](https://github.com/mchlzj/ticketsystem_frontend/tree/main/public/media/New_Ticket.png)
+
+
+## Installing React
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+
+## Important Scripts
 
 In the project directory, you can run:
 
@@ -28,19 +46,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
