@@ -9,10 +9,12 @@ The source code is mainly written in JavaScript/Typescript and is based on the R
 For installation you'll need to install the React Framework. In order to be able to access the necessary API, you'll also need to setup the ticketsystem_backend. Installation instructions for the backend can be found in the following GitHub Respository: [ticketsystem_backend](https://github.com/Seraphim0815/ticketsystem_backend)
 
 
+
 ## Demo screenshots of this application
 
-![Tickets Overview](https://github.com/mchlzj/ticketsystem_frontend/tree/main/public/media/Tickets_Overview.png)
-![Create new tickets](https://github.com/mchlzj/ticketsystem_frontend/tree/main/public/media/New_Ticket.png)
+![Tickets Overview](https://github.com/mchlzj/ticketsystem_frontend/tree/main/public/media/Tickets_Overview.png?raw=true)
+![Create new tickets](https://github.com/mchlzj/ticketsystem_frontend/tree/main/public/media/New_Ticket.png?raw=true)
+
 
 
 ## Installing React
