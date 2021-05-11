@@ -5,6 +5,7 @@ import {getAllTickets} from '../../util/ApiCalls';
 import TicketCard from '../../components/Card/TicketCard';
 import jwt_decode from "jwt-decode";
 import {UserNameContext, UserRoleContext} from '../../util/UserCredsContext';
+import {isClosedContext} from '../../util/FilterContext';
 import auth from '../../util/auth';
 import Typography from '@material-ui/core/Typography';
 import MailIcon from '@material-ui/icons/Mail';
@@ -15,12 +16,14 @@ import { useHistory } from 'react-router-dom';
 import NewElementButton from '../../components/Button/NewTicketButton'
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import StatusFilter from '../../components/Filter/StatusFilter';
 
 export default function MeineTickets({tickets, setTickets}) {
 
     // const [tickets,setTickets] = useContext(TicketsContext);
     const [isLoading, setIsLoading] = useState(true);
     const [userName, setUserName] = useContext(UserNameContext);
+    const [isClosed, setIsClosed] = useContext(isClosedContext);
 
     useEffect(() => {
         getAllTickets()
@@ -32,7 +35,7 @@ export default function MeineTickets({tickets, setTickets}) {
         .then(() => setUserName(auth.getUserName()))
         .then(() => console.log(userName));
         console.log("Api Call from MyTickets");
-    }, [setTickets])
+    }, [isClosed])
 
     const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -65,13 +68,14 @@ export default function MeineTickets({tickets, setTickets}) {
     //   ];
       
 
-    const myTickets = tickets.filter(ticket => ticket.createdBy.userName === userName
+    const myTickets = tickets.filter(ticket =>
+      ticket.createdBy.userName === userName && ticket.ticketClosed === isClosed
       );
 
     return (  
       <div> 
       {/*<TicketSearchBar/>*/}
-
+      <StatusFilter/>
       <Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>
           <Grid item>
             <MailIcon fontSize='large'/>

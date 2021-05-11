@@ -12,6 +12,11 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import {Button, withStyles} from '@material-ui/core';
 import {UserRoleContext} from '../../util/UserCredsContext';
 import auth from '../../util/auth'
+import CreateIcon from '@material-ui/icons/Create';
+import AllInboxIcon from '@material-ui/icons/AllInbox';
+import BarChartIcon from '@material-ui/icons/BarChart';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 
 function DrawerContent(props) {
 
@@ -40,6 +45,7 @@ const handleDrawerToggle = () => {
   if (mobileOpen === true) {
     setMobileOpen(!mobileOpen);
   }
+  console.log(window.location.href);
 };
 
 // Logout function
@@ -79,13 +85,13 @@ const StyledListItem = withStyles({
           <List>
             <Link className={classes.link} to="/newticket" onClick={handleDrawerToggle}>
             <StyledListItem button key='NeuesTicket'>
-                <StyledListItemIcon style={window.location.href==="http://localhost:3000/newticket" ? {color: "#EA5B0F"} : {}}><InboxIcon /></StyledListItemIcon>
+                <StyledListItemIcon style={window.location.href==="http://localhost:3000/newticket" ? {color: "#EA5B0F"} : {}}><CreateIcon /></StyledListItemIcon>
                 <StyledListItemText primary='Neues Ticket' style={window.location.href==="http://localhost:3000/newticket" ? {color: "#EA5B0F"} : {}}/>
               </StyledListItem>
             </Link>
             <Link className={classes.link} to="/ticketSuchen" onClick={handleDrawerToggle}>
               <StyledListItem button key='ticketSuchen'>
-                <StyledListItemIcon style={window.location.href==="http://localhost:3000/ticketSuchen" ? {color: "#EA5B0F"} : {}}><MailIcon /></StyledListItemIcon>
+                <StyledListItemIcon style={window.location.href==="http://localhost:3000/ticketSuchen" ? {color: "#EA5B0F"} : {}}><AllInboxIcon /></StyledListItemIcon>
                 <StyledListItemText primary='Alle Tickets' style={window.location.href==="http://localhost:3000/ticketSuchen" ? {color: "#EA5B0F"} : {}}/>
               </StyledListItem>
             </Link>
@@ -94,34 +100,32 @@ const StyledListItem = withStyles({
           <List>
           <Link className={classes.link} to="/statistics" onClick={handleDrawerToggle}>
            <StyledListItem button key='Statistiken'>
-                <StyledListItemIcon style={window.location.href==="http://localhost:3000/statistics" ? {color: "#EA5B0F"} : {}}><MailIcon /></StyledListItemIcon>
+                <StyledListItemIcon style={window.location.href==="http://localhost:3000/statistics" ? {color: "#EA5B0F"} : {}}><BarChartIcon /></StyledListItemIcon>
                 <StyledListItemText primary='Statistiken' style={window.location.href==="http://localhost:3000/statistics" ? {color: "#EA5B0F"} : {}}/>
               </StyledListItem>
             </Link>
             
               <Link className={classes.link} to="/meineTickets" onClick={handleDrawerToggle}>
               <StyledListItem button key='meineTickets'>
-                   <StyledListItemIcon style={window.location.href==="http://localhost:3000/meineTickets" ? {color: "#EA5B0F"} : {}}><MailIcon /></StyledListItemIcon>
+                   <StyledListItemIcon style={window.location.href==="http://localhost:3000/meineTickets" ? {color: "#EA5B0F"} : {}}><InboxIcon /></StyledListItemIcon>
                    <StyledListItemText primary='Meine Tickets' style={window.location.href==="http://localhost:3000/meineTickets" ? {color: "#EA5B0F"} : {}} />
                  </StyledListItem>
                </Link>
                {userRole === 'Tutor' ?
             <Link className={classes.link} to="/MirZugewieseneTickets" onClick={handleDrawerToggle}>
             <StyledListItem button key='MirZugewieseneTickets'>
-                 <StyledListItemIcon style={window.location.href==="http://localhost:3000/MirZugewieseneTickets" ? {color: "#EA5B0F"} : {}}><MailIcon /></StyledListItemIcon>
+                 <StyledListItemIcon style={window.location.href==="http://localhost:3000/MirZugewieseneTickets" ? {color: "#EA5B0F"} : {}}><AssignmentIndIcon /></StyledListItemIcon>
                  <StyledListItemText primary='Mir zugewiesene Tickets' style={window.location.href==="http://localhost:3000/MirZugewieseneTickets" ? {color: "#EA5B0F"} : {}}/>
                </StyledListItem>
              </Link>
              :
              null
           }
-            <Button variant="contained" 
-            color="primary" 
-            disableElevation
-            onClick={handleLogout}
-            >
-            Logout
-          </Button>
+            <StyledListItem button key='meineTickets' onClick={handleLogout}>
+            <StyledListItemIcon ><MeetingRoomIcon /></StyledListItemIcon>
+            <StyledListItemText primary='Logout'  />
+          </StyledListItem>
+
           </List>
     </div>
   )

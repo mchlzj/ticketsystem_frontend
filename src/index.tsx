@@ -1,4 +1,4 @@
-// import React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -12,11 +12,13 @@ import {UserRoleProvider} from './util/UserCredsContext';
 import {CommentsProvider} from './components/Comments/CommentContext';
 import {ModulesProvider} from './pages/NewTicket/ModulesContext';
 import {DocumentsProvider} from './pages/NewTicket/DocumentsContext';
+import {IsClosedProvider} from './util/FilterContext';
 
 
 
 ReactDOM.render(
   // <React.StrictMode>
+  
   <LoginProvider>
     <UserNameProvider> 
       <UserRoleProvider>
@@ -25,7 +27,9 @@ ReactDOM.render(
             <CommentsProvider>
               <ModulesProvider>
                 <DocumentsProvider>
-                  <App />
+                  <IsClosedProvider>
+                    <App />
+                  </IsClosedProvider>
                 </DocumentsProvider>
               </ModulesProvider>
             </CommentsProvider>
@@ -33,7 +37,8 @@ ReactDOM.render(
         </TicketsProvider>
       </UserRoleProvider>
     </UserNameProvider>
-  </LoginProvider>,
+  </LoginProvider>
+  ,
     //,
   // </React.StrictMode>,
   document.getElementById('root')

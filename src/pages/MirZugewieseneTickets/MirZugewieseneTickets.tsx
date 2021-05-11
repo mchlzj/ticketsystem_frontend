@@ -14,12 +14,15 @@ import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router-dom';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {isClosedContext} from '../../util/FilterContext';
+import StatusFilter from '../../components/Filter/StatusFilter'
 
 export default function MirZugewieseneTickets({tickets, setTickets}) {
 
     // const [tickets,setTickets] = useContext(TicketsContext);
     const [isLoading, setIsLoading] = useState(true);
     const [userName, setUserName] = useContext(UserNameContext);
+    const [isClosed, setIsClosed] = useContext(isClosedContext);
 
     useEffect(() => {
         getAllTickets()
@@ -61,12 +64,13 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
 
   const classes = useStyles();
 
-    const myTickets = tickets.filter(ticket => ticket.document.module.responsible.userName === userName
+    const myTickets = tickets.filter(ticket => ticket.document.module.responsible.userName === userName && ticket.ticketClosed === isClosed
       );
 
 
     return (  
       <div> 
+        <StatusFilter/>
         {/*<TicketSearchBar/>*/}
 
         <Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>

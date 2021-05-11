@@ -16,7 +16,8 @@ import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 import NewElementButton from '../../components/Button/NewTicketButton'
-
+import StatusFilter from '../../components/Filter/StatusFilter'
+import {isClosedContext} from '../../util/FilterContext';
 
 
 export default function AllTickets() {
@@ -24,6 +25,7 @@ export default function AllTickets() {
 // Initialisation of different context variables which are necessary for ticket data.
     const [tickets,setTickets] = useContext(TicketsContext);
     const [isLoading, setIsLoading] = useState(true);
+    const [isClosed, setIsClosed] = useContext(isClosedContext);
 
 // Get all Tickets from database and set related variables.
     useEffect(() => {
@@ -58,10 +60,14 @@ export default function AllTickets() {
   const classes = useStyles();
   const history = useHistory();
 
+  const allTickets = tickets.filter(ticket =>
+     ticket.ticketClosed === isClosed
+    );
+
 // Returning AllTickets site
   return (  
     <div> 
-
+      <StatusFilter/>
       <Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>
         <Grid item>
           <MailIcon fontSize='large'/>
@@ -78,7 +84,7 @@ export default function AllTickets() {
           justify="space-around"
           alignItems="flex-start" 
           spacing={4}>
-          {tickets.map(ticket => (
+          {allTickets.map(ticket => (
             <Grid item  xs={12} sm={6} md={4} lg={5} key={ticket.id} >
               <TicketCard 
               id={ticket.id}

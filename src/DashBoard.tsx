@@ -81,7 +81,7 @@ const classes = useStyles();
               <Route path="/ticketSuchen" exact render={() => <AllTickets />}/>
               <Route path="/ticketSuchen/:id" component={Ticket}/>
               <Route path="/meineTickets" render={() => <MeineTickets tickets={tickets} setTickets={setTickets}/>}/>
-              <Route path="/statistics" component={Statistics}/>
+              <Route path="/statistics" render={() => <Statistics tickets={tickets} setTickets={setTickets}/>}/>
               <Route path="/MirZugewieseneTickets" render={() => <MirZugewieseneTickets tickets={tickets} setTickets={setTickets}/>}/>
           </Switch>
           </main>    
