@@ -9,6 +9,12 @@ import { Paper } from '@material-ui/core';
 import Background from '../../../public/media/BackgroundLogin.jpg'
 import {UserRoleContext} from '../../util/UserCredsContext';
 import auth from '../../util/auth'
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,6 +28,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
         width: '50vh',
         padding: '10px',
+    },
+    demo: {
+      margin: '10px'
     },
     inputField: {
         display: 'inline'
@@ -63,6 +72,28 @@ const handleLogin = async() => {
         .then(e => {
             props.history.push('/ticketSuchen');
         }).catch(e => alert("invalid Username or Password"))
+}
+
+const handleTutor = async() => {
+  
+  login('Janina.Mantel', 'sicher')
+      .then(res => {
+          localStorage.setItem('token', res.token);    
+      })
+      .then(e => {
+          props.history.push('/ticketSuchen');
+      }).catch(e => alert("invalid Username or Password"))
+}
+
+const handleStudent = async() => {
+  
+  login('Michael.Ziaja', 'sicher')
+      .then(res => {
+          localStorage.setItem('token', res.token);    
+      })
+      .then(e => {
+          props.history.push('/ticketSuchen');
+      }).catch(e => alert("invalid Username or Password"))
 }
 
 const handleUserNameChange = ({target}) => {
@@ -111,6 +142,32 @@ const handlePasswordChange = ({target}) => {
       fullWidth>
         Login
       </Button>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography variant='h6'>Demo Accounts</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+
+            <Button variant="contained" 
+            color="secondary" 
+            disableElevation
+            onClick={handleTutor}
+            className={classes.demo}>
+              Tutor:in
+            </Button>
+            <Button variant="contained" 
+            color="secondary" 
+            disableElevation
+            onClick={handleStudent}
+            className={classes.demo}>
+              Student:in
+            </Button>
+        </AccordionDetails>
+      </Accordion>
         </Grid>
       </Card>
     </form>
