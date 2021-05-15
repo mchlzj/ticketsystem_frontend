@@ -198,12 +198,11 @@ export const getModules = async() => {
     try {
         if (response.ok) {
             const jsonResponse = await response.json();
-            /*console.log(jsonResponse)*/
             return jsonResponse;
         }
         throw new Error('Request Failed!');
     } catch(error) {
-        /*console.log(error);*/
+        console.log(error);
     }
 };
 
@@ -220,12 +219,11 @@ export const getDocuments = async( moduleId ) => {
     try {
         if (response.ok) {
             const jsonResponse = await response.json();
-            /*console.log(jsonResponse)*/
             return jsonResponse;
         }
         throw new Error('Request Failed!');
     } catch(error) {
-        /*console.log(error);*/
+        console.log(error);
     }
 };
 
@@ -246,5 +244,6 @@ export const changeTicketStatus = async( ticketId ) => {
         }
         throw new Error('Request Failed!');
     } catch(error) {
+        console.log(error);
     }
 };

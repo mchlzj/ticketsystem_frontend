@@ -3,14 +3,10 @@ import Grid from '@material-ui/core/Grid';
 import {getAllTickets} from '../../util/ApiCalls';
 import TicketCard from '../../components/Card/TicketCard';
 import auth from '../../util/auth';
-import jwt_decode from "jwt-decode";
-import {UserNameContext, UserRoleContext} from '../../util/UserCredsContext';
+import {UserNameContext, } from '../../util/UserCredsContext';
 import Typography from '@material-ui/core/Typography';
 import MailIcon from '@material-ui/icons/Mail';
-import Fab from '@material-ui/core/Fab'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
-import { useHistory } from 'react-router-dom';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {isClosedContext} from '../../util/FilterContext';
@@ -21,7 +17,7 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
     // Necessary consts
     const [isLoading, setIsLoading] = useState(true);
     const [userName, setUserName] = useContext(UserNameContext);
-    const [isClosed, setIsClosed] = useContext(isClosedContext);
+    const [isClosed, ] = useContext(isClosedContext);
 
     useEffect(() => {
         getAllTickets()
@@ -30,7 +26,8 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
         })
         .then(() => setIsLoading(false))
         .then(() => setUserName(auth.getUserName()))
-        console.log("Api Call from MyTickets");
+        console.log("Api Call from MyTickets"); 
+              // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {

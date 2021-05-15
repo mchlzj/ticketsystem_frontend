@@ -12,9 +12,9 @@ import MirZugewieseneTickets from './pages/MirZugewieseneTickets/MirZugewieseneT
 import {TicketsContext} from './pages/AllTickets/TicketsContext';
 import {LoginContext} from './util/LoginContext';
 import auth from './util/auth'
-import {UserNameContext, UserRoleContext} from './util/UserCredsContext';
+import {UserNameContext} from './util/UserCredsContext';
 import {ModulesContext} from './pages/NewTicket/ModulesContext';
-import {getUserName,  getUserCredentials} from './util/UserCreds';
+import {  getUserCredentials} from './util/UserCreds';
 import {DocumentsContext} from './pages/NewTicket/DocumentsContext';
 
 // Style definition
@@ -38,7 +38,6 @@ function Dashboard(props) {
   const [tickets,setTickets] = useContext(TicketsContext);
   const [isLoggedIn, setIsLoggedIn] = useContext(LoginContext);
   const [userName,] = useContext(UserNameContext);
-  const [userRole, setUserRole] = useContext(UserRoleContext);
   const [moduls,setModules] = useContext(ModulesContext);
   const [documents,setDocuments] = useContext(DocumentsContext);
 

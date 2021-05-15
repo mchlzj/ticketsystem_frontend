@@ -1,9 +1,7 @@
 import {useState, useEffect} from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import {createNewTicket} from '../../util/ApiCalls';
-import auth from '../../util/auth'
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CreateIcon from '@material-ui/icons/Create';
@@ -11,7 +9,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -105,7 +102,7 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
 
     // Function which is called if the submit button is pushed
     const submitTicket = () => {
-        if (titleValue!="" && descriptionValue!="" && document!="") {
+        if (titleValue!=="" && descriptionValue!=="" && document!=="") {
         createNewTicket( titleValue , descriptionValue, document)
           .then(success => {
             alert('Neues Ticket erfolgreich erstellt!');

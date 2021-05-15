@@ -1,4 +1,4 @@
-import {useState, useContext, useEffect} from 'react';
+import {useState } from 'react';
 import {Grid, Button} from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
@@ -6,15 +6,11 @@ import {login} from '../../util/ApiCalls';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import { Paper } from '@material-ui/core';
-import Background from '../../../public/media/BackgroundLogin.jpg'
-import {UserRoleContext} from '../../util/UserCredsContext';
-import auth from '../../util/auth'
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { Divider } from '@material-ui/core';
 
 // Style definition
 const useStyles = makeStyles((theme: Theme) =>
@@ -57,7 +53,6 @@ export default function Login(props) {
   const classes = useStyles();
   const [userName, setUserName] = useState();
   const [password, setPassword] = useState();
-  const [userRole, setUserRole] = useContext(UserRoleContext);
 
 // Function which is called by clicking on the Login button
 const handleLogin = async() => {
@@ -70,6 +65,8 @@ const handleLogin = async() => {
         }).catch(e => alert("invalid Username or Password"))
 }
 
+
+//Der Einfachheit halber eigene Handler für die Demo Accounts erstellt. Grundsätzlich käme aber für die weitere Arbeit eine Extrahierung der Methode in Frage.
 // Tutor Login Demo Button
 const handleTutor = async() => {
   login('Janina.Mantel', 'sicher')
@@ -81,6 +78,7 @@ const handleTutor = async() => {
       }).catch(e => alert("invalid Username or Password"))
 }
 
+//Der Einfachheit halber eigene Handler für die Demo Accounts erstellt. Grundsätzlich käme aber für die weitere Arbeit eine Extrahierung der Methode in Frage.
 // Student Login Demo Button
 const handleStudent = async() => {
   login('Michael.Ziaja', 'sicher')

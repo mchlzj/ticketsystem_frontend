@@ -11,8 +11,6 @@ export const getUserCredentials = () => {
     } else {
         return null;
     }
-    
-    // token !== null ? jwt_decode(token) : 'No userCredentials stored in local storage'
 }
 
 export const getUserName = () => {

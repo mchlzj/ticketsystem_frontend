@@ -1,31 +1,12 @@
-import React, {useState, useEffect} from 'react'
-import { Pie,Bar } from 'react-chartjs-2';
+import  {useState, useEffect} from 'react'
+import { Bar } from 'react-chartjs-2';
 import {getTicketsNachModulen} from '../../util/ApiCalls';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
-// Style definition
-const useStyles = makeStyles((theme) =>
-createStyles({
-  fab: {
-    position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-    textTransform: 'none'
-  },
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
-  },
-  container: {
-    width: '50',
-    height: '200'
-  }
-}),
-);
-
-
+/*
+  .jsx Komponente, da Charts-js Probleme mit Typscript hat
+*/
   function TicketsNachModulen() {
 
     // Necessary consts
@@ -33,7 +14,6 @@ createStyles({
     const [openTickets, setOpenTickets] = useState([]);
     const [closedTickets, setClosedTickets] = useState([]);
 
-    const classes = useStyles();
 
     useEffect(async() => {
       let labels=[];

@@ -6,10 +6,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
 import {MobileOpenContext} from './MobileOpenContext';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import {Button, withStyles} from '@material-ui/core';
+import { withStyles} from '@material-ui/core';
 import {UserRoleContext} from '../../util/UserCredsContext';
 import auth from '../../util/auth'
 import CreateIcon from '@material-ui/icons/Create';
@@ -17,7 +16,9 @@ import AllInboxIcon from '@material-ui/icons/AllInbox';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import  {isClosedContext} from '../../util/FilterContext'
 
+//Einzelne Komponente für den Inhalt des Drawers, damit dieser beim mobilen und desktop Drawer gleich ist.
 function DrawerContent(props) {
 
 // Style definition
@@ -33,7 +34,7 @@ function DrawerContent(props) {
 // Consts for setting and getting the saved context variables
 const [mobileOpen, setMobileOpen] = useContext(MobileOpenContext);
 const [userRole, setUserRole] = useContext(UserRoleContext);
-
+const [, setIsClosed] = useContext(isClosedContext);
 // Setting the current user role
 useEffect(() => {
   setUserRole(auth.getUserRole());
@@ -53,6 +54,7 @@ const handleLogout = () => {
   localStorage.removeItem('token');
   props.history.push('/login');
   setUserRole(auth.getUserRole());
+  setIsClosed(false);
 };
 
 // Styling of different used items
@@ -125,7 +127,6 @@ const StyledListItem = withStyles({
             <StyledListItemIcon ><MeetingRoomIcon /></StyledListItemIcon>
             <StyledListItemText primary='Logout'  />
           </StyledListItem>
-
           </List>
     </div>
   )

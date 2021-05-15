@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import {useContext} from 'react'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
@@ -8,10 +8,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     menu: {
         zIndex: theme.zIndex.drawer + 150,
-      // [theme.breakpoints.up('md')]: {
-      //   width: `calc(100% - ${drawerWidth}px)`,
-      //   marginLeft: drawerWidth,
-      // },
     },
   }),
 );

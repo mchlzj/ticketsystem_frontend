@@ -8,9 +8,6 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import '../../style-theme'
 import { theme } from '../../style-theme';
-import Fab from '@material-ui/core/Fab'
-import AddIcon from '@material-ui/icons/Add';
-import { useHistory } from 'react-router-dom';
 
 // Const definition
 const drawerWidth = 240;
@@ -53,10 +50,14 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+
+/*
+Navigation als Layout, da die einzelnen Komponenten für die Navigation permanent zusammenhängen und immer an gleicher Stelle sind. 
+Deshalb Layout und nicht Page
+*/
 export default function Navigation(props) {
   const classes = useStyles();
 
-// Return Navigation Component
   return (
     <ThemeProvider theme={theme}>
     <div>

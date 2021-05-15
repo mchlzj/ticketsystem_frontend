@@ -2,7 +2,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import  {isClosedContext} from '../../util/FilterContext'
-import React , {useContext} from 'react'
+import {useContext} from 'react'
 
 function StatusFilter() {
 
@@ -17,7 +17,7 @@ function StatusFilter() {
     return (
             <FormGroup>
                 <FormControlLabel 
-                label={isClosed ? "offene Tickets" : "Geschlossene Tickets"} 
+                label={isClosed ? "Geschlossene Tickets" : "offene Tickets"} 
                 control={
                     <Switch
                      checked={isClosed}

@@ -1,29 +1,11 @@
-import React, {useState, useEffect} from 'react'
+
+import {useState, useEffect} from 'react'
 import { Line } from 'react-chartjs-2';
 import {getTicketsImZeitverlauf} from '../../util/ApiCalls';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-// Style definition
-const useStyles = makeStyles((theme) =>
-createStyles({
-  fab: {
-    position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-    textTransform: 'none'
-  },
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
-  },
-  container: {
-    width: '50',
-    height: '200'
-  }
-}),
-);
-
-
+  /*
+  .jsx Komponente, da Charts-js Probleme mit Typscript hat
+  */
   function TicketsZeitverlauf() {
 
     // Necessary consts
@@ -31,7 +13,7 @@ createStyles({
     const [openTickets, setOpenTickets] = useState([]);
     const [closedTickets, setClosedTickets] = useState([]);
 
-    const classes = useStyles();
+
 
     useEffect(async() => {
       let labels=[];

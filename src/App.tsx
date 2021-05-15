@@ -11,6 +11,7 @@ import Dashboard from './DashBoard';
 import {ProtectedRoute} from './protectedRoute'
 import { useHistory } from 'react-router';
 
+
 // Style definition
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,6 +45,10 @@ function App() {
   // Returning App
   return (
     <div className= {classes.root}>
+      {/*
+      Die protectedRoute Komponente sorgt dafür, dass sämtliche unauthentifizierte Zugriffe zurück zur /login Route gelangen. 
+      Sobald eine Authentifizierung erfolgreich ist, wird der Nutzer zum Dashboard weitergeleitet.
+      */}
       <Router basename={process.env.PUBLIC_URL}>
         <ThemeProvider theme={theme}>
           <Switch>

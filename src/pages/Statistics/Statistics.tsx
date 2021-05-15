@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 import NewElementButton from '../../components/Button/NewTicketButton'
 import TicketsZeitverlauf from '../../components/Charts/TicketsZeitverlauf';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
@@ -7,7 +7,7 @@ import TicketsNachModulen from '../../components/Charts/TicketsNachModulen';
 import Grid from '@material-ui/core/Grid';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import {getAllTickets} from '../../util/ApiCalls';
+
 
 // Style definition
 const useStyles = makeStyles((theme: Theme) =>
