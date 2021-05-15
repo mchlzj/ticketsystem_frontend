@@ -51,13 +51,6 @@ export default function MeineTickets({tickets, setTickets}) {
 
   const classes = useStyles();
 
-  const history = useHistory();
-
-  // Function which is called if the CreateNewTicket Button is pushed
-  const handleCreateNewTicket = () => {
-    history.push('/newTicket');
-  };
-
     // Filter myTickets
     const myTickets = tickets.filter(ticket =>
       ticket.createdBy.userName === userName && ticket.ticketClosed === isClosed

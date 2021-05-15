@@ -8,7 +8,7 @@ import AllTickets from './pages/AllTickets/AllTickets';
 import NewTicket from './pages/NewTicket/NewTicket';
 import Statistics from './pages/Statistics/Statistics';
 import MeineTickets from './pages/MeineTickets/MeineTickets';
-import MirZugewieseneTickets from './pages/MirZugewieseneTickets/MirZugewieseneTickets';
+import MirZugewieseneTickets from './pages/MirZugewieseneTickets/MirZugewieseneTickets'
 import {TicketsContext} from './pages/AllTickets/TicketsContext';
 import {LoginContext} from './util/LoginContext';
 import auth from './util/auth'

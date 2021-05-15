@@ -50,7 +50,6 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
     }),
   );
 
-  const history = useHistory();
   const classes = useStyles();
 
   // Filter myTickets

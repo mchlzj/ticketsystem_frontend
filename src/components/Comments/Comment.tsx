@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 function Comment({commentText, commentCreator, commentDate}) {
 
     // Necessary consts
-    const [ticket, setTicket] = useContext(TicketContext);
     const dateString = Date.parse(commentDate);
     const date = new Date(dateString);
 
