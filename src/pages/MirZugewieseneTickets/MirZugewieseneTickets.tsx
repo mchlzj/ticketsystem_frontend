@@ -1,7 +1,6 @@
 import  {useEffect, useState, useContext} from 'react'
 import Grid from '@material-ui/core/Grid';
 import {getAllTickets} from '../../util/ApiCalls';
-// import { DataGrid, ColDef} from '@material-ui/data-grid';
 import TicketCard from '../../components/Card/TicketCard';
 import auth from '../../util/auth';
 import jwt_decode from "jwt-decode";
@@ -19,7 +18,7 @@ import StatusFilter from '../../components/Filter/StatusFilter'
 
 export default function MirZugewieseneTickets({tickets, setTickets}) {
 
-    // const [tickets,setTickets] = useContext(TicketsContext);
+    // Necessary consts
     const [isLoading, setIsLoading] = useState(true);
     const [userName, setUserName] = useContext(UserNameContext);
     const [isClosed, setIsClosed] = useContext(isClosedContext);
@@ -31,15 +30,14 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
         })
         .then(() => setIsLoading(false))
         .then(() => setUserName(auth.getUserName()))
-        // .then(() => console.log(userName));
-        console.log("Api Call from MyTickets"); 
-              // eslint-disable-next-line react-hooks/exhaustive-deps
+        console.log("Api Call from MyTickets");
     }, [])
 
     useEffect(() => {
       console.log(userName);
     }, [userName])
 
+    // Style definition
     const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       fab: {
@@ -55,24 +53,16 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
     }),
   );
 
-
   const history = useHistory();
-
-  const handleCreateNewTicket = () => {
-    history.push('/newTicket');
-  };
-
   const classes = useStyles();
 
-    const myTickets = tickets.filter(ticket => ticket.document.module.responsible.userName === userName && ticket.ticketClosed === isClosed
-      );
+  // Filter myTickets
+  const myTickets = tickets.filter(ticket => ticket.document.module.responsible.userName === userName && ticket.ticketClosed === isClosed);
 
-
+  // Return MirZugewieseneTickets Components
     return (  
       <div> 
         <StatusFilter/>
-        {/*<TicketSearchBar/>*/}
-
         <Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>
           <Grid item>
             <MailIcon fontSize='large'/>
@@ -83,38 +73,28 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
             </Typography>
           </Grid>
         </Grid>
-
-    {isLoading ? null :
-
- <Grid container 
-  justify="space-around"
-  alignItems="flex-start" 
-  spacing={4}>
-    {myTickets.map(ticket => (
-      <Grid item  xs={12} sm={6} md={4} lg={5} key={ticket.id} >
-      <TicketCard 
-      id={ticket.id}
-      title={ticket.title} 
-      description={ticket.description} 
-      ticketClosed={ticket.ticketClosed}
-      createdBy={ticket.document.module.responsible.userName}
-      modul={ticket.document.module.name}
-      document={ticket.document.name}
-        />
-
-    </Grid>
-    ))}
-      </Grid>
-}
-
-<Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-
-    </div>
+        {isLoading ? null :
+          <Grid container 
+            justify="space-around"
+            alignItems="flex-start" 
+            spacing={4}>
+            {myTickets.map(ticket => (
+              <Grid item  xs={12} sm={6} md={4} lg={5} key={ticket.id} >
+                <TicketCard 
+                id={ticket.id}
+                title={ticket.title} 
+                description={ticket.description} 
+                ticketClosed={ticket.ticketClosed}
+                createdBy={ticket.document.module.responsible.userName}
+                modul={ticket.document.module.name}
+                document={ticket.document.name}/>
+              </Grid>
+            ))}
+          </Grid>
+        }
+        <Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </div>
     )
 }
-
-
-
-

@@ -7,24 +7,17 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import {TicketContext} from '../Ticket/TicketContext';
 
 function Comment({commentText, commentCreator, commentDate}) {
-    const [ticket, setTicket] = useContext(TicketContext);
 
+    // Necessary consts
+    const [ticket, setTicket] = useContext(TicketContext);
     const dateString = Date.parse(commentDate);
     const date = new Date(dateString);
 
-    const handleDelete = () => {
-
-        // ticket.comments.map(e => {
-        //     e.id !== comment.id
-        // });
-
-    }
-
+    // Return Comment Component
     return (
         <Card >
             <CardContent>
                 <div>
-
                 <Typography variant="body1">
                     {commentText}
                 </Typography>

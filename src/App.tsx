@@ -11,10 +11,7 @@ import Dashboard from './DashBoard';
 import {ProtectedRoute} from './protectedRoute'
 import { useHistory } from 'react-router';
 
-
-
-// import ApiPreCalls from './ApiCalls/ApiPreCalls';
-
+// Style definition
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -31,25 +28,21 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function App() {
   
+  // Necessary consts
   const [, setIsLoggedIn] = useContext(LoginContext);
-
   const history = useHistory();
 
   useEffect(() => {
       if (localStorage.getItem('token')) {
         setIsLoggedIn(true);
       }
-      // console.log(userRole);
-      // console.log(userName);
       console.log(getUserCredentials());
-      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   
+  const classes = useStyles();
 
-const classes = useStyles();
-
+  // Returning App
   return (
-    
     <div className= {classes.root}>
       <Router basename={process.env.PUBLIC_URL}>
         <ThemeProvider theme={theme}>
@@ -65,7 +58,7 @@ const classes = useStyles();
             component={Dashboard}
             history={history}/>
           </Switch>
-         </ThemeProvider>
+        </ThemeProvider>
       </Router>
     </div>
   );

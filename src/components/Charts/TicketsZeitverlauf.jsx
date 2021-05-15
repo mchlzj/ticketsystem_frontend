@@ -1,11 +1,9 @@
-
 import React, {useState, useEffect} from 'react'
 import { Line } from 'react-chartjs-2';
 import {getTicketsImZeitverlauf} from '../../util/ApiCalls';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-
-
+// Style definition
 const useStyles = makeStyles((theme) =>
 createStyles({
   fab: {
@@ -28,11 +26,11 @@ createStyles({
 
   function TicketsZeitverlauf() {
 
+    // Necessary consts
     const [labels, setLabels] = useState([]);
     const [openTickets, setOpenTickets] = useState([]);
     const [closedTickets, setClosedTickets] = useState([]);
 
-    
     const classes = useStyles();
 
     useEffect(async() => {
@@ -41,7 +39,7 @@ createStyles({
       let closedTickets=[];
 
       const result = await getTicketsImZeitverlauf();
-      // console.log(result);
+
       result.forEach(element => {
         labels.push(element.month);
         openTickets.push(element.openedTickets);
@@ -56,6 +54,7 @@ createStyles({
       console.log(closedTickets);
     },[])
     
+    // Diagram data
     const data = {
       labels: labels,
       datasets: [
@@ -76,9 +75,8 @@ createStyles({
       ],
     };
     
+    // Display options of the diagram
     const options = {
-      // responsive: true,
-      // maintainAspectRatio: false,
       pugins: {
         legend: {
           position: 'top'
@@ -102,16 +100,9 @@ createStyles({
 
     return (
       <div >
-        
-      {/*<canvas id="top" width='800' height='20'></canvas>
-       <article height='60vh'> */}
       <Line data={data} options={options} />
-      {/* </article> 
-      <canvas id="middle" width='800' height='40'></canvas>*/}
       </div>
     );
   } 
     
-
-
 export default TicketsZeitverlauf

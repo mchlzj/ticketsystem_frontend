@@ -1,10 +1,6 @@
-
 import CssBaseline from '@material-ui/core/CssBaseline';
-
 import Hidden from '@material-ui/core/Hidden';
-
 import {AnchorElProvider} from '../../components/AppBar/AnchorElContext';
-
 import DrawerPermanent from '../../components/Drawer/DrawerPermanent';
 import DrawerMobile from '../../components/Drawer/DrawerMobile';
 import AppBar from '../../components/AppBar/AppBar';
@@ -16,11 +12,12 @@ import Fab from '@material-ui/core/Fab'
 import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router-dom';
 
+// Const definition
 const drawerWidth = 240;
 
+// Style definition
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-
     title: {
         display: 'none',
         [theme.breakpoints.up('sm')]: {
@@ -56,11 +53,10 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
 export default function Navigation(props) {
   const classes = useStyles();
 
-
+// Return Navigation Component
   return (
     <ThemeProvider theme={theme}>
     <div>

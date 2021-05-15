@@ -1,6 +1,5 @@
 import React, {createContext} from 'react';
 
-
 export const DocumentsContext = createContext<any>([]);
 
 export const DocumentsProvider = ({children}: any) => {

@@ -10,6 +10,7 @@ import {CommentsContext} from '../Comments/CommentContext';
 import { isNullOrUndefined } from 'util';
 import {getTicketById, changeTicketStatus, getCommentByTicketId} from '../../util/ApiCalls';
 
+// Style definition
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
@@ -18,12 +19,14 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
 function NewComment({ticketID}) {
+
+    // Necessary consts
     const classes = useStyles();
     const [comment, setComment] = useState('');
     const [comments, setComments] = useContext(CommentsContext);
 
+    // setComment if value of textfield has changed
     const changeValue = (e) => {
         setComment(e.target.value);
         console.log("value on Change:" + comment)
@@ -40,7 +43,7 @@ function NewComment({ticketID}) {
       }
     }
 
-
+    // Return NewComment Component
     return (
         <div>
             <br></br>

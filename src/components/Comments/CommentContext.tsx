@@ -1,6 +1,5 @@
 import React, {createContext} from 'react';
 
-
 export const CommentsContext = createContext<any>([]);
 
 export const CommentsProvider = ({children}: any) => {

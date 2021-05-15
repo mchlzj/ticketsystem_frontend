@@ -5,10 +5,8 @@ import auth from '../../util/auth'
 
 function HomePage(props) {
 
-
+// Return HomePage
     return (
-
-
             <div>
                 Welcome to Homepage
                 <h1>Status: {props.isLoggedIn} </h1>

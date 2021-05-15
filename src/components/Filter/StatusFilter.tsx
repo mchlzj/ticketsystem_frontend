@@ -6,12 +6,14 @@ import React , {useContext} from 'react'
 
 function StatusFilter() {
 
+    // Necessary consts
     const [isClosed, setIsClosed] = useContext(isClosedContext);
     const handleStatusSwitch = () => {
         setIsClosed(!isClosed);
         console.log(isClosed);
     }
 
+    // Returning Filter component
     return (
             <FormGroup>
                 <FormControlLabel 

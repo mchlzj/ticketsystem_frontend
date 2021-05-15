@@ -1,7 +1,6 @@
 import  {useEffect, useState, useContext} from 'react'
 import Grid from '@material-ui/core/Grid';
 import {getAllTickets} from '../../util/ApiCalls';
-// import { DataGrid, ColDef} from '@material-ui/data-grid';
 import TicketCard from '../../components/Card/TicketCard';
 import jwt_decode from "jwt-decode";
 import {UserNameContext, UserRoleContext} from '../../util/UserCredsContext';
@@ -20,7 +19,7 @@ import StatusFilter from '../../components/Filter/StatusFilter';
 
 export default function MeineTickets({tickets, setTickets}) {
 
-    // const [tickets,setTickets] = useContext(TicketsContext);
+    // Necessary consts
     const [isLoading, setIsLoading] = useState(true);
     const [userName, setUserName] = useContext(UserNameContext);
     const [isClosed, setIsClosed] = useContext(isClosedContext);
@@ -37,6 +36,7 @@ export default function MeineTickets({tickets, setTickets}) {
         console.log("Api Call from MyTickets");
     }, [isClosed])
 
+    // Style definition
     const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       fab: {
@@ -55,28 +55,21 @@ export default function MeineTickets({tickets, setTickets}) {
   const classes = useStyles();
   const history = useHistory();
 
+  // Function which is called if the CreateNewTicket Button is pushed
   const handleCreateNewTicket = () => {
     history.push('/newTicket');
   };
 
-
-    // const columns: ColDef[] = [
-    //     { field: 'id', headerName: 'ID', width: 70 },
-    //     { field: 'title', headerName: 'Titel', width: 260 },
-    //     { field: 'description', headerName: 'Beschreibung', width: 390 },
-    //     { field: 'lastChangedDate', headerName: 'Änderungsdatum', width: 260 },
-    //   ];
-      
-
+    // Filter myTickets
     const myTickets = tickets.filter(ticket =>
       ticket.createdBy.userName === userName && ticket.ticketClosed === isClosed
       );
 
+    // Return myTickets Component
     return (  
-      <div> 
-      {/*<TicketSearchBar/>*/}
-      <StatusFilter/>
-      <Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>
+      <div>
+        <StatusFilter/>
+        <Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>
           <Grid item>
             <MailIcon fontSize='large'/>
           </Grid>
@@ -86,43 +79,29 @@ export default function MeineTickets({tickets, setTickets}) {
             </Typography>
           </Grid>
         </Grid>
-
-    {isLoading ? null :
-
- <Grid container 
-  justify="space-around"
-  alignItems="flex-start" 
-  spacing={4}>
-    {myTickets.map(ticket => (
-      <Grid item  xs={12} sm={6} md={4} lg={5} key={ticket.id} >
-      <TicketCard
-      id={ticket.id}
-      title={ticket.title} 
-      description={ticket.description} 
-      ticketClosed={ticket.ticketClosed}
-      createdBy={ticket.createdBy.userName}
-      modul={ticket.document.module.name}
-      document={ticket.document.name}
-        />
-    </Grid>
-    ))}
-      </Grid>
-   
-}
-
-  <NewElementButton/>
-  <Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-
-    </div>
-
-    // <div style={{ height: 400, width: '100%' }}>
-    //   <DataGrid rows={tickets} columns={columns} pageSize={5} />
-    // </div>
+        {isLoading ? null :
+          <Grid container 
+            justify="space-around"
+            alignItems="flex-start" 
+            spacing={4}>
+            {myTickets.map(ticket => (
+              <Grid item  xs={12} sm={6} md={4} lg={5} key={ticket.id} >
+                <TicketCard
+                id={ticket.id}
+                title={ticket.title} 
+                description={ticket.description} 
+                ticketClosed={ticket.ticketClosed}
+                createdBy={ticket.createdBy.userName}
+                modul={ticket.document.module.name}
+                document={ticket.document.name}/>
+              </Grid>
+            ))}
+          </Grid>
+        }
+        <NewElementButton/>
+        <Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </div>
     )
 }
-
-
-
-

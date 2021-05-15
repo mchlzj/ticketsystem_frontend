@@ -5,7 +5,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
-
+// Style definition
 const useStyles = makeStyles((theme) =>
 createStyles({
   fab: {
@@ -28,11 +28,11 @@ createStyles({
 
   function TicketsNachModulen() {
 
+    // Necessary consts
     const [labels, setLabels] = useState([]);
     const [openTickets, setOpenTickets] = useState([]);
     const [closedTickets, setClosedTickets] = useState([]);
 
-    
     const classes = useStyles();
 
     useEffect(async() => {
@@ -56,6 +56,7 @@ createStyles({
       console.log(closedTickets);
     },[])
     
+    // Diagram data
     const dataOpen = {
       labels: labels,
       datasets: [
@@ -79,6 +80,7 @@ createStyles({
         ],
       };
     
+    // Display options of the diagram
     const options = {
       plugins: {
         legend: {
@@ -89,28 +91,22 @@ createStyles({
 
     return (
       <div>
-      {/* <article height='60vh'> */}
       <Grid container justify="flex-start" alignItems="flex-start" spacing={3}>
       <Grid item xs={'auto'}>
       <Typography align='center' gutterBottom variant="h6" component="h2" color="primary">
                 offene Tickets
     </Typography>
-      {/*<canvas id="middle" width='800' height='40'></canvas>*/}
       <Bar data={dataOpen} options={options}/>
       </Grid>
       <Grid item xs={'auto'}>
       <Typography align='center' gutterBottom variant="h6" component="h2" color="primary">
             geschlossene Tickets
     </Typography>
-      {/*<canvas id="middle" width='800' height='40'></canvas>*/}
       <Bar data={dataClosed} options={options}/>
       </Grid>
-      {/* </article> */}
       </Grid>
       </div>
     );
   } 
     
-
-
 export default TicketsNachModulen

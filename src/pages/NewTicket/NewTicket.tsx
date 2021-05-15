@@ -20,6 +20,7 @@ import Box from '@material-ui/core/Box'
 import {getModules, getDocuments} from '../../util/ApiCalls';
 import { useHistory } from 'react-router-dom';
 
+// Style definition
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -53,22 +54,14 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function NewTicket({moduls, setModules, documents, setDocuments}) {
+    
+    // Necessary consts
     const classes = useStyles();
     const history = useHistory();
-
     const [titleValue, setTitleValue] = useState('');
     const [descriptionValue, setDescriptionValue] = useState('');
     const [modul, setModuleValue] = useState('');
     const [document, setDocumentValue] = useState('');
-
-
-    /*var moduleArray;
-    const promiseAllModules = getModules();
- 
-    promiseAllModules.then(function(result) {
-      moduleArray = result
-      console.log(moduleArray);
-    });*/
 
     useEffect(() => {
       getModules()
@@ -76,7 +69,6 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
         setModules(data);
       })
       .then(() => console.log(moduls)); 
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
@@ -85,13 +77,9 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
         setDocuments(data);
       })
       .then(() => console.log(documents)); 
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    /*useEffect(() => {
-      console.log(auth.getUserRole());
-    })*/
-
+    // Function which is called if the value of the module inputfield has changed
     const handleModuleChange = ({target}) => {
       getDocuments(target.value)
       .then(data => {
@@ -100,17 +88,22 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
       setModuleValue(target.value);
     };
 
+    // Function which is called if the value of the document inputfield has changed
     const handleDocumentChange = ({target}) => {
       setDocumentValue(target.value);
     };
 
+    // Function which is called if the value of the description textfield has changed
     const handleChangeDescription = ({target}) => {
         setDescriptionValue(target.value);
     };
+
+    // Function which is called if the value of the title textfield has changed
     const handleChangeTitle = ({target}) => {
         setTitleValue(target.value);
     };
 
+    // Function which is called if the submit button is pushed
     const submitTicket = () => {
         if (titleValue!="" && descriptionValue!="" && document!="") {
         createNewTicket( titleValue , descriptionValue, document)
@@ -123,10 +116,9 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
         }
     };
 
-    
+    // Return NewTicket component
     return (
       <div>
-
         <Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>
           <Grid item>
             <CreateIcon fontSize='large'/>
@@ -137,75 +129,71 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
             </Typography>
           </Grid>
         </Grid>
-
         <form className={classes.root} noValidate autoComplete="off">
-        <Grid container justify="flex-start" alignItems="flex-start" spacing={1}>
-          <Grid item xs={"auto"}>
-            <Card variant='outlined' style={{ borderRadius: 15, borderWidth: 2, borderColor: 'black'}}>
-              <CardContent>
-                <Grid container justify="space-around" alignItems="flex-start" spacing={2}>
-                  <Grid item xs={12}>
-                    <Typography gutterBottom variant="body1" component="h2" color="primary">
-                    <Box fontWeight="fontWeightBold" fontSize={18}>
-                      Titel
-                    </Box>
-                    </Typography>
-                    <TextField id="title_textfield" fullWidth={true} label="Titel eingeben..." variant="outlined" value={titleValue} onChange={handleChangeTitle}/>
+          <Grid container justify="flex-start" alignItems="flex-start" spacing={1}>
+            <Grid item xs={"auto"}>
+              <Card variant='outlined' style={{ borderRadius: 15, borderWidth: 2, borderColor: 'black'}}>
+                <CardContent>
+                  <Grid container justify="space-around" alignItems="flex-start" spacing={2}>
+                    <Grid item xs={12}>
+                      <Typography gutterBottom variant="body1" component="h2" color="primary">
+                      <Box fontWeight="fontWeightBold" fontSize={18}>
+                        Titel
+                      </Box>
+                      </Typography>
+                      <TextField id="title_textfield" fullWidth={true} label="Titel eingeben..." variant="outlined" value={titleValue} onChange={handleChangeTitle}/>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Typography gutterBottom variant="body1" component="h2" color="primary">
+                      <Box fontWeight="fontWeightBold" fontSize={18}>
+                        Beschreibung
+                      </Box>
+                      </Typography>
+                      <TextField id="description_textfield" fullWidth={true} value={descriptionValue} onChange={handleChangeDescription} multiline={true} label="Beschreibung eingeben..." variant="outlined" />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Typography gutterBottom variant="body1" component="h2" color="primary">
+                      <Box fontWeight="fontWeightBold" fontSize={18}>
+                        Modul
+                      </Box>
+                      </Typography>
+                      <FormControl className={classes.formControl}>
+                        <InputLabel id="select-module-label">&nbsp; Modul auswählen...</InputLabel>
+                        <Select labelId="select-module-label" id="select-module" variant="outlined" value={modul} onChange={handleModuleChange}>
+                        {
+                        moduls?.map((item) => {
+                          return (
+                            <MenuItem key={item.id} value={item.id} selected classes={{ selected: classes.selected }}>
+                              {item.name}
+                            </MenuItem>
+                          );
+                        })}
+                        </Select>
+                      </FormControl>
+                      <FormControl className={classes.formControl}>
+                        <InputLabel id="select-document-label">&nbsp; Format auswählen...</InputLabel>
+                        <Select labelId="select-document-label" id="select-document" variant="outlined" value={document} onChange={handleDocumentChange}>
+                        {
+                        documents?.map((item) => {
+                          return (
+                            <MenuItem key={item.id} value={item.id} selected classes={{ selected: classes.selected }}>
+                              {item.name}
+                            </MenuItem>
+                          );
+                        })}
+                        </Select>
+                      </FormControl>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={12}>
-                    <Typography gutterBottom variant="body1" component="h2" color="primary">
-                    <Box fontWeight="fontWeightBold" fontSize={18}>
-                      Beschreibung
-                    </Box>
-                    </Typography>
-                    <TextField id="description_textfield" fullWidth={true} value={descriptionValue} onChange={handleChangeDescription} multiline={true} label="Beschreibung eingeben..." variant="outlined" />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Typography gutterBottom variant="body1" component="h2" color="primary">
-                    <Box fontWeight="fontWeightBold" fontSize={18}>
-                      Modul
-                    </Box>
-                    </Typography>
-                    <FormControl className={classes.formControl}>
-                      <InputLabel id="select-module-label">&nbsp; Modul auswählen...</InputLabel>
-                      <Select labelId="select-module-label" id="select-module" variant="outlined" value={modul} onChange={handleModuleChange}>
-                      {
-                      moduls?.map((item) => {
-                        return (
-                          <MenuItem key={item.id} value={item.id} selected classes={{ selected: classes.selected }}>
-                            {item.name}
-                          </MenuItem>
-                        );
-                      })}
-                      </Select>
-                    </FormControl>
-                    <FormControl className={classes.formControl}>
-                      <InputLabel id="select-document-label">&nbsp; Format auswählen...</InputLabel>
-                      <Select labelId="select-document-label" id="select-document" variant="outlined" value={document} onChange={handleDocumentChange}>
-                      {
-                      documents?.map((item) => {
-                        return (
-                          <MenuItem key={item.id} value={item.id} selected classes={{ selected: classes.selected }}>
-                            {item.name}
-                          </MenuItem>
-                        );
-                      })}
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                </Grid>
-                <Fab variant="extended" size="medium" color="secondary" className={classes.fab} onClick={submitTicket}>
-          &nbsp; Fertig &nbsp; 
-          <CheckCircleIcon />
-        </Fab>
-              </CardContent>
-            </Card>
+                  <Fab variant="extended" size="medium" color="secondary" className={classes.fab} onClick={submitTicket}>
+                    &nbsp; Fertig &nbsp; 
+                    <CheckCircleIcon />
+                  </Fab>
+                </CardContent>
+              </Card>
+              </Grid>
             </Grid>
-          </Grid>
         </form>
-
       </div>
     );
 }
-
-

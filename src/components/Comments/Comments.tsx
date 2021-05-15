@@ -6,7 +6,7 @@ import {getTicketById, changeTicketStatus, getCommentByTicketId} from '../../uti
 import {alterInMs} from '../../util/Date';
 
 function Comments({ticketID}) {
-    
+   
     const [comments, setComments] = useContext(CommentsContext);
 
     useEffect(() => {
