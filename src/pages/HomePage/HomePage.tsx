@@ -2,7 +2,7 @@ import auth from '../../util/auth'
 
 function HomePage(props) {
 
-
+// Return HomePage
     return (
         //Die Homepage Komponente dient nur dem Routing auf das Dashboard.
             <div>

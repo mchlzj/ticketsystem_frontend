@@ -1,5 +1,7 @@
-
+// API Endpoint
 const url = 'https://easyticketapi.azurewebsites.net/api/';
+
+// Different API Endpoints for testing
 //https://www.hetfeld.name/ticket_backend/api/
 //http://localhost:59543/api/
 //https://easyticketapi.azurewebsites.net/api/
@@ -32,7 +34,7 @@ export const login = async(userName, password) => {
     }
 };
 
-//Tickets abrufen
+//Call Tickets
 export const getAllTickets = async() => {
     const response = await fetch(url + 'tickets',
     {
@@ -51,7 +53,7 @@ export const getAllTickets = async() => {
         console.log(error);
     }
 };
-//Tickets suchen
+//Different Functions for searching tickets
 export const getTicketsByTitle = async(title) => {
     if (title !== '' && title !== null) {
         const response = await fetch(url + 'Tickets/SearchByTitle/' + title,
@@ -148,9 +150,7 @@ export const getTicketById = async(id) => {
     }
 };
 
-
-
-
+// Create a new Comment
 export const newComment = async( ticketID, text) => {
     await fetch(url  + 'Comments',
     {
@@ -166,6 +166,8 @@ export const newComment = async( ticketID, text) => {
             }
         });
     }
+
+// Create a new Ticket
 export const createNewTicket = async(title, description, documentId) => {
     const response = await fetch(url + 'Tickets',
     {
@@ -183,6 +185,7 @@ export const createNewTicket = async(title, description, documentId) => {
     });
 }
 
+// Get all modules
 export const getModules = async() => {
     const response = await fetch(url + 'Modules',
     {
@@ -203,7 +206,7 @@ export const getModules = async() => {
     }
 };
 
-
+// Get all documents
 export const getDocuments = async( moduleId ) => {
     const response = await fetch(url + `Documents/GetByModuleId/${moduleId}`,
     {
@@ -224,6 +227,7 @@ export const getDocuments = async( moduleId ) => {
     }
 };
 
+// Change ticket status
 export const changeTicketStatus = async( ticketId ) => {
     const response = await fetch(url + `Tickets/ChangeStatus/${ticketId}`,
     {

@@ -1,6 +1,5 @@
 import React, {createContext} from 'react';
 
-
 export const TicketsContext = createContext<any>([]);
 
 export const TicketsProvider = ({children}: any) => {

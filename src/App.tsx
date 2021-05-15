@@ -11,6 +11,8 @@ import Dashboard from './DashBoard';
 import {ProtectedRoute} from './protectedRoute'
 import { useHistory } from 'react-router';
 
+
+// Style definition
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -27,8 +29,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function App() {
   
+  // Necessary consts
   const [, setIsLoggedIn] = useContext(LoginContext);
-
   const history = useHistory();
 
   useEffect(() => {
@@ -36,14 +38,12 @@ function App() {
         setIsLoggedIn(true);
       }
       console.log(getUserCredentials());
-      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   
+  const classes = useStyles();
 
-const classes = useStyles();
-
+  // Returning App
   return (
-    
     <div className= {classes.root}>
       {/*
       Die protectedRoute Komponente sorgt dafür, dass sämtliche unauthentifizierte Zugriffe zurück zur /login Route gelangen. 
@@ -63,7 +63,7 @@ const classes = useStyles();
             component={Dashboard}
             history={history}/>
           </Switch>
-         </ThemeProvider>
+        </ThemeProvider>
       </Router>
     </div>
   );

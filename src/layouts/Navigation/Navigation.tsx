@@ -9,11 +9,12 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import '../../style-theme'
 import { theme } from '../../style-theme';
 
+// Const definition
 const drawerWidth = 240;
 
+// Style definition
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-
     title: {
         display: 'none',
         [theme.breakpoints.up('sm')]: {
@@ -48,6 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+
 
 /*
 Navigation als Layout, da die einzelnen Komponenten für die Navigation permanent zusammenhängen und immer an gleicher Stelle sind. 

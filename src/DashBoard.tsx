@@ -17,9 +17,7 @@ import {ModulesContext} from './pages/NewTicket/ModulesContext';
 import {  getUserCredentials} from './util/UserCreds';
 import {DocumentsContext} from './pages/NewTicket/DocumentsContext';
 
-
-// import ApiPreCalls from './ApiCalls/ApiPreCalls';
-
+// Style definition
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -36,12 +34,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Dashboard(props) {
 
+  // Necessary consts
   const [tickets,setTickets] = useContext(TicketsContext);
   const [isLoggedIn, setIsLoggedIn] = useContext(LoginContext);
   const [userName,] = useContext(UserNameContext);
   const [moduls,setModules] = useContext(ModulesContext);
   const [documents,setDocuments] = useContext(DocumentsContext);
-
 
   useEffect(() => {
     getAllTickets()
@@ -49,7 +47,6 @@ function Dashboard(props) {
       setTickets(data);
     })
     console.log("Api Call from App");
-          // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []) 
 
   useEffect(() => {
@@ -60,32 +57,28 @@ function Dashboard(props) {
     console.log(auth.getUserRole());
     console.log(userName);
     console.log(getUserCredentials());
-          // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const classes = useStyles();
 
-
-const classes = useStyles();
-
+  // Returning DashBoard
   return (
-
     <div className= {classes.root}>
-        <Router>
-          <Navigation history={props.history}/> 
-          <main className={classes.content}>               
+      <Router>
+        <Navigation history={props.history}/> 
+        <main className={classes.content}>               
           <div className={classes.toolbar} />
           <Switch>
-              
-              <Route path="/newticket" render={() => <NewTicket moduls={moduls} setModules={setModules} documents={documents} setDocuments={setDocuments}/>}/>
-              <Route path="/ticketSuchen" exact render={() => <AllTickets />}/>
-              <Route path="/ticketSuchen/:id" component={Ticket}/>
-              <Route path="/meineTickets" render={() => <MeineTickets tickets={tickets} setTickets={setTickets}/>}/>
-              <Route path="/statistics" render={() => <Statistics tickets={tickets} setTickets={setTickets}/>}/>
-              <Route path="/MirZugewieseneTickets" render={() => <MirZugewieseneTickets tickets={tickets} setTickets={setTickets}/>}/>
+            <Route path="/newticket" render={() => <NewTicket moduls={moduls} setModules={setModules} documents={documents} setDocuments={setDocuments}/>}/>
+            <Route path="/ticketSuchen" exact render={() => <AllTickets />}/>
+            <Route path="/ticketSuchen/:id" component={Ticket}/>
+            <Route path="/meineTickets" render={() => <MeineTickets tickets={tickets} setTickets={setTickets}/>}/>
+            <Route path="/statistics" render={() => <Statistics tickets={tickets} setTickets={setTickets}/>}/>
+            <Route path="/MirZugewieseneTickets" render={() => <MirZugewieseneTickets tickets={tickets} setTickets={setTickets}/>}/>
           </Switch>
-          </main>    
-        </Router>            
-      </div>       
+        </main>    
+      </Router>            
+    </div>       
   );
 }
 

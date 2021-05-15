@@ -4,17 +4,21 @@ Klasse die global dafür verantwortlich ist die Authentifizierung durchzuführen
 Nutzerinformationen werden jedoch in der UserCredsContext.tsx gespeichert
 */
 class Auth {
+
     constructor() {
         this.authenticated = false;
     }
+
     login(cb) {
         this.authenticated = true;
         cb();
     }
+
     logout(cb) {
         this.authenticated = false;
         cb();
     }
+
     isAuthenticated() {
         if (localStorage.getItem('token')) {
             return true;
@@ -22,7 +26,8 @@ class Auth {
             return false;
         }
     }
-      getUserCredentials = () => {
+
+    getUserCredentials = () => {
         const token = localStorage.getItem('token');
         let decoded;
         if(token !== null) {
@@ -33,12 +38,13 @@ class Auth {
         }
     }
     
-      getUserName = () => {
+    getUserName = () => {
         if (this.getUserCredentials() !== null) {
             return this.getUserCredentials()["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
         }
     }
-      getUserRole = () => {
+
+    getUserRole = () => {
         if (this.getUserCredentials() !== null) {
             return this.getUserCredentials()["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
         }

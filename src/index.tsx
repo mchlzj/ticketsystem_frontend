@@ -12,15 +12,15 @@ import {ModulesProvider} from './pages/NewTicket/ModulesContext';
 import {DocumentsProvider} from './pages/NewTicket/DocumentsContext';
 import {IsClosedProvider} from './util/FilterContext';
 
-
-
 ReactDOM.render(
+
   /*
   Die App Komponente wird mit sämtlichen ContextProvidern umschlossen, damit die Anwendung überall Zugriff auf sätmliche Zustände hat.
   Aufgrund der Große der Anwendung, muss hier nicht darauf geachtet werden, den Context nur in bestimmten Bereichen zugänglich zu machen.
   Die Context Komponenten sind ihren entsprechenden Komponenten in den Ordnern zugeteilt. 
   Unter util finden sich noch ein paar Context Komponenten, die Global Anwendung finden und nicht zugeordnet werden können
   */
+
   <LoginProvider>
     <UserNameProvider> 
       <UserRoleProvider>

@@ -9,6 +9,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
+// Style definition
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       fab: {
@@ -27,43 +28,41 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
   );
 
-
 function Statistics(
   {tickets, setTickets}
   ) {
 
     const classes = useStyles();
-
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
       setTickets([]);
       setIsLoading(false);
       console.log("Api Call from MyTickets");
-  }, [])
+    }, [])
 
-
+    // Return Statistics component
     return (
         <div>
           <Grid container justify="flex-start" alignItems="flex-start" spacing={3}>
             <Grid item xs={'auto'}>
-            <Typography align='center' gutterBottom variant="h5" component="h2" color="primary">
-                Anzahl erstellter Tickets im Zeitverlauf
-            </Typography>
-            <TicketsZeitverlauf/>
+              <Typography align='center' gutterBottom variant="h5" component="h2" color="primary">
+                  Anzahl erstellter Tickets im Zeitverlauf
+              </Typography>
+              <TicketsZeitverlauf/>
             </Grid>
             <Grid item xs={12} />
             <Grid item xs={'auto'}>
-            <Typography align='center' gutterBottom variant="h5" component="h2" color="primary">
-                Gesamtzahl erstellter Tickets pro Modul
-            </Typography>
-            <NewElementButton/>
-            <TicketsNachModulen/>
+              <Typography align='center' gutterBottom variant="h5" component="h2" color="primary">
+                  Gesamtzahl erstellter Tickets pro Modul
+              </Typography>
+              <NewElementButton/>
+              <TicketsNachModulen/>
             </Grid>
           </Grid>
           <Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
+            <CircularProgress color="inherit" />
+          </Backdrop>
         </div>
     )
 }

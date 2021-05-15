@@ -1,6 +1,5 @@
 import React, {createContext} from 'react';
 
-
 export const ModulesContext = createContext<any>([]);
 
 export const ModulesProvider = ({children}: any) => {

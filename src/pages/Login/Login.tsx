@@ -12,12 +12,12 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+// Style definition
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       '& .MuiTextField-root': {
         margin: theme.spacing(1),
-        // width: '25ch',
       },
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -48,13 +48,14 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Login(props) {
-  const classes = useStyles();
 
+  // Necessary consts
+  const classes = useStyles();
   const [userName, setUserName] = useState();
   const [password, setPassword] = useState();
 
+// Function which is called by clicking on the Login button
 const handleLogin = async() => {
-  
     login(userName, password)
         .then(res => {
             localStorage.setItem('token', res.token);    
@@ -64,9 +65,10 @@ const handleLogin = async() => {
         }).catch(e => alert("invalid Username or Password"))
 }
 
+
 //Der Einfachheit halber eigene Handler für die Demo Accounts erstellt. Grundsätzlich käme aber für die weitere Arbeit eine Extrahierung der Methode in Frage.
+// Tutor Login Demo Button
 const handleTutor = async() => {
-  
   login('Janina.Mantel', 'sicher')
       .then(res => {
           localStorage.setItem('token', res.token);    
@@ -77,8 +79,8 @@ const handleTutor = async() => {
 }
 
 //Der Einfachheit halber eigene Handler für die Demo Accounts erstellt. Grundsätzlich käme aber für die weitere Arbeit eine Extrahierung der Methode in Frage.
+// Student Login Demo Button
 const handleStudent = async() => {
-  
   login('Michael.Ziaja', 'sicher')
       .then(res => {
           localStorage.setItem('token', res.token);    
@@ -88,85 +90,79 @@ const handleStudent = async() => {
       }).catch(e => alert("invalid Username or Password"))
 }
 
+// Function which is called if the value of the userName textfield has changed
 const handleUserNameChange = ({target}) => {
     setUserName(target.value);
 };
+
+// Function which is called if the value of the userPassword textfield has changed
 const handlePasswordChange = ({target}) => {
     setPassword(target.value);
 };
 
+// Return Login Component
   return (
     <Paper className={classes.background}>
-    <form  className= {classes.root} noValidate autoComplete="off">
-     
-      <Card>
-      <CardMedia
-          className={classes.media}
-          image="/media/LogoLogin.JPG"
-          title="LogoLogin"
-        />
-      <Grid
-  container
-  direction="column"
-  justify="center"
-  alignItems="center"
->
-        <TextField
-          required
-          id="Benutzername"
-          label="Benutzername"
-          variant="outlined"
-          onChange={handleUserNameChange}
-        />
-        <TextField
-        required
-          id="Passwort"
-          label="Passwort"
-          type="password"
-          autoComplete="current-password"
-          variant="outlined"
-          onChange={handlePasswordChange}
-        />
-      <Button variant="contained" 
-      color="secondary" 
-      disableElevation
-      onClick={handleLogin}
-      fullWidth>
-        Login
-      </Button>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography variant='h6'>Demo Accounts</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-
+      <form  className= {classes.root} noValidate autoComplete="off">
+        <Card>
+          <CardMedia
+              className={classes.media}
+              image="/media/LogoLogin.JPG"
+              title="LogoLogin"
+           />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center">
+            <TextField
+              required
+              id="Benutzername"
+              label="Benutzername"
+              variant="outlined"
+              onChange={handleUserNameChange}/>
+            <TextField
+            required
+              id="Passwort"
+              label="Passwort"
+              type="password"
+              autoComplete="current-password"
+              variant="outlined"
+              onChange={handlePasswordChange}/>
             <Button variant="contained" 
             color="secondary" 
             disableElevation
-            onClick={handleTutor}
-            className={classes.demo}>
-              Tutor:in
+            onClick={handleLogin}
+            fullWidth>
+              Login
             </Button>
-            <Button variant="contained" 
-            color="secondary" 
-            disableElevation
-            onClick={handleStudent}
-            className={classes.demo}>
-              Student:in
-            </Button>
-        </AccordionDetails>
-      </Accordion>
-        </Grid>
-      </Card>
-    </form>
-          </Paper>
-
-
-    
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header">
+                <Typography variant='h6'>Demo Accounts</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Button variant="contained" 
+                color="secondary" 
+                disableElevation
+                onClick={handleTutor}
+                className={classes.demo}>
+                  Tutor:in
+                </Button>
+                <Button variant="contained" 
+                color="secondary" 
+                disableElevation
+                onClick={handleStudent}
+                className={classes.demo}>
+                  Student:in
+                </Button>
+              </AccordionDetails>
+            </Accordion>
+          </Grid>
+        </Card>
+      </form>
+    </Paper>
   );
 }
-

@@ -8,9 +8,12 @@ import {getTicketsImZeitverlauf} from '../../util/ApiCalls';
   */
   function TicketsZeitverlauf() {
 
+    // Necessary consts
     const [labels, setLabels] = useState([]);
     const [openTickets, setOpenTickets] = useState([]);
     const [closedTickets, setClosedTickets] = useState([]);
+
+
 
     useEffect(async() => {
       let labels=[];
@@ -18,6 +21,7 @@ import {getTicketsImZeitverlauf} from '../../util/ApiCalls';
       let closedTickets=[];
 
       const result = await getTicketsImZeitverlauf();
+
       result.forEach(element => {
         labels.push(element.month);
         openTickets.push(element.openedTickets);
@@ -32,6 +36,7 @@ import {getTicketsImZeitverlauf} from '../../util/ApiCalls';
       console.log(closedTickets);
     },[])
     
+    // Diagram data
     const data = {
       labels: labels,
       datasets: [
@@ -52,6 +57,7 @@ import {getTicketsImZeitverlauf} from '../../util/ApiCalls';
       ],
     };
     
+    // Display options of the diagram
     const options = {
       pugins: {
         legend: {
@@ -81,6 +87,4 @@ import {getTicketsImZeitverlauf} from '../../util/ApiCalls';
     );
   } 
     
-
-
 export default TicketsZeitverlauf

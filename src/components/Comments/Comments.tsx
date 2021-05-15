@@ -5,7 +5,7 @@ import NewComment from './NewComment';
 import {getCommentByTicketId} from '../../util/ApiCalls';
 
 function Comments({ticketID}) {
-    
+   
     const [comments, setComments] = useContext(CommentsContext);
 
     useEffect(() => {

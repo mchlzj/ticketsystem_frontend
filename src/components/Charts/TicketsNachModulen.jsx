@@ -6,12 +6,14 @@ import Grid from '@material-ui/core/Grid';
 
 /*
   .jsx Komponente, da Charts-js Probleme mit Typscript hat
-  */
+*/
   function TicketsNachModulen() {
 
+    // Necessary consts
     const [labels, setLabels] = useState([]);
     const [openTickets, setOpenTickets] = useState([]);
     const [closedTickets, setClosedTickets] = useState([]);
+
 
     useEffect(async() => {
       let labels=[];
@@ -34,6 +36,7 @@ import Grid from '@material-ui/core/Grid';
       console.log(closedTickets);
     },[])
     
+    // Diagram data
     const dataOpen = {
       labels: labels,
       datasets: [
@@ -57,6 +60,7 @@ import Grid from '@material-ui/core/Grid';
         ],
       };
     
+    // Display options of the diagram
     const options = {
       plugins: {
         legend: {
@@ -85,6 +89,4 @@ import Grid from '@material-ui/core/Grid';
     );
   } 
     
-
-
 export default TicketsNachModulen

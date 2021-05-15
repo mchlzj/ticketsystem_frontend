@@ -14,6 +14,7 @@ import StatusFilter from '../../components/Filter/StatusFilter'
 
 export default function MirZugewieseneTickets({tickets, setTickets}) {
 
+    // Necessary consts
     const [isLoading, setIsLoading] = useState(true);
     const [userName, setUserName] = useContext(UserNameContext);
     const [isClosed, ] = useContext(isClosedContext);
@@ -33,6 +34,7 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
       console.log(userName);
     }, [userName])
 
+    // Style definition
     const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       fab: {
@@ -48,12 +50,13 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
     }),
   );
 
+  const history = useHistory();
   const classes = useStyles();
 
-    const myTickets = tickets.filter(ticket => ticket.document.module.responsible.userName === userName && ticket.ticketClosed === isClosed
-      );
+  // Filter myTickets
+  const myTickets = tickets.filter(ticket => ticket.document.module.responsible.userName === userName && ticket.ticketClosed === isClosed);
 
-
+  // Return MirZugewieseneTickets Components
     return (  
       <div> 
         <StatusFilter/>
@@ -67,36 +70,28 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
             </Typography>
           </Grid>
         </Grid>
-    {isLoading ? null :
-
- <Grid container 
-  justify="space-around"
-  alignItems="flex-start" 
-  spacing={4}>
-    {myTickets.map(ticket => (
-      <Grid item  xs={12} sm={6} md={4} lg={5} key={ticket.id} >
-      <TicketCard 
-      id={ticket.id}
-      title={ticket.title} 
-      description={ticket.description} 
-      ticketClosed={ticket.ticketClosed}
-      createdBy={ticket.document.module.responsible.userName}
-      modul={ticket.document.module.name}
-      document={ticket.document.name}
-        />
-
-    </Grid>
-    ))}
-      </Grid>
-}
-
-      <Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    </div>
+        {isLoading ? null :
+          <Grid container 
+            justify="space-around"
+            alignItems="flex-start" 
+            spacing={4}>
+            {myTickets.map(ticket => (
+              <Grid item  xs={12} sm={6} md={4} lg={5} key={ticket.id} >
+                <TicketCard 
+                id={ticket.id}
+                title={ticket.title} 
+                description={ticket.description} 
+                ticketClosed={ticket.ticketClosed}
+                createdBy={ticket.document.module.responsible.userName}
+                modul={ticket.document.module.name}
+                document={ticket.document.name}/>
+              </Grid>
+            ))}
+          </Grid>
+        }
+        <Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </div>
     )
 }
-
-
-
-

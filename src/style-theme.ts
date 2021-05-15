@@ -1,18 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
-/*declare module '@material-ui/core/styles/createMuiTheme' {
-    interface ThemeOptions {    
-        themeName?: string  // optional
-    }
-}
-
-const palette = {
-  primary: { main: '#f5b000' },
-  secondary: { main: '#10b51e' }
-};
-
-const themeName = 'San Marino Razzmatazz Sugar Gliders';*/
-
 export const theme = createMuiTheme({
     palette: {
         primary: { main: '#113440' },

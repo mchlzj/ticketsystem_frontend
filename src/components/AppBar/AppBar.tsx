@@ -14,6 +14,7 @@ import  {UserMenuId} from './MenuUser';
 import InputBase from '@material-ui/core/InputBase';;
 
 
+// Define styling
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     search: {
@@ -40,12 +41,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     inputRoot: {
       color: 'inherit',
-
-
     },
     inputInput: {
       padding: theme.spacing(2, 1, 1, 0),
-      // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(1)}px)`,
       transition: theme.transitions.create('width'),
       width: '100%',
@@ -82,6 +80,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 function StyledAppBar() {
+
+  // Necessary consts
   const history = useHistory();
   const classes = useStyles();
   const [, setAnchorEl] = React.useContext(AnchorElContext);
@@ -118,6 +118,7 @@ function StyledAppBar() {
     history.push('/ticketSuchen');
   }
 
+  // Return AppBar
   return (
     <div>
       <AppBar position="fixed" className={classes.appBar}>
