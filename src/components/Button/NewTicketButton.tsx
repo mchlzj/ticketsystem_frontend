@@ -7,6 +7,7 @@ import AddIcon from '@material-ui/icons/Add';
 const useStyles = makeStyles((theme: Theme) =>
 createStyles({
         fab: {
+          //sorgt dafür, dass der BUtton immer unten rechts am Bildschirm dargestellt wird.
             position: 'fixed',
             bottom: theme.spacing(2),
             right: theme.spacing(2),
@@ -15,7 +16,9 @@ createStyles({
     }),
 );
 
-
+/*
+Einzelne Komponente um neue Button zu erstellen, da dieser Button häufiger verwendet wird.
+*/
 export default function NewTicketButton() {
 
 

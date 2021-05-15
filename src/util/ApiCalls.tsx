@@ -130,27 +130,6 @@ export const getTicketsNachModulen = async() => {
     }
 };
 
-
-//Ticket erstellen
-// export const sendData = async( title, description) => {
-//     await fetch(url  + 'tickets',
-//     {
-//         method: 'POST',
-//         body: JSON.stringify({
-//             title: title,
-//             description: description,
-//             createdBy: {
-//                 // userName: creator
-//             }
-//         }), 
-//         mode: 'cors',
-//         headers: {
-//                 'Content-Type' : 'application/json',
-//                 'authorization' : 'Bearer ' + localStorage.getItem('token')
-//             }
-//     });
-// }
-
 export const getTicketById = async(id) => {
     const response = await fetch(url + `Tickets/${id}`, 
     {
@@ -204,23 +183,6 @@ export const createNewTicket = async(title, description, documentId) => {
     });
 }
 
-
-// export const removeComment = async( ticketID, text) => {
-//     await fetch(url  + 'Comments',
-//     {
-//         method: 'POST',
-//         body: JSON.stringify({
-//             ticketID: ticketID,
-//             text: text            
-//         }), 
-//         mode: 'cors',
-//         headers: {
-//                 'Content-Type' : 'application/json',
-//                 'authorization' : 'Bearer ' + localStorage.getItem('token')
-//             }
-//     });
-// }
-
 export const getModules = async() => {
     const response = await fetch(url + 'Modules',
     {
@@ -233,12 +195,11 @@ export const getModules = async() => {
     try {
         if (response.ok) {
             const jsonResponse = await response.json();
-            /*console.log(jsonResponse)*/
             return jsonResponse;
         }
         throw new Error('Request Failed!');
     } catch(error) {
-        /*console.log(error);*/
+        console.log(error);
     }
 };
 
@@ -255,12 +216,11 @@ export const getDocuments = async( moduleId ) => {
     try {
         if (response.ok) {
             const jsonResponse = await response.json();
-            /*console.log(jsonResponse)*/
             return jsonResponse;
         }
         throw new Error('Request Failed!');
     } catch(error) {
-        /*console.log(error);*/
+        console.log(error);
     }
 };
 
@@ -276,11 +236,10 @@ export const changeTicketStatus = async( ticketId ) => {
     try {
         if (response.ok) {
             const jsonResponse = await response.json();
-            /*console.log(jsonResponse)*/
             return jsonResponse;
         }
         throw new Error('Request Failed!');
     } catch(error) {
-        /*console.log(error);*/
+        console.log(error);
     }
 };

@@ -1,27 +1,14 @@
-import {useState,useEffect, useContext} from 'react'
-import {CommentsContext} from '../Comments/CommentContext';
+import {useState,useEffect} from 'react'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import {getTicketById, changeTicketStatus, getCommentByTicketId} from '../../util/ApiCalls';
+import {getTicketById, changeTicketStatus} from '../../util/ApiCalls';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Chip from '@material-ui/core/Chip';
 import { Divider } from '@material-ui/core';
-import classes from '*.module.css';
-import { AutoSizer } from '@material-ui/data-grid';
 import Comments from '../Comments/Comments';
-import NewComment from '../Comments/NewComment';
-import {TicketContext} from './TicketContext';
 import CreateIcon from '@material-ui/icons/Create';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import Fab from '@material-ui/core/Fab'
 import Box from '@material-ui/core/Box'
-import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import Switch from '@material-ui/core/Switch';
 import auth from '../../util/auth'
 import FormGroup from '@material-ui/core/FormGroup';
@@ -78,11 +65,8 @@ function Ticket({match}) {
 // which are necessary for getting and setting the ticket data.
     const [ticket, setTicket] = useState<any>();
     const [isLoading, setIsLoading] = useState(true);
-    const [comments, setComments] = useContext(CommentsContext);
     const [status, setStatusValue] = useState<any>();
     const classes = useStyles();
-
-    var statusIsChanged=false;
 
 // Load Ticket with specific id from database and set the related variables.
     useEffect(() => {
@@ -108,9 +92,8 @@ function Ticket({match}) {
 // Returning the ticket component
     return (
       <div>
-        {isLoading ? <h1></h1> : 
+        {isLoading ? null : 
           <div>
-
             <Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>
               <Grid item>
                 <CreateIcon fontSize='large'/>

@@ -1,10 +1,6 @@
-
 import CssBaseline from '@material-ui/core/CssBaseline';
-
 import Hidden from '@material-ui/core/Hidden';
-
 import {AnchorElProvider} from '../../components/AppBar/AnchorElContext';
-
 import DrawerPermanent from '../../components/Drawer/DrawerPermanent';
 import DrawerMobile from '../../components/Drawer/DrawerMobile';
 import AppBar from '../../components/AppBar/AppBar';
@@ -12,9 +8,6 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import '../../style-theme'
 import { theme } from '../../style-theme';
-import Fab from '@material-ui/core/Fab'
-import AddIcon from '@material-ui/icons/Add';
-import { useHistory } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -56,10 +49,12 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
+/*
+Navigation als Layout, da die einzelnen Komponenten für die Navigation permanent zusammenhängen und immer an gleicher Stelle sind. 
+Deshalb Layout und nicht Page
+*/
 export default function Navigation(props) {
   const classes = useStyles();
-
 
   return (
     <ThemeProvider theme={theme}>

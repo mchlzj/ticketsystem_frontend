@@ -1,20 +1,14 @@
 import {useEffect, useState, useContext} from 'react'
 import Grid from '@material-ui/core/Grid';
 import {getAllTickets} from '../../util/ApiCalls';
-import { css } from "@emotion/core";
 import TicketCard from '../../components/Card/TicketCard';
-import jwt_decode from "jwt-decode";
-import {getUserName, getUserCredentials} from '../../util/UserCreds';
+import {getUserName} from '../../util/UserCreds';
 import Typography from '@material-ui/core/Typography';
 import MailIcon from '@material-ui/icons/Mail';
-import Fab from '@material-ui/core/Fab'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
-import { useHistory } from 'react-router-dom';
 import {TicketsContext} from './TicketsContext';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Button from '@material-ui/core/Button';
 import NewElementButton from '../../components/Button/NewTicketButton'
 import StatusFilter from '../../components/Filter/StatusFilter'
 import {isClosedContext} from '../../util/FilterContext';
@@ -25,7 +19,7 @@ export default function AllTickets() {
 // Initialisation of different context variables which are necessary for ticket data.
     const [tickets,setTickets] = useContext(TicketsContext);
     const [isLoading, setIsLoading] = useState(true);
-    const [isClosed, setIsClosed] = useContext(isClosedContext);
+    const [isClosed, ] = useContext(isClosedContext);
 
 // Get all Tickets from database and set related variables.
     useEffect(() => {
@@ -58,7 +52,6 @@ export default function AllTickets() {
   );
 
   const classes = useStyles();
-  const history = useHistory();
 
   const allTickets = tickets.filter(ticket =>
      ticket.ticketClosed === isClosed

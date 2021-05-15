@@ -1,17 +1,12 @@
 import  {useEffect, useState, useContext} from 'react'
 import Grid from '@material-ui/core/Grid';
 import {getAllTickets} from '../../util/ApiCalls';
-// import { DataGrid, ColDef} from '@material-ui/data-grid';
 import TicketCard from '../../components/Card/TicketCard';
 import auth from '../../util/auth';
-import jwt_decode from "jwt-decode";
-import {UserNameContext, UserRoleContext} from '../../util/UserCredsContext';
+import {UserNameContext, } from '../../util/UserCredsContext';
 import Typography from '@material-ui/core/Typography';
 import MailIcon from '@material-ui/icons/Mail';
-import Fab from '@material-ui/core/Fab'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
-import { useHistory } from 'react-router-dom';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {isClosedContext} from '../../util/FilterContext';
@@ -19,10 +14,9 @@ import StatusFilter from '../../components/Filter/StatusFilter'
 
 export default function MirZugewieseneTickets({tickets, setTickets}) {
 
-    // const [tickets,setTickets] = useContext(TicketsContext);
     const [isLoading, setIsLoading] = useState(true);
     const [userName, setUserName] = useContext(UserNameContext);
-    const [isClosed, setIsClosed] = useContext(isClosedContext);
+    const [isClosed, ] = useContext(isClosedContext);
 
     useEffect(() => {
         getAllTickets()
@@ -31,7 +25,6 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
         })
         .then(() => setIsLoading(false))
         .then(() => setUserName(auth.getUserName()))
-        // .then(() => console.log(userName));
         console.log("Api Call from MyTickets"); 
               // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -55,13 +48,6 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
     }),
   );
 
-
-  const history = useHistory();
-
-  const handleCreateNewTicket = () => {
-    history.push('/newTicket');
-  };
-
   const classes = useStyles();
 
     const myTickets = tickets.filter(ticket => ticket.document.module.responsible.userName === userName && ticket.ticketClosed === isClosed
@@ -71,8 +57,6 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
     return (  
       <div> 
         <StatusFilter/>
-        {/*<TicketSearchBar/>*/}
-
         <Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>
           <Grid item>
             <MailIcon fontSize='large'/>
@@ -83,7 +67,6 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
             </Typography>
           </Grid>
         </Grid>
-
     {isLoading ? null :
 
  <Grid container 
@@ -107,10 +90,9 @@ export default function MirZugewieseneTickets({tickets, setTickets}) {
       </Grid>
 }
 
-<Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
+      <Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
         <CircularProgress color="inherit" />
       </Backdrop>
-
     </div>
     )
 }

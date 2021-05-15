@@ -1,31 +1,22 @@
 import React, {useContext, useState, useEffect} from 'react';
-import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import  {UserMenuId} from './MenuUser';
-import InputBase from '@material-ui/core/InputBase';
-
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-
-import SearchIcon from '@material-ui/icons/Search';
 import {MobileOpenContext} from '../Drawer/MobileOpenContext';
 import {AnchorElContext} from './AnchorElContext';
 import { useHistory } from 'react-router-dom';
 import { TicketsContext } from '../../pages/AllTickets/TicketsContext';
 import {getTicketsByTitle, getAllTickets} from '../../util/ApiCalls';
+import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import MenuIcon from '@material-ui/icons/Menu';
+import  {UserMenuId} from './MenuUser';
+import InputBase from '@material-ui/core/InputBase';;
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     search: {
-      // position: 'relative',
       borderRadius: theme.shape.borderRadius,
       backgroundColor: fade(theme.palette.common.white, 0.15),
       '&:hover': {
@@ -41,7 +32,6 @@ const useStyles = makeStyles((theme: Theme) =>
       justifySelf: 'center'
     },
     searchIcon: {
-      // padding: theme.spacing(0, 2),
       height: '100%',
       position: 'absolute',
       pointerEvents: 'none',
@@ -79,10 +69,6 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     appBar: {
       zIndex: theme.zIndex.drawer + 101,
-      // [theme.breakpoints.up('md')]: {
-      //   width: `calc(100% - ${drawerWidth}px)`,
-      //   marginLeft: drawerWidth,
-      // },
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -98,9 +84,8 @@ const useStyles = makeStyles((theme: Theme) =>
 function StyledAppBar() {
   const history = useHistory();
   const classes = useStyles();
-  // Auskommentiert, da sich der Z-Index des Menüs irgendwie nicht ändern lässt
   const [, setAnchorEl] = React.useContext(AnchorElContext);
-  const [tickets, setTickets] = useContext(TicketsContext);
+  const [, setTickets] = useContext(TicketsContext);
   const [title, setTitle] = useState('');
 
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -152,9 +137,6 @@ function StyledAppBar() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
           <div className={classes.search}>
-            {/* <IconButton color="primary" aria-label="search">
-              {/* <SearchIcon /> */}
-            {/* </IconButton> */} 
             <InputBase
               placeholder="Ticket suchen..."
               classes={{
@@ -174,15 +156,11 @@ function StyledAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <img src="/media/IconIU.jpg" height="30"/>
-
-              {/* <AccountCircle /> */}
+              <img src="/media/IconIU.jpg" alt="IU - Logo" height="30"/>
             </IconButton>
           </div>
         </Toolbar>
       </AppBar>
-      {/* Irgendwie lässt sich der Z-Index des Menüs nicht ändern. Deshalb erstmal auskommentiert. */}
-      {/* <MenuUser/> */}
     </div>
   );
 }

@@ -1,18 +1,13 @@
 import  {useEffect, useState, useContext} from 'react'
 import Grid from '@material-ui/core/Grid';
 import {getAllTickets} from '../../util/ApiCalls';
-// import { DataGrid, ColDef} from '@material-ui/data-grid';
 import TicketCard from '../../components/Card/TicketCard';
-import jwt_decode from "jwt-decode";
-import {UserNameContext, UserRoleContext} from '../../util/UserCredsContext';
+import {UserNameContext, } from '../../util/UserCredsContext';
 import {isClosedContext} from '../../util/FilterContext';
 import auth from '../../util/auth';
 import Typography from '@material-ui/core/Typography';
 import MailIcon from '@material-ui/icons/Mail';
-import Fab from '@material-ui/core/Fab'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
-import { useHistory } from 'react-router-dom';
 import NewElementButton from '../../components/Button/NewTicketButton'
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -20,10 +15,9 @@ import StatusFilter from '../../components/Filter/StatusFilter';
 
 export default function MeineTickets({tickets, setTickets}) {
 
-    // const [tickets,setTickets] = useContext(TicketsContext);
     const [isLoading, setIsLoading] = useState(true);
     const [userName, setUserName] = useContext(UserNameContext);
-    const [isClosed, setIsClosed] = useContext(isClosedContext);
+    const [isClosed, ] = useContext(isClosedContext);
 
     useEffect(() => {
         getAllTickets()
@@ -53,20 +47,6 @@ export default function MeineTickets({tickets, setTickets}) {
   );
 
   const classes = useStyles();
-  const history = useHistory();
-
-  const handleCreateNewTicket = () => {
-    history.push('/newTicket');
-  };
-
-
-    // const columns: ColDef[] = [
-    //     { field: 'id', headerName: 'ID', width: 70 },
-    //     { field: 'title', headerName: 'Titel', width: 260 },
-    //     { field: 'description', headerName: 'Beschreibung', width: 390 },
-    //     { field: 'lastChangedDate', headerName: 'Änderungsdatum', width: 260 },
-    //   ];
-      
 
     const myTickets = tickets.filter(ticket =>
       ticket.createdBy.userName === userName && ticket.ticketClosed === isClosed
@@ -74,7 +54,6 @@ export default function MeineTickets({tickets, setTickets}) {
 
     return (  
       <div> 
-      {/*<TicketSearchBar/>*/}
       <StatusFilter/>
       <Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>
           <Grid item>
@@ -112,14 +91,9 @@ export default function MeineTickets({tickets, setTickets}) {
 
   <NewElementButton/>
   <Backdrop className={classes.backdrop} open={isLoading} transitionDuration={300}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-
+      <CircularProgress color="inherit" />
+  </Backdrop>
     </div>
-
-    // <div style={{ height: 400, width: '100%' }}>
-    //   <DataGrid rows={tickets} columns={columns} pageSize={5} />
-    // </div>
     )
 }
 

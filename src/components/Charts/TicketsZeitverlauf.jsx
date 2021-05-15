@@ -1,39 +1,16 @@
 
-import React, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import { Line } from 'react-chartjs-2';
 import {getTicketsImZeitverlauf} from '../../util/ApiCalls';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-
-
-const useStyles = makeStyles((theme) =>
-createStyles({
-  fab: {
-    position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-    textTransform: 'none'
-  },
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
-  },
-  container: {
-    width: '50',
-    height: '200'
-  }
-}),
-);
-
-
+  /*
+  .jsx Komponente, da Charts-js Probleme mit Typscript hat
+  */
   function TicketsZeitverlauf() {
 
     const [labels, setLabels] = useState([]);
     const [openTickets, setOpenTickets] = useState([]);
     const [closedTickets, setClosedTickets] = useState([]);
-
-    
-    const classes = useStyles();
 
     useEffect(async() => {
       let labels=[];
@@ -41,7 +18,6 @@ createStyles({
       let closedTickets=[];
 
       const result = await getTicketsImZeitverlauf();
-      // console.log(result);
       result.forEach(element => {
         labels.push(element.month);
         openTickets.push(element.openedTickets);
@@ -77,8 +53,6 @@ createStyles({
     };
     
     const options = {
-      // responsive: true,
-      // maintainAspectRatio: false,
       pugins: {
         legend: {
           position: 'top'
@@ -102,12 +76,7 @@ createStyles({
 
     return (
       <div >
-        
-      {/*<canvas id="top" width='800' height='20'></canvas>
-       <article height='60vh'> */}
       <Line data={data} options={options} />
-      {/* </article> 
-      <canvas id="middle" width='800' height='40'></canvas>*/}
       </div>
     );
   } 

@@ -1,39 +1,17 @@
-import React, {useState, useEffect} from 'react'
-import { Pie,Bar } from 'react-chartjs-2';
+import  {useState, useEffect} from 'react'
+import { Bar } from 'react-chartjs-2';
 import {getTicketsNachModulen} from '../../util/ApiCalls';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
-
-const useStyles = makeStyles((theme) =>
-createStyles({
-  fab: {
-    position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-    textTransform: 'none'
-  },
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
-  },
-  container: {
-    width: '50',
-    height: '200'
-  }
-}),
-);
-
-
+/*
+  .jsx Komponente, da Charts-js Probleme mit Typscript hat
+  */
   function TicketsNachModulen() {
 
     const [labels, setLabels] = useState([]);
     const [openTickets, setOpenTickets] = useState([]);
     const [closedTickets, setClosedTickets] = useState([]);
-
-    
-    const classes = useStyles();
 
     useEffect(async() => {
       let labels=[];
@@ -89,23 +67,19 @@ createStyles({
 
     return (
       <div>
-      {/* <article height='60vh'> */}
       <Grid container justify="flex-start" alignItems="flex-start" spacing={3}>
       <Grid item xs={'auto'}>
       <Typography align='center' gutterBottom variant="h6" component="h2" color="primary">
                 offene Tickets
     </Typography>
-      {/*<canvas id="middle" width='800' height='40'></canvas>*/}
       <Bar data={dataOpen} options={options}/>
       </Grid>
       <Grid item xs={'auto'}>
       <Typography align='center' gutterBottom variant="h6" component="h2" color="primary">
             geschlossene Tickets
     </Typography>
-      {/*<canvas id="middle" width='800' height='40'></canvas>*/}
       <Bar data={dataClosed} options={options}/>
       </Grid>
-      {/* </article> */}
       </Grid>
       </div>
     );

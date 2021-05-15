@@ -1,9 +1,8 @@
-import React ,{useEffect, useContext} from 'react'
+import {useEffect, useContext} from 'react'
 import {CommentsContext} from './CommentContext';
 import Comment from './Comment';
 import NewComment from './NewComment';
-import {getTicketById, changeTicketStatus, getCommentByTicketId} from '../../util/ApiCalls';
-import {alterInMs} from '../../util/Date';
+import {getCommentByTicketId} from '../../util/ApiCalls';
 
 function Comments({ticketID}) {
     

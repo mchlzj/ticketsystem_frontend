@@ -16,6 +16,7 @@ import DrawerContent from './DrawerContent';
   }),
 );
 
+//Die mobile Variante des DrawerPermanent.tsx
 function DrawerMobile(props) {
 
     const classes = useStyles();

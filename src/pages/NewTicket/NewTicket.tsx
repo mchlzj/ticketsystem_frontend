@@ -1,9 +1,7 @@
 import {useState, useEffect} from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import {createNewTicket} from '../../util/ApiCalls';
-import auth from '../../util/auth'
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CreateIcon from '@material-ui/icons/Create';
@@ -11,7 +9,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -61,15 +58,6 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
     const [modul, setModuleValue] = useState('');
     const [document, setDocumentValue] = useState('');
 
-
-    /*var moduleArray;
-    const promiseAllModules = getModules();
- 
-    promiseAllModules.then(function(result) {
-      moduleArray = result
-      console.log(moduleArray);
-    });*/
-
     useEffect(() => {
       getModules()
       .then(data => {
@@ -87,10 +75,6 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
       .then(() => console.log(documents)); 
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    /*useEffect(() => {
-      console.log(auth.getUserRole());
-    })*/
 
     const handleModuleChange = ({target}) => {
       getDocuments(target.value)
@@ -112,7 +96,7 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
     };
 
     const submitTicket = () => {
-        if (titleValue!="" && descriptionValue!="" && document!="") {
+        if (titleValue!=="" && descriptionValue!=="" && document!=="") {
         createNewTicket( titleValue , descriptionValue, document)
           .then(success => {
             alert('Neues Ticket erfolgreich erstellt!');
@@ -126,7 +110,6 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
     
     return (
       <div>
-
         <Grid container direction="row" alignItems="center" style={{ marginBottom: 15 }}>
           <Grid item>
             <CreateIcon fontSize='large'/>
@@ -137,7 +120,6 @@ export default function NewTicket({moduls, setModules, documents, setDocuments})
             </Typography>
           </Grid>
         </Grid>
-
         <form className={classes.root} noValidate autoComplete="off">
         <Grid container justify="flex-start" alignItems="flex-start" spacing={1}>
           <Grid item xs={"auto"}>
