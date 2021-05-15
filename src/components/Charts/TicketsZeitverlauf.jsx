@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2';
 import {getTicketsImZeitverlauf} from '../../util/ApiCalls';
 
   /*
-  .jsx Komponente, da Charts-js Probleme mit Typscript hat
+  .jsx component, because typescript causes trouble
   */
   function TicketsZeitverlauf() {
 

@@ -46,8 +46,7 @@ function App() {
   return (
     <div className= {classes.root}>
       {/*
-      Die protectedRoute Komponente sorgt dafür, dass sämtliche unauthentifizierte Zugriffe zurück zur /login Route gelangen. 
-      Sobald eine Authentifizierung erfolgreich ist, wird der Nutzer zum Dashboard weitergeleitet.
+      protected route checks for valid authentication
       */}
       <Router basename={process.env.PUBLIC_URL}>
         <ThemeProvider theme={theme}>

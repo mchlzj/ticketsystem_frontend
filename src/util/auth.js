@@ -1,7 +1,6 @@
 import jwt_decode from "jwt-decode";
 /*
-Klasse die global dafür verantwortlich ist die Authentifizierung durchzuführen.
-Nutzerinformationen werden jedoch in der UserCredsContext.tsx gespeichert
+global class for retrieving user information from jwt token. User information will be stored in UserCredsContext anyway
 */
 class Auth {
 

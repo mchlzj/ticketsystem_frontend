@@ -52,8 +52,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 /*
-Navigation als Layout, da die einzelnen Komponenten für die Navigation permanent zusammenhängen und immer an gleicher Stelle sind. 
-Deshalb Layout und nicht Page
+navigation is considered as layout, because it always stays on top, no matter which URL ist visited
 */
 export default function Navigation(props) {
   const classes = useStyles();

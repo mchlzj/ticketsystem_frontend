@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
 /*
-  .jsx Komponente, da Charts-js Probleme mit Typscript hat
+  .jsx component, because typescript causes trouble
 */
   function TicketsNachModulen() {
 

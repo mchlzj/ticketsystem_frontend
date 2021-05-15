@@ -66,7 +66,7 @@ const handleLogin = async() => {
 }
 
 
-//Der Einfachheit halber eigene Handler für die Demo Accounts erstellt. Grundsätzlich käme aber für die weitere Arbeit eine Extrahierung der Methode in Frage.
+//for simplicity extra handler. 
 // Tutor Login Demo Button
 const handleTutor = async() => {
   login('Janina.Mantel', 'sicher')
@@ -78,7 +78,7 @@ const handleTutor = async() => {
       }).catch(e => alert("invalid Username or Password"))
 }
 
-//Der Einfachheit halber eigene Handler für die Demo Accounts erstellt. Grundsätzlich käme aber für die weitere Arbeit eine Extrahierung der Methode in Frage.
+//for simplicity extra handler. 
 // Student Login Demo Button
 const handleStudent = async() => {
   login('Michael.Ziaja', 'sicher')

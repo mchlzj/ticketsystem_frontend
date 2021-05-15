@@ -18,7 +18,7 @@ import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import  {isClosedContext} from '../../util/FilterContext'
 
-//Einzelne Komponente für den Inhalt des Drawers, damit dieser beim mobilen und desktop Drawer gleich ist.
+//Content extractet in Component, for avoiding duplicate code in mobile and desktop drawer.
 function DrawerContent(props) {
 
 // Style definition

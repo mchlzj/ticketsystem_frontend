@@ -5,7 +5,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import '../../style-theme'
 import { theme } from '../../style-theme';
 
-//Wird in einer Desktop Umgebung dargestellt.
+//will be shown on desktop screens
 function DrawerPermanent(props) {
 
     const drawerWidth = 240;

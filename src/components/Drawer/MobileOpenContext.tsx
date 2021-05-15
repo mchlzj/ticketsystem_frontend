@@ -1,6 +1,6 @@
 import React, {createContext} from 'react';
 
-//Kontext der ermittelt, ob sich die Anwendung auf einem mobilen Endgerät, bzw. einem Screen dieser Größe befindet.
+//context detecting if view is opened on mobile device or desktop pc
 export const MobileOpenContext = createContext<any>(null);
 
 export const MobileOpenProvider = ({children}: any) => {

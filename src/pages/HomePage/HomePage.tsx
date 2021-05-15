@@ -4,7 +4,7 @@ function HomePage(props) {
 
 // Return HomePage
     return (
-        //Die Homepage Komponente dient nur dem Routing auf das Dashboard.
+        //Homepage component is just used for routing to dashboard in case of valid authentication
             <div>
                 Welcome to Homepage
                 <h1>Status: {props.isLoggedIn} </h1>
